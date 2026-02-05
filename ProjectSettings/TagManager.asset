@@ -7,6 +7,11 @@ TagManager:
   - pedestrian_lane
   - cycling_lane
   - cyclist
+  - cycling_lane_left
+  - cycling_lane_right
+  - pedestrian_lane_left
+  - pedestrian_lane_right
+  - checkpoint
   layers:
   - Default
   - TransparentFX

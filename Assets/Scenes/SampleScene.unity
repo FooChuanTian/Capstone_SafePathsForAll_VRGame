@@ -616,6 +616,7 @@ MonoBehaviour:
   rb: {fileID: 1623719817}
   timeToSpawn: 4
   FirstSpawn: 10
+  cont: 1
 --- !u!4 &343390920
 Transform:
   m_ObjectHideFlags: 0
@@ -993,7 +994,7 @@ GameObject:
   - component: {fileID: 998911027}
   - component: {fileID: 998911029}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Checkpoint1Trigger
   m_TagString: checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1048,6 +1049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CheckpointBehaviour
   CurrentCheckpoint: {fileID: 354452055}
+  SpawnPrevious: {fileID: 343390918}
 --- !u!1 &1008161879
 GameObject:
   m_ObjectHideFlags: 0

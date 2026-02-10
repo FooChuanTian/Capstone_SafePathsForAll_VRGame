@@ -3,11 +3,16 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Collections;
+using Unity.VisualScripting;
 
 public class PlayerCollisionHandler : MonoBehaviour
 {
     private bool isCyclingPath = false;
+    private bool isGameOver = false;
+    private float timeToRespawn;
     public TextMeshProUGUI WhichLaneText;
+    public TextMeshProUGUI GameOverText;
     public Transform Checkpoint0;
     private List<Transform> CheckpointList = new List<Transform>();
     public Transform Player;
@@ -17,6 +22,18 @@ public class PlayerCollisionHandler : MonoBehaviour
 
         Player.transform.position = Checkpoint0.transform.position;
     }
+    void Update()
+    {
+        if (isGameOver)
+        {
+            timeToRespawn -= Time.deltaTime;
+            if (timeToRespawn <= 0)
+            {
+                isGameOver = false;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
+    }
 
     void OnCollisionEnter(Collision collision)
     {
@@ -24,7 +41,10 @@ public class PlayerCollisionHandler : MonoBehaviour
         {
             Debug.Log("Collided with cyclist");
             PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
-            positionManager.Teleport();
+            isGameOver = true;
+            timeToRespawn = 3f;
+            StartCoroutine(GameOver("Hit by cyclist"));
+            //positionManager.Teleport();
         }
         else if (collision.gameObject.CompareTag("checkpoint"))
         {
@@ -60,8 +80,15 @@ public class PlayerCollisionHandler : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    IEnumerator GameOver(string reason)
     {
-        
+        Time.timeScale = 0;
+        string outString = "Game over. \nReason: " + reason;
+        GameOverText.text = outString;
+        GameOverText.transform.parent.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(3);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameOverText.transform.parent.gameObject.SetActive(false);
     }
 }

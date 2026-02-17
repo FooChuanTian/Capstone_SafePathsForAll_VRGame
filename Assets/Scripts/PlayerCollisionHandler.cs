@@ -46,7 +46,7 @@ public class PlayerCollisionHandler : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("cyclist"))
+        if (collision.gameObject.CompareTag("cyclist") || collision.gameObject.CompareTag("pedestrian"))
         {
             Debug.Log("Collided with cyclist");
             lifeCount--;

@@ -6,7 +6,7 @@ public class SpawnCyclists : MonoBehaviour
     public GameObject CyclistObject;
     public Rigidbody rb;
     private GameObject Clone;
-    public float FirstSpawn = 10f;
+    public float FirstSpawn = 5f;
     public bool cont;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,7 +28,7 @@ public class SpawnCyclists : MonoBehaviour
             int rnd_velo = UnityEngine.Random.Range(10, 25);
 
             cloneRb.linearVelocity = new Vector3(rnd_velo, 0, 0);
-            float timeToSpawn = UnityEngine.Random.Range(3f, 10f);
+            float timeToSpawn = UnityEngine.Random.Range(10f, 15f);
             FirstSpawn = timeToSpawn;
 
         }

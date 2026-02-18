@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
 
     private bool isGrounded = true;
 
-    public float moveSpeed = 2.0f;
+    public float moveSpeed = 10.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -29,7 +29,6 @@ public class PlayerCollisionHandler : MonoBehaviour
     void Start()
     {
 
-        Player.transform.position = Checkpoint0.transform.position;
     }
     void Update()
     {

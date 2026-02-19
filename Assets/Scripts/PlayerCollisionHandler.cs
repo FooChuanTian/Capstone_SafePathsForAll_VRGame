@@ -7,7 +7,7 @@ using System.ComponentModel.Design;
 public class PlayerCollisionHandler : MonoBehaviour
 {
     private bool isCyclingPath = false;
-    public TextMeshProUGUI WhichLaneText;
+    public TextMeshProUGUI InstructionText;
     public Transform Checkpoint0;
     private List<Transform> CheckpointList = new List<Transform>();
     public Transform Player;
@@ -37,26 +37,26 @@ public class PlayerCollisionHandler : MonoBehaviour
         if (collision.gameObject.CompareTag("cycling_lane_left"))
         {
             isCyclingPath = true;
-            WhichLaneText.text = "Cycling Lane Left";
+            InstructionText.text = "Cycling Lane Left";
             Debug.Log("On cycling path!");
         }
         else if (collision.gameObject.CompareTag("cycling_lane_right"))
         {
             isCyclingPath = true;
-            WhichLaneText.text = "Cycling Lane Right";
+            InstructionText.text = "Cycling Lane Right";
             Debug.Log("On right cycling path!");
         }
         else if (collision.gameObject.CompareTag("pedestrian_lane_left"))
         {
             isCyclingPath = false;
-            WhichLaneText.text = "Pedestrian Lane Left";
-            Debug.Log("On left pedestrian path!");
+            InstructionText.text = "Good! Stay left.";
+            InstructionText.color = Color.green;
         }
         else if (collision.gameObject.CompareTag("pedestrian_lane_right"))
         {
             isCyclingPath = false;
-            WhichLaneText.text = "Pedestrian Lane Right";
-            Debug.Log("On right pedestrian path!");
+            InstructionText.text = "Keep left on shared paths.";
+            InstructionText.color = Color.red;
         }
     }
 

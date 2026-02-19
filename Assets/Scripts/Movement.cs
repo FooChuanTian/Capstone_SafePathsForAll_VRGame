@@ -18,8 +18,8 @@ public class Movement : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void FixedUpdate()
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
         {
@@ -43,7 +43,6 @@ public class Movement : MonoBehaviour
         // Press Right arrow key to pan the camera to the right.
         if (Keyboard.current.rightArrowKey.isPressed) Camera.main.transform.Translate(2, 0, 0);
     }
-
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Entered");

@@ -40,11 +40,20 @@ public class PopUpWindow : MonoBehaviour
     private IEnumerator CheckQueue() {
         do {
             ShowPopup(popUpQueue.Dequeue());
-            do {
-               yield return null; 
-            } while (!popUpAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Idle"));
+        //     do {
+        //        yield return null; 
+        //     } while (!popUpAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Idle"));
 
-        } while (popUpQueue.Count > 0);
+        // } while (popUpQueue.Count > 0);
+        yield return new WaitForEndOfFrame(); 
+
+        // Now wait until it hits the Idle tag again
+        while (!popUpAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Idle"))
+        {
+            yield return null; 
+        }
+
+    } while (popUpQueue.Count > 0);
         popUpWindow.SetActive(false);
         queueChecker = null;
     }

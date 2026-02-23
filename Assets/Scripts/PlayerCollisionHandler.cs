@@ -52,13 +52,13 @@ public class PlayerCollisionHandler : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("cycling_lane_left"))
+        /*if (collision.gameObject.CompareTag("cycling_lane_left"))
         {
             isCyclingPath = true;
             InstructionText.text = "Cycling Lane Left";
             Debug.Log("On cycling path!");
-        }
-        else if (collision.gameObject.CompareTag("cycling_lane_left") ||
+        }*/
+        if (collision.gameObject.CompareTag("cycling_lane_left") ||
                  collision.gameObject.CompareTag("cycling_lane_right"))
         {
             if (!isGameOver)

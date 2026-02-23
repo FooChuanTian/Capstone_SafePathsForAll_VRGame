@@ -73,4 +73,24 @@ public class PopUpWindow : MonoBehaviour
             }
         }
     }
+
+    public void ForceCloseAlert()
+    {
+        // 1. Stop the queue logic immediately
+        StopAllCoroutines(); 
+        popUpQueue.Clear();
+
+        // 2. Hide the UI object
+        if (popUpWindow != null)
+        {
+            popUpWindow.SetActive(false);
+        }
+
+        // 3. Reset the Animator so it doesn't stay "half-open"
+        if (popUpAnimator != null)
+        {
+            // Jump straight to the hidden state (use the exact name of your idle state)
+            popUpAnimator.Play("Idle", 0, 0f); 
+        }
+    }
 }

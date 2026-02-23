@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 
-public class FinishLine : MonoBehaviour
+public class Checkpoint_2 : MonoBehaviour
 {   
     // public TextMeshProUGUI GoalText;
     public TutorialPopup tutorial;
@@ -18,7 +18,7 @@ public class FinishLine : MonoBehaviour
             // Todo 3: Wait for a few seconds before loading the next scene
             popUpWindow.ForceCloseAlert(); // Ensure any existing pop-ups are closed
 
-            tutorial.ShowTutorial("Congrats on completing lesson 1!", 3);
+            tutorial.ShowTutorial("Sometimes there will be obstacles in the way, watch out for them and continue to maintain left after", 2);
             hasShownLaneTutorial = true; // Ensures it only freezes the game once
 
             // SceneManager.LoadScene("Cyclist_lesson1_endpage");

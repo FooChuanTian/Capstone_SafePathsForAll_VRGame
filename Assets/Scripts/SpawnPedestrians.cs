@@ -28,9 +28,9 @@ public class SpawnPedestrians : MonoBehaviour
             Rigidbody cloneRb = Clone.GetComponent<Rigidbody>();
             //cloneRb.AddForce(transform.right*10, ForceMode.VelocityChange);
             int rnd_velo = UnityEngine.Random.Range(5, 9);
-            Clone.AddComponent<PedestrianStraight>();
-            Clone.GetComponent<PedestrianStraight>().gb = Clone.gameObject;
-            Clone.GetComponent<PedestrianStraight>().velocity = rnd_velo;
+            Clone.AddComponent<NPCStraight>();
+            Clone.GetComponent<NPCStraight>().gb = Clone.gameObject;
+            Clone.GetComponent<NPCStraight>().velocity = rnd_velo;
             int isSwerving = UnityEngine.Random.Range(0, 2);
             string thing = isSwerving.ToString();
             Debug.Log("isSwerving: "+ thing);

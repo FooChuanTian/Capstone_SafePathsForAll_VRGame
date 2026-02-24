@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PedestrianStraight : MonoBehaviour
+public class NPCStraight : MonoBehaviour
 {
     public GameObject gb;
     private Rigidbody rb;

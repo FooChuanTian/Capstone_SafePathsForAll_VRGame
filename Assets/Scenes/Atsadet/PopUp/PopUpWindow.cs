@@ -34,7 +34,7 @@ public class PopUpWindow : MonoBehaviour
         isActive = true;
         popUpWindow.SetActive(true);
         popUpText.text = text;
-        popUpAnimator.Play("PopUpAnimation");
+        popUpAnimator.Play("PopUpAnimation2");
     }
 
     private IEnumerator CheckQueue() {
@@ -66,7 +66,7 @@ public class PopUpWindow : MonoBehaviour
             // 2. Check if the current time has passed our "Next Allowed" threshold
             if (Time.time >= nextAllowedPopupTime)
             {
-                AddToQueue("Wrong lane!");
+                AddToQueue("WRONG LANE!");
 
                 // 3. Set the new threshold to (Now + 5 seconds)
                 nextAllowedPopupTime = Time.time + cooldownDuration;

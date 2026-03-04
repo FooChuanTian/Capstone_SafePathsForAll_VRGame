@@ -1649,7 +1649,7 @@ Transform:
   m_GameObject: {fileID: 572482371}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 472.7, y: 3.7, z: 30.4}
+  m_LocalPosition: {x: 488.6, y: 3.7, z: 30.4}
   m_LocalScale: {x: 1.3677, y: 127.34969, z: 92.626945}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3066,9 +3066,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGroundCollision
   WhichLaneText: {fileID: 38458802}
+  InstructionText: {fileID: 0}
   GameOverText: {fileID: 1043149716}
   Checkpoint0: {fileID: 1008161880}
   Player: {fileID: 1240974500}
+  warningCount: 0
+  maxWarnings: 200
+  isGameOver: 0
   FilledHeart1: {fileID: 113372432}
   FilledHeart2: {fileID: 1584249207}
   FilledHeart3: {fileID: 1634911950}

@@ -9,10 +9,14 @@ using System.Data;
 
 public class PlayerCollisionHandler : MonoBehaviour
 {
-    public TextMeshProUGUI WhichLaneText;
+    public TextMeshProUGUI InstructionText;
     public TextMeshProUGUI GameOverText;
     public Transform Checkpoint0;
     public Transform Player;
+    public int warningCount = 0;
+    public int maxWarnings = 200;
+    public bool isGameOver = false;
+
     public Transform FilledHeart1;
     public Transform FilledHeart2;
     public Transform FilledHeart3;
@@ -20,7 +24,6 @@ public class PlayerCollisionHandler : MonoBehaviour
     public Transform EmptyHeart2;
     public Transform EmptyHeart3;
     private bool isCyclingPath = false;
-    private bool isGameOver = false;
     private float timeToRespawn;
     
     private List<Transform> CheckpointList = new List<Transform>();
@@ -61,7 +64,7 @@ public class PlayerCollisionHandler : MonoBehaviour
                 PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
                 isGameOver = true;
                 timeToRespawn = 3f;
-                StartCoroutine(GameOver("Hit by cyclist"));
+                StartCoroutine(GameOver2("Hit by cyclist"));
                 //positionManager.Teleport();
             }
         }
@@ -71,32 +74,56 @@ public class PlayerCollisionHandler : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("finish") && !isGameOver)
+        {
+            InstructionText.text = "Success! You stayed on the left.";
+            InstructionText.color = Color.green;
+
+            Debug.Log("Scenario completed successfully!");
+
+            isGameOver = true; // stops further logic
+        }
+    }
+
+
     void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("cycling_lane_left"))
+        /*if (collision.gameObject.CompareTag("cycling_lane_left"))
         {
             isCyclingPath = true;
-            WhichLaneText.text = "Cycling Lane Left";
+            InstructionText.text = "Cycling Lane Left";
             Debug.Log("On cycling path!");
-        }
-        else if (collision.gameObject.CompareTag("cycling_lane_right"))
+        }*/
+        if (collision.gameObject.CompareTag("cycling_lane_left") ||
+                 collision.gameObject.CompareTag("cycling_lane_right"))
         {
-            isCyclingPath = true;
-            WhichLaneText.text = "Cycling Lane Right";
-            Debug.Log("On right cycling path!");
+            if (!isGameOver)
+            {
+                InstructionText.text = "Game Over! You entered the cycling lane.";
+                InstructionText.color = Color.red;
+                GameOver();
+            }
         }
-        else if (collision.gameObject.CompareTag("pedestrian_lane_left"))
-        {
-            isCyclingPath = false;
-            WhichLaneText.text = "Pedestrian Lane Left";
-            Debug.Log("On left pedestrian path!");
-        }
+
         else if (collision.gameObject.CompareTag("pedestrian_lane_right"))
         {
             isCyclingPath = false;
-            WhichLaneText.text = "Pedestrian Lane Right";
-            Debug.Log("On right pedestrian path!");
+
+            if (!isGameOver)
+            {
+                //warningCount++;
+                InstructionText.text = "Warning! Pedestrians must keep left.";
+                InstructionText.color = Color.yellow;
+            }
+
+            if (warningCount >= maxWarnings)
+            {
+                GameOver();
+            }
         }
+
     }
 
     void UpdateHearts(int livesLeft)
@@ -138,7 +165,7 @@ public class PlayerCollisionHandler : MonoBehaviour
         }
     }
 
-    IEnumerator GameOver(string reason)
+    IEnumerator GameOver2(string reason)
     {
         Time.timeScale = 0;
         string outString = "Game over. \nReason: " + reason;
@@ -148,5 +175,33 @@ public class PlayerCollisionHandler : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameOverText.transform.parent.gameObject.SetActive(false);
+    }
+    public void GameOver()
+    {
+        if (isGameOver) return;
+
+        isGameOver = true;
+        Debug.Log("Game Over triggered.");
+
+        // Get PlayerPositionManager
+        PlayerPositionManager positionManager = Player.GetComponent<PlayerPositionManager>();
+
+        if (positionManager != null)
+        {
+            positionManager.Teleport();
+        }
+
+        // Reset lesson state
+        warningCount = 0;
+
+        // Optional: delay before allowing new penalties
+        Invoke(nameof(ResetGameState), 1.0f);
+    }
+
+    void ResetGameState()
+    {
+        isGameOver = false;
+        InstructionText.text = "Try again. Stay left.";
+        InstructionText.color = Color.white;
     }
 }

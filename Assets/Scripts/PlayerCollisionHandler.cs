@@ -10,9 +10,14 @@ using System.Data;
 public class PlayerCollisionHandler : MonoBehaviour
 {
     public TextMeshProUGUI WhichLaneText;
+    public TextMeshProUGUI InstructionText;
     public TextMeshProUGUI GameOverText;
     public Transform Checkpoint0;
     public Transform Player;
+    public int warningCount = 0;
+    public int maxWarnings = 200;
+    public bool isGameOver = false;
+
     public Transform FilledHeart1;
     public Transform FilledHeart2;
     public Transform FilledHeart3;
@@ -20,7 +25,6 @@ public class PlayerCollisionHandler : MonoBehaviour
     public Transform EmptyHeart2;
     public Transform EmptyHeart3;
     private bool isCyclingPath = false;
-    private bool isGameOver = false;
     private float timeToRespawn;
     
     private List<Transform> CheckpointList = new List<Transform>();
@@ -47,15 +51,21 @@ public class PlayerCollisionHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("cyclist") || collision.gameObject.CompareTag("pedestrian"))
         {
-            Debug.Log("Collided with cyclist");
-            lifeCount--;
+            Debug.Log("Collided");
+            if (collision.gameObject.CompareTag("cyclist")) {
+                lifeCount-= 2;
+            }
+            else if (collision.gameObject.CompareTag("pedestrian"))
+            {
+                lifeCount--;
+            }
             UpdateHearts(lifeCount);
             if (lifeCount <= 0) 
             {
                 PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
                 isGameOver = true;
                 timeToRespawn = 3f;
-                StartCoroutine(GameOver("Hit by cyclist"));
+                StartCoroutine(GameOver2("Hit by cyclist"));
                 //positionManager.Teleport();
             }
         }
@@ -64,6 +74,20 @@ public class PlayerCollisionHandler : MonoBehaviour
             Debug.Log("Checkpoint reached!");
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("finish") && !isGameOver)
+        {
+            InstructionText.text = "Success! You stayed on the left.";
+            InstructionText.color = Color.green;
+
+            Debug.Log("Scenario completed successfully!");
+
+            isGameOver = true; // stops further logic
+        }
+    }
+
 
     void OnCollisionStay(Collision collision)
     {
@@ -93,7 +117,7 @@ public class PlayerCollisionHandler : MonoBehaviour
             PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
                 isGameOver = true;
                 timeToRespawn = 3f;
-            StartCoroutine(GameOver("You went onto the pedestrian lane!"));
+            StartCoroutine(GameOver2("You went onto the pedestrian lane!"));
         }
     }
 
@@ -136,7 +160,7 @@ public class PlayerCollisionHandler : MonoBehaviour
         }
     }
 
-    IEnumerator GameOver(string reason)
+    IEnumerator GameOver2(string reason)
     {
         Time.timeScale = 0;
         string outString = "Game over. \nReason: " + reason;
@@ -146,5 +170,33 @@ public class PlayerCollisionHandler : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameOverText.transform.parent.gameObject.SetActive(false);
+    }
+    public void GameOver()
+    {
+        if (isGameOver) return;
+
+        isGameOver = true;
+        Debug.Log("Game Over triggered.");
+
+        // Get PlayerPositionManager
+        PlayerPositionManager positionManager = Player.GetComponent<PlayerPositionManager>();
+
+        if (positionManager != null)
+        {
+            positionManager.Teleport();
+        }
+
+        // Reset lesson state
+        warningCount = 0;
+
+        // Optional: delay before allowing new penalties
+        Invoke(nameof(ResetGameState), 1.0f);
+    }
+
+    void ResetGameState()
+    {
+        isGameOver = false;
+        InstructionText.text = "Try again. Stay left.";
+        InstructionText.color = Color.white;
     }
 }

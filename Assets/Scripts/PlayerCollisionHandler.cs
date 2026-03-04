@@ -9,6 +9,7 @@ using System.Data;
 
 public class PlayerCollisionHandler : MonoBehaviour
 {
+    public TextMeshProUGUI WhichLaneText;
     public TextMeshProUGUI InstructionText;
     public TextMeshProUGUI GameOverText;
     public Transform Checkpoint0;
@@ -90,40 +91,34 @@ public class PlayerCollisionHandler : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        /*if (collision.gameObject.CompareTag("cycling_lane_left"))
+        if (collision.gameObject.CompareTag("cycling_lane_left"))
         {
             isCyclingPath = true;
-            InstructionText.text = "Cycling Lane Left";
+            WhichLaneText.text = "Cycling Lane Left";
             Debug.Log("On cycling path!");
-        }*/
-        if (collision.gameObject.CompareTag("cycling_lane_left") ||
-                 collision.gameObject.CompareTag("cycling_lane_right"))
-        {
-            if (!isGameOver)
-            {
-                InstructionText.text = "Game Over! You entered the cycling lane.";
-                InstructionText.color = Color.red;
-                GameOver();
-            }
         }
-
+        else if (collision.gameObject.CompareTag("cycling_lane_right"))
+        {
+            isCyclingPath = true;
+            WhichLaneText.text = "Cycling Lane Right";
+            Debug.Log("On right cycling path!");
+        }
+        else if (collision.gameObject.CompareTag("pedestrian_lane_left"))
+        {
+            isCyclingPath = false;
+            WhichLaneText.text = "Pedestrian Lane Left";
+            Debug.Log("On left pedestrian path!");
+        }
         else if (collision.gameObject.CompareTag("pedestrian_lane_right"))
         {
             isCyclingPath = false;
-
-            if (!isGameOver)
-            {
-                //warningCount++;
-                InstructionText.text = "Warning! Pedestrians must keep left.";
-                InstructionText.color = Color.yellow;
-            }
-
-            if (warningCount >= maxWarnings)
-            {
-                GameOver();
-            }
+            WhichLaneText.text = "Pedestrian Lane Right";
+            Debug.Log("On right pedestrian path!");
+            PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
+                isGameOver = true;
+                timeToRespawn = 3f;
+            StartCoroutine(GameOver2("You went onto the pedestrian lane!"));
         }
-
     }
 
     void UpdateHearts(int livesLeft)

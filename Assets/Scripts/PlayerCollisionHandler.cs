@@ -90,6 +90,10 @@ public class PlayerCollisionHandler : MonoBehaviour
             isCyclingPath = false;
             WhichLaneText.text = "Pedestrian Lane Right";
             Debug.Log("On right pedestrian path!");
+            PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
+                isGameOver = true;
+                timeToRespawn = 3f;
+            StartCoroutine(GameOver("You went onto the pedestrian lane!"));
         }
     }
 

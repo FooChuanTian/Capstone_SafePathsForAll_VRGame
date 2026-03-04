@@ -18,7 +18,7 @@ public class Checkpoint_2 : MonoBehaviour
             // Todo 3: Wait for a few seconds before loading the next scene
             popUpWindow.ForceCloseAlert(); // Ensure any existing pop-ups are closed
 
-            tutorial.ShowTutorial("Obstacles ahead! Avoid them but maintain left afterwards", 2);
+            tutorial.ShowTutorial("Obstacle ahead! Avoid them but maintain left afterwards", 2);
             hasShownLaneTutorial = true; // Ensures it only freezes the game once
 
             // SceneManager.LoadScene("Cyclist_lesson1_endpage");

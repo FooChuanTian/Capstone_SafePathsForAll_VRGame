@@ -66,7 +66,7 @@ public class PopUpWindow : MonoBehaviour
             // 2. Check if the current time has passed our "Next Allowed" threshold
             if (Time.time >= nextAllowedPopupTime)
             {
-                AddToQueue("WRONG LANE!");
+                AddToQueue("WRONG SIDE!");
 
                 // 3. Set the new threshold to (Now + 5 seconds)
                 nextAllowedPopupTime = Time.time + cooldownDuration;

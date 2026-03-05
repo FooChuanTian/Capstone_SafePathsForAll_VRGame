@@ -4393,7 +4393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8853e8c14f1e55945b635fa2f9f5621d, type: 3}
       propertyPath: m_Name
-      value: Ch09_nonPBR@Walking
+      value: Random_walker
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 8853e8c14f1e55945b635fa2f9f5621d, type: 3}
       propertyPath: m_Controller

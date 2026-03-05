@@ -29,6 +29,8 @@ public class PlayerCollisionHandler : MonoBehaviour
     
     private List<Transform> CheckpointList = new List<Transform>();
     private int lifeCount = 3;
+    private int lessonRoundWarningCount = 0;
+    private int lessonRoundMaxWarnings = 3;
 
     void Start()
     {
@@ -73,6 +75,11 @@ public class PlayerCollisionHandler : MonoBehaviour
         {
             Debug.Log("Checkpoint reached!");
         }
+        else if (collision.gameObject.CompareTag("cycling_lane_right"))
+        {
+            lessonRoundWarningCount++;
+            Debug.Log("Warning count: " + lessonRoundWarningCount);
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -102,6 +109,13 @@ public class PlayerCollisionHandler : MonoBehaviour
             isCyclingPath = true;
             WhichLaneText.text = "Cycling Lane Right";
             Debug.Log("On right cycling path!");
+            if (lessonRoundWarningCount >= lessonRoundMaxWarnings)
+            {
+                PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
+                isGameOver = true;
+                timeToRespawn = 3f;
+                StartCoroutine(GameOver2("You went to the wrong side too many times!"));
+            }
         }
         else if (collision.gameObject.CompareTag("pedestrian_lane_left"))
         {

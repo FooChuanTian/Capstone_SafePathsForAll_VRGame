@@ -24,6 +24,11 @@ public class PlayerPositionManager : MonoBehaviour
         isPositionChanged = true;
     }
 
+    public void ResetPositionChangeFlag()
+    {
+        isPositionChanged = false;
+    }
+
     void Awake()
     {
         // Hitting checkpoints trigger isPositionChanged to true. When scene reloads, it runs this can autoupdates and teleports the player to the last checkpoint position

@@ -25,6 +25,13 @@ public class Checkpoint_2 : MonoBehaviour
             // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
             // This allows us to set the build order scene in Unity editor and 
             // then use this same script to jump to the next scene in the sequence of the build scene order in build profiles
+
+            // Update the manager on the player
+            PlayerPositionManager positionManager = collision.GetComponent<PlayerPositionManager>();
+            if (positionManager != null)
+            {
+                positionManager.UpdatePreviousPosition();
+            }
         }
     }
 

@@ -13,6 +13,8 @@ TagManager:
   - pedestrian_lane_right
   - checkpoint
   - finish
+  - pedestrian
+  - checkpoint2
   layers:
   - Default
   - TransparentFX

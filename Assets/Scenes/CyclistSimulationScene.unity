@@ -2034,12 +2034,6 @@ MonoBehaviour:
   warningCount: 0
   maxWarnings: 200
   isGameOver: 0
-  FilledHeart1: {fileID: 113372432}
-  FilledHeart2: {fileID: 1584249207}
-  FilledHeart3: {fileID: 1634911950}
-  EmptyHeart1: {fileID: 880451940}
-  EmptyHeart2: {fileID: 1353332105}
-  EmptyHeart3: {fileID: 839960639}
 --- !u!114 &1240974504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2077,10 +2071,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1240974495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1f77028885e96742aa4e3e4a991dd1a, type: 3}
+  m_Script: {fileID: 11500000, guid: b07fee82ef20b354a82c1784c37019e0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PhoneToggle
-  PhoneImage: {fileID: 1687899041}
+  m_EditorClassIdentifier: Assembly-CSharp::LivesManager
+  FilledHeart1: {fileID: 113372432}
+  FilledHeart2: {fileID: 1584249207}
+  FilledHeart3: {fileID: 1634911950}
+  EmptyHeart1: {fileID: 880451940}
+  EmptyHeart2: {fileID: 1353332105}
+  EmptyHeart3: {fileID: 839960639}
+  NumLives: 0
 --- !u!1 &1244267914
 GameObject:
   m_ObjectHideFlags: 0

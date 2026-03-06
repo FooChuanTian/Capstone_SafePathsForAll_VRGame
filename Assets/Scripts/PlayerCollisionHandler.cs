@@ -17,19 +17,9 @@ public class PlayerCollisionHandler : MonoBehaviour
     public int warningCount = 0;
     public int maxWarnings = 200;
     public bool isGameOver = false;
-
-    public Transform FilledHeart1;
-    public Transform FilledHeart2;
-    public Transform FilledHeart3;
-    public Transform EmptyHeart1;
-    public Transform EmptyHeart2;
-    public Transform EmptyHeart3;
     private bool isCyclingPath = false;
     private float timeToRespawn;
-    
     private List<Transform> CheckpointList = new List<Transform>();
-    private int lifeCount = 3;
-
     void Start()
     {
 
@@ -51,23 +41,27 @@ public class PlayerCollisionHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("cyclist") || collision.gameObject.CompareTag("pedestrian"))
         {
+            LivesManager livesManager = Player.gameObject.GetComponent<LivesManager>();
             Debug.Log("Collided");
-            if (collision.gameObject.CompareTag("cyclist")) {
-                lifeCount-= 2;
+            if (livesManager != null) {
+                if (collision.gameObject.CompareTag("cyclist")) {
+                    livesManager.NumLives -= 2;
+                }
+                else if (collision.gameObject.CompareTag("pedestrian"))
+                {
+                    livesManager.NumLives--;
+                }
+                livesManager.UpdateHearts(livesManager.NumLives);
+                if (livesManager.NumLives <= 0) 
+                {
+                    PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
+                    isGameOver = true;
+                    timeToRespawn = 3f;
+                    StartCoroutine(GameOver2("Hit by cyclist"));
+                    //positionManager.Teleport();
+                }
             }
-            else if (collision.gameObject.CompareTag("pedestrian"))
-            {
-                lifeCount--;
-            }
-            UpdateHearts(lifeCount);
-            if (lifeCount <= 0) 
-            {
-                PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
-                isGameOver = true;
-                timeToRespawn = 3f;
-                StartCoroutine(GameOver2("Hit by cyclist"));
-                //positionManager.Teleport();
-            }
+            
         }
         else if (collision.gameObject.CompareTag("checkpoint"))
         {
@@ -114,49 +108,10 @@ public class PlayerCollisionHandler : MonoBehaviour
             isCyclingPath = false;
             WhichLaneText.text = "Pedestrian Lane Right";
             Debug.Log("On right pedestrian path!");
-            PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
-                isGameOver = true;
-                timeToRespawn = 3f;
-            StartCoroutine(GameOver2("You went onto the pedestrian lane!"));
-        }
-    }
-
-    void UpdateHearts(int livesLeft)
-    {
-        switch (livesLeft)
-        {
-            case 0:
-                FilledHeart1.gameObject.SetActive(false);
-                FilledHeart2.gameObject.SetActive(false);
-                FilledHeart3.gameObject.SetActive(false);
-                EmptyHeart1.gameObject.SetActive(true);
-                EmptyHeart2.gameObject.SetActive(true);
-                EmptyHeart3.gameObject.SetActive(true);
-                break;
-            case 1:
-                FilledHeart1.gameObject.SetActive(false);
-                FilledHeart2.gameObject.SetActive(false);
-                FilledHeart3.gameObject.SetActive(true);
-                EmptyHeart1.gameObject.SetActive(true);
-                EmptyHeart2.gameObject.SetActive(true);
-                EmptyHeart3.gameObject.SetActive(false);
-                break;
-            case 2:
-                FilledHeart1.gameObject.SetActive(false);
-                FilledHeart2.gameObject.SetActive(true);
-                FilledHeart3.gameObject.SetActive(true);
-                EmptyHeart1.gameObject.SetActive(true);
-                EmptyHeart2.gameObject.SetActive(false);
-                EmptyHeart3.gameObject.SetActive(false);
-                break;
-            case 3:
-                FilledHeart1.gameObject.SetActive(true);
-                FilledHeart2.gameObject.SetActive(true);
-                FilledHeart3.gameObject.SetActive(true);
-                EmptyHeart1.gameObject.SetActive(false);
-                EmptyHeart2.gameObject.SetActive(false);
-                EmptyHeart3.gameObject.SetActive(false);
-                break;
+            //PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
+            //isGameOver = true;
+            //timeToRespawn = 3f;
+            //StartCoroutine(GameOver2("You went onto the pedestrian lane!"));
         }
     }
 

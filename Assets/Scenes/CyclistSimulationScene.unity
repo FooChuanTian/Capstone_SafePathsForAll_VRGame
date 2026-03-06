@@ -476,7 +476,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &113372431
 GameObject:
@@ -2027,9 +2027,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGroundCollision
   WhichLaneText: {fileID: 38458802}
+  InstructionText: {fileID: 0}
   GameOverText: {fileID: 1372004582}
   Checkpoint0: {fileID: 1008161880}
   Player: {fileID: 1240974500}
+  warningCount: 0
+  maxWarnings: 200
+  isGameOver: 0
   FilledHeart1: {fileID: 113372432}
   FilledHeart2: {fileID: 1584249207}
   FilledHeart3: {fileID: 1634911950}
@@ -3209,7 +3213,7 @@ Rigidbody:
   m_GameObject: {fileID: 2084199392}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 0.5
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -3225,7 +3229,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &2084199396
 CapsuleCollider:

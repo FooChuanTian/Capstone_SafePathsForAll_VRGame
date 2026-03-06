@@ -9,6 +9,7 @@ public class FinishLine : MonoBehaviour
     public TutorialPopup tutorial;
     private bool hasShownLaneTutorial = false;
     public PopUpWindow popUpWindow;
+    public Transform initialCheckpointLocation;
     void OnTriggerEnter(Collider collision)
     {
         if (collision.tag == "Player")
@@ -25,6 +26,12 @@ public class FinishLine : MonoBehaviour
             // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
             // This allows us to set the build order scene in Unity editor and 
             // then use this same script to jump to the next scene in the sequence of the build scene order in build profiles
+            PlayerPositionManager_Ats positionManager = collision.GetComponent<PlayerPositionManager_Ats>();
+            if (positionManager != null)
+            {
+                positionManager.ChangePreviousCheckpoint(initialCheckpointLocation);
+                positionManager.ResetPositionChangeFlag(); // Reset the flag 
+            }
         }
     }
 

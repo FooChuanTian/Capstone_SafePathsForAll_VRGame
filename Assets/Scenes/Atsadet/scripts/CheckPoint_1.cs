@@ -11,7 +11,7 @@ public class Checkpoint_1 : MonoBehaviour
     public PopUpWindow popUpWindow;
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && hasShownLaneTutorial == false)
         {   
             // Todo 1: Show a message to the player
             // Todo 2: Play a sound effect

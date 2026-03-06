@@ -14,8 +14,6 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
     public TextMeshProUGUI GameOverText;
     public Transform Checkpoint0;
     public Transform Player;
-    public int warningCount = 0;
-    public int maxWarnings = 200;
     public bool isGameOver = false;
 
     public Transform FilledHeart1;
@@ -30,7 +28,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
     private List<Transform> CheckpointList = new List<Transform>();
     private int lifeCount = 3;
     private int lessonRoundWarningCount = 0;
-    private int lessonRoundMaxWarnings = 3;
+    private int lessonRoundMaxWarnings = 300;
 
     void Start()
     {
@@ -75,11 +73,11 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
         {
             Debug.Log("Checkpoint reached!");
         }
-        else if (collision.gameObject.CompareTag("cycling_lane_right"))
-        {
-            lessonRoundWarningCount++;
-            Debug.Log("Warning count: " + lessonRoundWarningCount);
-        }
+        // else if (collision.gameObject.CompareTag("cycling_lane_right"))
+        // {
+        //     lessonRoundWarningCount++;
+        //     Debug.Log("Warning count: " + lessonRoundWarningCount);
+        // }
     }
 
     void OnTriggerEnter(Collider other)
@@ -109,12 +107,14 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
             isCyclingPath = true;
             WhichLaneText.text = "Cycling Lane Right";
             Debug.Log("On right cycling path!");
+            lessonRoundWarningCount++;
             if (lessonRoundWarningCount >= lessonRoundMaxWarnings)
             {
                 PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
                 isGameOver = true;
                 timeToRespawn = 3f;
-                StartCoroutine(GameOver2("You went to the wrong side too many times!"));
+                lessonRoundWarningCount = 0; // reset warning count for next round
+                StartCoroutine(GameOver2("You spent too long on the wrong side!!"));
             }
         }
         else if (collision.gameObject.CompareTag("pedestrian_lane_left"))
@@ -129,8 +129,9 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
             WhichLaneText.text = "Pedestrian Lane Right";
             Debug.Log("On right pedestrian path!");
             PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
-                isGameOver = true;
-                timeToRespawn = 3f;
+            isGameOver = true;
+            timeToRespawn = 3f;
+            lessonRoundWarningCount = 0; // reset warning count for next round
             StartCoroutine(GameOver2("You went onto the pedestrian lane!"));
         }
     }

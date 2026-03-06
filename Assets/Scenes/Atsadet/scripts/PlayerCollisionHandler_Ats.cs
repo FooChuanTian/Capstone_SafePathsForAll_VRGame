@@ -202,7 +202,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
         }
 
         // Reset lesson state
-        warningCount = 0;
+        // warningCount = 0;
 
         // Optional: delay before allowing new penalties
         Invoke(nameof(ResetGameState), 1.0f);

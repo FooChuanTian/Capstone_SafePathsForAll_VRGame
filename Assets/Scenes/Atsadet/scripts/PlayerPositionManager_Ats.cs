@@ -18,9 +18,9 @@ public class PlayerPositionManager_Ats : MonoBehaviour
         PreviousCheckpoint = NewCheckpoint;
     }
 
-    public void UpdatePreviousPosition()
+    public void UpdatePreviousPosition(Transform checkpointLocation)
     {
-        PreviousPosition = Player.transform.position;
+        PreviousPosition = checkpointLocation.position;
         isPositionChanged = true;
     }
 

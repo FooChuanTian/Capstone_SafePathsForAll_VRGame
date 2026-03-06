@@ -9,6 +9,7 @@ public class Checkpoint_2 : MonoBehaviour
     public TutorialPopup tutorial;
     private bool hasShownLaneTutorial = false;
     public PopUpWindow popUpWindow;
+    public Transform checkPointlocation_2;
     void OnTriggerEnter(Collider collision)
     {
         if (collision.tag == "Player" && hasShownLaneTutorial == false)
@@ -30,7 +31,7 @@ public class Checkpoint_2 : MonoBehaviour
             PlayerPositionManager_Ats positionManager = collision.GetComponent<PlayerPositionManager_Ats>();
             if (positionManager != null)
             {
-                positionManager.UpdatePreviousPosition();
+                positionManager.UpdatePreviousPosition(checkPointlocation_2);
             }
         }
     }

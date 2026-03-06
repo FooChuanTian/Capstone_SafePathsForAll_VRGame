@@ -5,8 +5,6 @@ public class PlayerPositionManager : MonoBehaviour
 {
     public Transform PreviousCheckpoint;
     public Transform Player;
-    public static bool isPositionChanged = false;   //static variables stay even after scene is reloaded
-    public static Vector3 PreviousPosition;
 
     public void Teleport()
     {
@@ -16,25 +14,5 @@ public class PlayerPositionManager : MonoBehaviour
     public void ChangePreviousCheckpoint(Transform NewCheckpoint)
     {
         PreviousCheckpoint = NewCheckpoint;
-    }
-
-    public void UpdatePreviousPosition()
-    {
-        PreviousPosition = Player.transform.position;
-        isPositionChanged = true;
-    }
-
-    public void ResetPositionChangeFlag()
-    {
-        isPositionChanged = false;
-    }
-
-    void Awake()
-    {
-        // Hitting checkpoints trigger isPositionChanged to true. When scene reloads, it runs this can autoupdates and teleports the player to the last checkpoint position
-        if (isPositionChanged)
-        {
-            Player.position = PreviousPosition;
-        }
     }
 }

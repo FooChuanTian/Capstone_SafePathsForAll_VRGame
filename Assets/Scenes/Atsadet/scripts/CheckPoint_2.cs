@@ -27,7 +27,7 @@ public class Checkpoint_2 : MonoBehaviour
             // then use this same script to jump to the next scene in the sequence of the build scene order in build profiles
 
             // Update the manager on the player
-            PlayerPositionManager positionManager = collision.GetComponent<PlayerPositionManager>();
+            PlayerPositionManager_Ats positionManager = collision.GetComponent<PlayerPositionManager_Ats>();
             if (positionManager != null)
             {
                 positionManager.UpdatePreviousPosition();

@@ -7,7 +7,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using System.Data;
 
-public class PlayerCollisionHandler : MonoBehaviour
+public class PlayerCollisionHandler_Ats : MonoBehaviour
 {
     public TextMeshProUGUI WhichLaneText;
     public TextMeshProUGUI InstructionText;
@@ -29,6 +29,8 @@ public class PlayerCollisionHandler : MonoBehaviour
     
     private List<Transform> CheckpointList = new List<Transform>();
     private int lifeCount = 3;
+    private int lessonRoundWarningCount = 0;
+    private int lessonRoundMaxWarnings = 3;
 
     void Start()
     {
@@ -52,26 +54,31 @@ public class PlayerCollisionHandler : MonoBehaviour
         if (collision.gameObject.CompareTag("cyclist") || collision.gameObject.CompareTag("pedestrian"))
         {
             Debug.Log("Collided");
-            if (collision.gameObject.CompareTag("cyclist")) {
-                lifeCount-= 2;
-            }
-            else if (collision.gameObject.CompareTag("pedestrian"))
-            {
-                lifeCount--;
-            }
-            UpdateHearts(lifeCount);
-            if (lifeCount <= 0) 
-            {
-                PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
-                isGameOver = true;
-                timeToRespawn = 3f;
-                StartCoroutine(GameOver2("Hit by cyclist"));
-                //positionManager.Teleport();
-            }
+            // if (collision.gameObject.CompareTag("cyclist")) {
+            //     lifeCount-= 2;
+            // }
+            // else if (collision.gameObject.CompareTag("pedestrian"))
+            // {
+            //     lifeCount--;
+            // }
+            // UpdateHearts(lifeCount);
+            // if (lifeCount <= 0) 
+            // {
+            //     PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
+            //     isGameOver = true;
+            //     timeToRespawn = 3f;
+            //     StartCoroutine(GameOver2("Hit by cyclist"));
+            //     //positionManager.Teleport();
+            // }
         }
         else if (collision.gameObject.CompareTag("checkpoint"))
         {
             Debug.Log("Checkpoint reached!");
+        }
+        else if (collision.gameObject.CompareTag("cycling_lane_right"))
+        {
+            lessonRoundWarningCount++;
+            Debug.Log("Warning count: " + lessonRoundWarningCount);
         }
     }
 
@@ -102,6 +109,13 @@ public class PlayerCollisionHandler : MonoBehaviour
             isCyclingPath = true;
             WhichLaneText.text = "Cycling Lane Right";
             Debug.Log("On right cycling path!");
+            if (lessonRoundWarningCount >= lessonRoundMaxWarnings)
+            {
+                PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
+                isGameOver = true;
+                timeToRespawn = 3f;
+                StartCoroutine(GameOver2("You went to the wrong side too many times!"));
+            }
         }
         else if (collision.gameObject.CompareTag("pedestrian_lane_left"))
         {
@@ -121,44 +135,44 @@ public class PlayerCollisionHandler : MonoBehaviour
         }
     }
 
-    void UpdateHearts(int livesLeft)
-    {
-        switch (livesLeft)
-        {
-            case 0:
-                FilledHeart1.gameObject.SetActive(false);
-                FilledHeart2.gameObject.SetActive(false);
-                FilledHeart3.gameObject.SetActive(false);
-                EmptyHeart1.gameObject.SetActive(true);
-                EmptyHeart2.gameObject.SetActive(true);
-                EmptyHeart3.gameObject.SetActive(true);
-                break;
-            case 1:
-                FilledHeart1.gameObject.SetActive(false);
-                FilledHeart2.gameObject.SetActive(false);
-                FilledHeart3.gameObject.SetActive(true);
-                EmptyHeart1.gameObject.SetActive(true);
-                EmptyHeart2.gameObject.SetActive(true);
-                EmptyHeart3.gameObject.SetActive(false);
-                break;
-            case 2:
-                FilledHeart1.gameObject.SetActive(false);
-                FilledHeart2.gameObject.SetActive(true);
-                FilledHeart3.gameObject.SetActive(true);
-                EmptyHeart1.gameObject.SetActive(true);
-                EmptyHeart2.gameObject.SetActive(false);
-                EmptyHeart3.gameObject.SetActive(false);
-                break;
-            case 3:
-                FilledHeart1.gameObject.SetActive(true);
-                FilledHeart2.gameObject.SetActive(true);
-                FilledHeart3.gameObject.SetActive(true);
-                EmptyHeart1.gameObject.SetActive(false);
-                EmptyHeart2.gameObject.SetActive(false);
-                EmptyHeart3.gameObject.SetActive(false);
-                break;
-        }
-    }
+    // void UpdateHearts(int livesLeft)
+    // {
+    //     switch (livesLeft)
+    //     {
+    //         case 0:
+    //             FilledHeart1.gameObject.SetActive(false);
+    //             FilledHeart2.gameObject.SetActive(false);
+    //             FilledHeart3.gameObject.SetActive(false);
+    //             EmptyHeart1.gameObject.SetActive(true);
+    //             EmptyHeart2.gameObject.SetActive(true);
+    //             EmptyHeart3.gameObject.SetActive(true);
+    //             break;
+    //         case 1:
+    //             FilledHeart1.gameObject.SetActive(false);
+    //             FilledHeart2.gameObject.SetActive(false);
+    //             FilledHeart3.gameObject.SetActive(true);
+    //             EmptyHeart1.gameObject.SetActive(true);
+    //             EmptyHeart2.gameObject.SetActive(true);
+    //             EmptyHeart3.gameObject.SetActive(false);
+    //             break;
+    //         case 2:
+    //             FilledHeart1.gameObject.SetActive(false);
+    //             FilledHeart2.gameObject.SetActive(true);
+    //             FilledHeart3.gameObject.SetActive(true);
+    //             EmptyHeart1.gameObject.SetActive(true);
+    //             EmptyHeart2.gameObject.SetActive(false);
+    //             EmptyHeart3.gameObject.SetActive(false);
+    //             break;
+    //         case 3:
+    //             FilledHeart1.gameObject.SetActive(true);
+    //             FilledHeart2.gameObject.SetActive(true);
+    //             FilledHeart3.gameObject.SetActive(true);
+    //             EmptyHeart1.gameObject.SetActive(false);
+    //             EmptyHeart2.gameObject.SetActive(false);
+    //             EmptyHeart3.gameObject.SetActive(false);
+    //             break;
+    //     }
+    // }
 
     IEnumerator GameOver2(string reason)
     {

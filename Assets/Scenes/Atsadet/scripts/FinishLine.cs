@@ -6,7 +6,7 @@ using System.Collections;
 public class FinishLine : MonoBehaviour
 {   
     // public TextMeshProUGUI GoalText;
-    public TutorialPopup tutorial;
+    public TutorialPanel tutorial;
     private bool hasShownLaneTutorial = false;
     public PopUpWindow popUpWindow;
     public Transform initialCheckpointLocation;

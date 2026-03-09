@@ -6,7 +6,7 @@ using System.Collections;
 public class Checkpoint_1 : MonoBehaviour
 {   
     // public TextMeshProUGUI GoalText;
-    public TutorialPopup tutorial;
+    public TutorialPanel tutorial;
     private bool hasShownLaneTutorial = false;
     public PopUpWindow popUpWindow;
     void OnTriggerEnter(Collider collision)

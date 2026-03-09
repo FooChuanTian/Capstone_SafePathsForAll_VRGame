@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 
-public class TutorialPopup : MonoBehaviour
+public class TutorialPanel : MonoBehaviour
 {
     public GameObject tutorialPanel; // The UI Panel background
     public TextMeshProUGUI tutorialText;

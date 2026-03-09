@@ -9,6 +9,8 @@ public class TutorialPanel : MonoBehaviour
     public TextMeshProUGUI tutorialText;
     public bool isTutorialActive = false;
     public int currentTutorialCheckpoint = 0; // Track which tutorial message to show
+    public AudioSource backgroundMusic; // Reference to the background music AudioSource
+    public AudioSource victorySoundEffect;
 
     public void ShowTutorial(string message, int checkpointNumber)
     {
@@ -16,6 +18,11 @@ public class TutorialPanel : MonoBehaviour
         isTutorialActive = true;
         tutorialPanel.SetActive(true);
         currentTutorialCheckpoint = checkpointNumber;
+        if (currentTutorialCheckpoint == 3)
+        {
+            backgroundMusic.Pause(); // Pause the background music when the tutorial is active
+            victorySoundEffect.Play(); // Play the victory sound effect when the tutorial is shown
+        }
         
         // This freezes the physics and movement
         Time.timeScale = 0f; 

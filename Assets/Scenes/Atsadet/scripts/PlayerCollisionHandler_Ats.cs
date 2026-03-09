@@ -29,6 +29,8 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
     private int lifeCount = 3;
     private int lessonRoundWarningCount = 0;
     private int lessonRoundMaxWarnings = 300;
+    public AudioSource gameOverSoundEffectSource;
+    public AudioSource backgroundMusicSource;
 
     void Start()
     {
@@ -176,7 +178,9 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
     // }
 
     IEnumerator GameOver2(string reason)
-    {
+    {   
+        backgroundMusicSource.Pause(); // Pause background music
+        gameOverSoundEffectSource.Play(); // Play the game over sound effect
         Time.timeScale = 0;
         string outString = "Game over. \nReason: " + reason;
         GameOverText.text = outString;

@@ -11,6 +11,7 @@ public class TutorialPanel : MonoBehaviour
     public int currentTutorialCheckpoint = 0; // Track which tutorial message to show
     public AudioSource backgroundMusic; // Reference to the background music AudioSource
     public AudioSource victorySoundEffect;
+    public AudioSource checkpointSoundEffect;
 
     public void ShowTutorial(string message, int checkpointNumber)
     {
@@ -22,6 +23,9 @@ public class TutorialPanel : MonoBehaviour
         {
             backgroundMusic.Pause(); // Pause the background music when the tutorial is active
             victorySoundEffect.Play(); // Play the victory sound effect when the tutorial is shown
+        } else
+        {
+            checkpointSoundEffect.Play(); // Play the checkpoint sound effect when the tutorial is shown
         }
         
         // This freezes the physics and movement

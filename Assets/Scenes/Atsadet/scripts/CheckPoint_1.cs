@@ -8,7 +8,6 @@ public class Checkpoint_1 : MonoBehaviour
     // public TextMeshProUGUI GoalText;
     public TutorialPanel tutorial;
     private bool hasShownLaneTutorial = false;
-    public PopUpWindow popUpWindow;
     void OnTriggerEnter(Collider collision)
     {
         if (collision.tag == "Player" && hasShownLaneTutorial == false)
@@ -16,7 +15,7 @@ public class Checkpoint_1 : MonoBehaviour
             // Todo 1: Show a message to the player
             // Todo 2: Play a sound effect
             // Todo 3: Wait for a few seconds before loading the next scene
-            popUpWindow.ForceCloseAlert(); // Ensure any existing pop-ups are closed
+            // popUpWindow.ForceCloseAlert(); // Ensure any existing pop-ups are closed
 
             tutorial.ShowTutorial("Lanes clear, but always keep left to practice good cycling habits!", 1);
             hasShownLaneTutorial = true; // Ensures it only freezes the game once

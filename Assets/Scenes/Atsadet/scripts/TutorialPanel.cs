@@ -12,9 +12,11 @@ public class TutorialPanel : MonoBehaviour
     public AudioSource backgroundMusic; // Reference to the background music AudioSource
     public AudioSource victorySoundEffect;
     public AudioSource checkpointSoundEffect;
+    public GameObject popUpWindow; // Reference to the PopUpWindow script
 
     public void ShowTutorial(string message, int checkpointNumber)
-    {
+    {   
+        popUpWindow.SetActive(false); // Ensure any existing pop-ups are closed
         tutorialText.text = message;
         isTutorialActive = true;
         tutorialPanel.SetActive(true);
@@ -24,8 +26,11 @@ public class TutorialPanel : MonoBehaviour
             backgroundMusic.Pause(); // Pause the background music when the tutorial is active
             victorySoundEffect.Play(); // Play the victory sound effect when the tutorial is shown
         } else
-        {
-            checkpointSoundEffect.Play(); // Play the checkpoint sound effect when the tutorial is shown
+        {   if (currentTutorialCheckpoint !=1)
+            {
+                checkpointSoundEffect.Play(); // Play the checkpoint sound effect when the tutorial is shown
+            }
+            
         }
         
         // This freezes the physics and movement
@@ -35,8 +40,9 @@ public class TutorialPanel : MonoBehaviour
     }
 
     public void CloseTutorial()
-    {
+    {   
         tutorialPanel.SetActive(false);
+        // popUpWindow.SetActive(true);
         
         // This resumes the game
         Time.timeScale = 1f; 
@@ -47,6 +53,8 @@ public class TutorialPanel : MonoBehaviour
     {   
         if (currentTutorialCheckpoint == 1 || currentTutorialCheckpoint == 2) {
             CloseTutorial();
+            PopUpWindow popupScript = FindObjectOfType<PopUpWindow>();
+            popupScript.hasTriggered = false;
             return; // Just close the tutorial for checkpoint 1
         }
         Time.timeScale = 1f; // ALWAYS unfreeze before switching

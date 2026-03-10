@@ -10,7 +10,10 @@ public class GameNavigationManager : MonoBehaviour
     public int currentLevelIndex = 0;
     
     // A list of scene names in the order you want them to load
-    [SerializeField] private string[] sceneSequence = { "Cyclist_lesson1", "Cyclist_lesson_endpage", "Cyclist_lesson2", "Cyclist_lesson_endpage" };
+    [SerializeField] private string[] sceneSequence = { 
+        "Cyclist_lesson1", "Cyclist_lesson_endpage", 
+        "Cyclist_lesson2", "Cyclist_lesson_endpage",
+        "Cyclist_lesson3", "Cyclist_lesson_endpage"};
 
     private void Awake()
     {
@@ -35,15 +38,15 @@ public class GameNavigationManager : MonoBehaviour
             
             // Increment the index so the NEXT time we come back, it's different
             currentLevelIndex++;
-            Debug.Log("TEST:Loading scene: " + sceneToLoad);
-            Debug.Log("TEST:Next level index will be: " + currentLevelIndex);
+            Debug.Log("Loading scene: " + sceneToLoad);
+            Debug.Log("Next level index will be: " + currentLevelIndex);
 
 
             SceneManager.LoadScene(sceneToLoad);
         }
         else
         {
-            Debug.Log("TEST:No more scenes in the sequence! Returning to Main Menu.");
+            Debug.Log("No more scenes in the sequence! Returning to Main Menu.");
             SceneManager.LoadScene("MainMenu");
         }
     }
@@ -56,12 +59,24 @@ public class GameNavigationManager : MonoBehaviour
             string sceneToLoad = sceneSequence[currentLevelIndex]; // Load the current scene again
 
             currentLevelIndex++; // Increment back to the next scene for future calls
-            Debug.Log("TEST:Reloading current lesson scene: " + sceneToLoad);
+            Debug.Log("Reloading current lesson scene: " + sceneToLoad);
             SceneManager.LoadScene(sceneToLoad);
         }
         else
         {
-            Debug.Log("TEST:Invalid level index!");
+            Debug.Log("Invalid level index!");
+        }
+    }
+
+    public string getCurrentSceneName() {
+        if (currentLevelIndex > 0 && currentLevelIndex <= sceneSequence.Length)
+        {   
+            return sceneSequence[currentLevelIndex - 1]; // Return the current scene name
+        }
+        else
+        {
+            Debug.Log("Invalid level index!");
+            return null;
         }
     }
 }

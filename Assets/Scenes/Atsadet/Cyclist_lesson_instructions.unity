@@ -281,6 +281,8 @@ MonoBehaviour:
   - Cyclist_lesson_endpage
   - Cyclist_lesson2
   - Cyclist_lesson_endpage
+  - Cyclist_lesson3
+  - Cyclist_lesson_endpage
 --- !u!4 &295393115
 Transform:
   m_ObjectHideFlags: 0

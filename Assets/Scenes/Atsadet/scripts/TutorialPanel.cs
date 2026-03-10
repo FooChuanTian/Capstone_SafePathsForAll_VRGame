@@ -21,7 +21,7 @@ public class TutorialPanel : MonoBehaviour
         isTutorialActive = true;
         tutorialPanel.SetActive(true);
         currentTutorialCheckpoint = checkpointNumber;
-        if (currentTutorialCheckpoint == 3)
+        if (currentTutorialCheckpoint == 4) // Finish the round
         {
             backgroundMusic.Pause(); // Pause the background music when the tutorial is active
             victorySoundEffect.Play(); // Play the victory sound effect when the tutorial is shown
@@ -51,7 +51,7 @@ public class TutorialPanel : MonoBehaviour
 
     public void ClickToNextScene()
     {   
-        if (currentTutorialCheckpoint == 1 || currentTutorialCheckpoint == 2) {
+        if (currentTutorialCheckpoint == 1 || currentTutorialCheckpoint == 2 || currentTutorialCheckpoint == 3) {
             CloseTutorial();
             PopUpWindow popupScript = FindObjectOfType<PopUpWindow>();
             popupScript.hasTriggered = false;

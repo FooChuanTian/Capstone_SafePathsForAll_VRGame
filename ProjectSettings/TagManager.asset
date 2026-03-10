@@ -15,6 +15,7 @@ TagManager:
   - finish
   - pedestrian
   - checkpoint2
+  - obstacle
   layers:
   - Default
   - TransparentFX

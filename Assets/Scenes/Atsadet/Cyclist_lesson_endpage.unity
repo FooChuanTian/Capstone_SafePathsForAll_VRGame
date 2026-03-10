@@ -1014,8 +1014,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 749691195}
-        m_TargetAssemblyTypeName: StartCyclistLesson1, Assembly-CSharp
-        m_MethodName: Lesson1StartCyclist
+        m_TargetAssemblyTypeName: StartCyclistLesson, Assembly-CSharp
+        m_MethodName: RepeatLesson
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1084,7 +1084,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 749691189}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56109784a4cfc4b40a062902126ebd77, type: 3}
+  m_Script: {fileID: 11500000, guid: e40a0ae4b9dec404c8ceac0eebed8871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartCyclistLesson1
 --- !u!114 &749691196
@@ -1149,7 +1149,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 961525238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56109784a4cfc4b40a062902126ebd77, type: 3}
+  m_Script: {fileID: 11500000, guid: e40a0ae4b9dec404c8ceac0eebed8871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartCyclistLesson1
 --- !u!114 &961525242
@@ -1197,8 +1197,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 961525240}
-        m_TargetAssemblyTypeName: StartCyclistLesson1, Assembly-CSharp
-        m_MethodName: Lesson1StartCyclist
+        m_TargetAssemblyTypeName: StartCyclistLesson, Assembly-CSharp
+        m_MethodName: LessonStartCyclist
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

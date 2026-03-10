@@ -58,6 +58,7 @@ public class TutorialPanel : MonoBehaviour
             return; // Just close the tutorial for checkpoint 1
         }
         Time.timeScale = 1f; // ALWAYS unfreeze before switching
-        SceneManager.LoadScene("Cyclist_lesson1_endpage");
+        // SceneManager.LoadScene("Cyclist_lesson_endpage");
+        GameNavigationManager.Instance.LoadNextDynamicScene();
     }
 }

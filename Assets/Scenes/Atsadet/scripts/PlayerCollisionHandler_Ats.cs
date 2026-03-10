@@ -51,7 +51,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("cyclist") || collision.gameObject.CompareTag("pedestrian"))
+        if (collision.gameObject.CompareTag("cyclist") || collision.gameObject.CompareTag("pedestrian") || collision.gameObject.CompareTag("obstacle"))
         {
             Debug.Log("Collided");
             // if (collision.gameObject.CompareTag("cyclist")) {
@@ -70,6 +70,12 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
             //     StartCoroutine(GameOver2("Hit by cyclist"));
             //     //positionManager.Teleport();
             // }
+            PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
+            isGameOver = true;
+            timeToRespawn = 3f;
+            lessonRoundWarningCount = 0; // reset warning count for next round
+            // StartCoroutine(GameOver2("You crashed into " + collision.gameObject.name + "!"));
+            StartCoroutine(GameOver2("You crashed into obstacle!"));
         }
         else if (collision.gameObject.CompareTag("checkpoint"))
         {

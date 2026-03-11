@@ -618,7 +618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &113372432
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2997,15 +2997,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGroundCollision
   WhichLaneText: {fileID: 38458802}
+  InstructionText: {fileID: 0}
   GameOverText: {fileID: 1372004582}
   Checkpoint0: {fileID: 1008161880}
   Player: {fileID: 1240974500}
-  FilledHeart1: {fileID: 113372432}
-  FilledHeart2: {fileID: 1584249207}
-  FilledHeart3: {fileID: 1634911950}
-  EmptyHeart1: {fileID: 880451940}
-  EmptyHeart2: {fileID: 1353332105}
-  EmptyHeart3: {fileID: 839960639}
+  warningCount: 0
+  maxWarnings: 200
+  isGameOver: 0
 --- !u!114 &1240974504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3460,7 +3458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1584249207
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3671,7 +3669,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1634911950
 RectTransform:
   m_ObjectHideFlags: 0

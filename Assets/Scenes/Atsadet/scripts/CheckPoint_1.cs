@@ -15,25 +15,24 @@ public class Checkpoint_1 : MonoBehaviour
     {
         currentsceneName = SceneManager.GetActiveScene().name; // Get the current scene name from the GameNavigationManager
         Debug.Log("TEST:Current scene: " + currentsceneName); // Debug log to check the current scene name
-
-        if (currentsceneName == "Cyclist_lesson1")  // Keep to cyclist lane
-        {
-            displayMessage = "Pedestrian lane is empty, but doesn't mean you should go there.";
-        }
-        else if (currentsceneName == "Cyclist_lesson2") // Keep to left of cyclist lane
-        {
-            displayMessage = "Right side is empty, but always keep left to practice good cycling habits!";
-        }
-        else if (currentsceneName == "Cyclist_lesson3") // Follow the tactile strips
-        {
-            displayMessage = "Follow the tactile strips as per colour.";
-        }
     }
 
     void OnTriggerEnter(Collider collision)
     {
         if (collision.tag == "Player" && hasShownLaneTutorial == false)
         {   
+            if (currentsceneName == "Cyclist_lesson1")  // Keep to cyclist lane
+            {
+                displayMessage = "Pedestrian lane is empty, but doesn't mean you should go there.";
+            }
+            else if (currentsceneName == "Cyclist_lesson2") // Keep to left of cyclist lane
+            {
+                displayMessage = "Right side is empty, but always keep left to practice good cycling habits!";
+            }
+            else if (currentsceneName == "Cyclist_lesson3") // Follow the tactile strips
+            {
+                displayMessage = "Follow the tactile strips as per colour.";
+            }
             // Todo 1: Show a message to the player
             // Todo 2: Play a sound effect
             // Todo 3: Wait for a few seconds before loading the next scene

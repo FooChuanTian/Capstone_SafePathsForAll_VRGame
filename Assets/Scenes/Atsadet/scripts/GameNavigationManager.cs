@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GameNavigationManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class GameNavigationManager : MonoBehaviour
         "Cyclist_lesson1", "Cyclist_lesson_endpage", 
         "Cyclist_lesson2", "Cyclist_lesson_endpage",
         "Cyclist_lesson3", "Cyclist_lesson_endpage"};
+
+    public List<GameObject> activeClones = new List<GameObject>();
 
     private void Awake()
     {
@@ -78,5 +81,12 @@ public class GameNavigationManager : MonoBehaviour
             Debug.Log("Invalid level index!");
             return null;
         }
+    }
+
+    public void Cleanup() {
+        foreach (GameObject clone in activeClones) {
+            if (clone != null) Destroy(clone);
+        }
+        activeClones.Clear();
     }
 }

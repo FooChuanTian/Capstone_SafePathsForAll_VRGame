@@ -31,10 +31,11 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
     private int lessonRoundMaxWarnings = 300;
     public AudioSource gameOverSoundEffectSource;
     public AudioSource backgroundMusicSource;
+    private string currentsceneName;
 
     void Start()
     {
-
+        currentsceneName = SceneManager.GetActiveScene().name; // Get the current scene name 
     }
     void Update()
     {
@@ -115,15 +116,19 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
             isCyclingPath = true;
             WhichLaneText.text = "Cycling Lane Right";
             Debug.Log("On right cycling path!");
-            lessonRoundWarningCount++;
-            if (lessonRoundWarningCount >= lessonRoundMaxWarnings)
+            if (currentsceneName != "Cyclist_lesson1") // No warnings for right cycling lane in lesson 1 as it's not relevant to the learning outcomes of that lesson
             {
-                PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
-                isGameOver = true;
-                timeToRespawn = 3f;
-                lessonRoundWarningCount = 0; // reset warning count for next round
-                StartCoroutine(GameOver2("You spent too long on the wrong side!!"));
+                lessonRoundWarningCount++;
+                if (lessonRoundWarningCount >= lessonRoundMaxWarnings)
+                {
+                    PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
+                    isGameOver = true;
+                    timeToRespawn = 3f;
+                    lessonRoundWarningCount = 0; // reset warning count for next round
+                    StartCoroutine(GameOver2("You spent too long on the wrong side!!"));
+                }
             }
+            
         }
         else if (collision.gameObject.CompareTag("pedestrian_lane_left"))
         {

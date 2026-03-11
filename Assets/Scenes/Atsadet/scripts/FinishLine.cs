@@ -17,6 +17,7 @@ public class FinishLine : MonoBehaviour
             // Todo 2: Play a sound effect
             // Todo 3: Wait for a few seconds before loading the next scene
             // popUpWindow.ForceCloseAlert(); // Ensure any existing pop-ups are closed
+            cleanup();
 
             tutorial.ShowTutorial("Congrats on completing lesson 1!", 4);
             hasShownLaneTutorial = true; // Ensures it only freezes the game once
@@ -32,6 +33,11 @@ public class FinishLine : MonoBehaviour
                 positionManager.ResetPositionChangeFlag(); // Reset the flag 
             }
         }
+    }
+
+    public void cleanup()
+    {
+        GameNavigationManager.Instance.Cleanup();
     }
 
 }

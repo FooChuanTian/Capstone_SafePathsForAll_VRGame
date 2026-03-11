@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class PopUpWindow : MonoBehaviour
@@ -9,6 +10,7 @@ public class PopUpWindow : MonoBehaviour
     
     private Animator animator;
     public bool hasTriggered = false;
+    private string currentsceneName;
 
     void Awake()
     {
@@ -19,6 +21,8 @@ public class PopUpWindow : MonoBehaviour
         
         // Hide the panel, but THIS script stays alive on the parent/Canvas
         popUpPanel.SetActive(false);
+
+        currentsceneName = SceneManager.GetActiveScene().name; // Get the current scene name from the GameNavigationManager
     }
 
     void Update()
@@ -27,7 +31,8 @@ public class PopUpWindow : MonoBehaviour
         // Now this loop runs every frame because THIS object is active
         if (whichlanetext.text != "Cycling Lane Left" && 
             whichlanetext.text != "Pedestrian Lane Right" && 
-            whichlanetext.text != "Pedestrian Lane Left")
+            whichlanetext.text != "Pedestrian Lane Left" &&
+            currentsceneName != "Cyclist_lesson1")
         {
             if (!hasTriggered) TriggerPopup();
         }

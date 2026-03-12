@@ -2060,6 +2060,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3139154462382001592, guid: 1539865e7e6633d48ae273348fe7f433, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139154462382001592, guid: 1539865e7e6633d48ae273348fe7f433, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139154462382001592, guid: 1539865e7e6633d48ae273348fe7f433, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139154462382001592, guid: 1539865e7e6633d48ae273348fe7f433, type: 3}
       propertyPath: m_LocalPosition.x
       value: 440.77423
       objectReference: {fileID: 0}
@@ -2384,7 +2396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &793564236
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2471,7 +2483,7 @@ Transform:
   m_GameObject: {fileID: 793564235}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 270, y: 1, z: 30}
+  m_LocalPosition: {x: -300, y: 1, z: 35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3267,7 +3279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8256757748976788667, guid: 0746f8c1d083a704cacfc55579c7871a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8256757748976788667, guid: 0746f8c1d083a704cacfc55579c7871a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3275,7 +3287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8256757748976788667, guid: 0746f8c1d083a704cacfc55579c7871a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 48
+      value: 54
       objectReference: {fileID: 0}
     - target: {fileID: 8256757748976788667, guid: 0746f8c1d083a704cacfc55579c7871a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3873,7 +3885,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109100651}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3951,8 +3963,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint_3
   tutorial: {fileID: 1104494622}
   checkPointlocation_2: {fileID: 656800197}
-  CyclistObject: {fileID: 0}
-  rb: {fileID: 0}
+  CyclistObject: {fileID: 1821927473}
+  rb: {fileID: 1821927475}
 --- !u!1 &1144542636
 GameObject:
   m_ObjectHideFlags: 0
@@ -6386,7 +6398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2398720969365487457, guid: 91f52158c9778b8449097ce986f1b0b3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2398720969365487457, guid: 91f52158c9778b8449097ce986f1b0b3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6394,7 +6406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2398720969365487457, guid: 91f52158c9778b8449097ce986f1b0b3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 49
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 2398720969365487457, guid: 91f52158c9778b8449097ce986f1b0b3, type: 3}
       propertyPath: m_LocalRotation.w

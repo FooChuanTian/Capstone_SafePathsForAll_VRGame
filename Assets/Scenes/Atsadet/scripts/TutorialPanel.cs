@@ -35,8 +35,6 @@ public class TutorialPanel : MonoBehaviour
         
         // This freezes the physics and movement
         Time.timeScale = 0f; 
-        
-        // If using New Input System, you might need to disable player input here
     }
 
     public void CloseTutorial()

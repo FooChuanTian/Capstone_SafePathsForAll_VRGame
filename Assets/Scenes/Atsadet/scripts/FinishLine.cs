@@ -13,7 +13,7 @@ public class FinishLine : MonoBehaviour
     {
         if (collision.tag == "Player")
         {   
-            // cleanup();  // Disable for testing
+            cleanup();  // Disable for testing
 
             tutorial.ShowTutorial("Congrats on completing lesson 1!", 4);
             hasShownLaneTutorial = true; // Ensures it only freezes the game once

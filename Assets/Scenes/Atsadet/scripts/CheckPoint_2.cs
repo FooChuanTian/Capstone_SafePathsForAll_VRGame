@@ -33,7 +33,7 @@ public class Checkpoint_2 : MonoBehaviour
     {
         if (collision.tag == "Player" && hasShownLaneTutorial == false)
         {   
-            // cleanup();  //Diable for testing
+            cleanup();  //Disable for testing
 
             if (currentsceneName == "Cyclist_lesson1")  // Keep to cyclist lane
             {

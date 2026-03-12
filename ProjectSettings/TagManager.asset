@@ -16,6 +16,8 @@ TagManager:
   - pedestrian
   - checkpoint2
   - obstacle
+  - speedtrackerStop
+  - speedtrackerSlow
   layers:
   - Default
   - TransparentFX

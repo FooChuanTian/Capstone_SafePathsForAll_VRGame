@@ -32,6 +32,8 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
     public AudioSource gameOverSoundEffectSource;
     public AudioSource backgroundMusicSource;
     private string currentsceneName;
+    private int slowDownAreaSpeedLimit = 100;
+    private int stopAreaSpeedLimit = 50;
 
     void Start()
     {
@@ -55,22 +57,6 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
         if (collision.gameObject.CompareTag("cyclist") || collision.gameObject.CompareTag("pedestrian") || collision.gameObject.CompareTag("obstacle"))
         {
             Debug.Log("Collided");
-            // if (collision.gameObject.CompareTag("cyclist")) {
-            //     lifeCount-= 2;
-            // }
-            // else if (collision.gameObject.CompareTag("pedestrian"))
-            // {
-            //     lifeCount--;
-            // }
-            // UpdateHearts(lifeCount);
-            // if (lifeCount <= 0) 
-            // {
-            //     PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
-            //     isGameOver = true;
-            //     timeToRespawn = 3f;
-            //     StartCoroutine(GameOver2("Hit by cyclist"));
-            //     //positionManager.Teleport();
-            // }
             PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
             isGameOver = true;
             timeToRespawn = 3f;
@@ -82,15 +68,14 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
         {
             Debug.Log("Checkpoint reached!");
         }
-        // else if (collision.gameObject.CompareTag("cycling_lane_right"))
-        // {
-        //     lessonRoundWarningCount++;
-        //     Debug.Log("Warning count: " + lessonRoundWarningCount);
-        // }
+        
     }
 
     void OnTriggerEnter(Collider other)
-    {
+    {   
+        CapsuleCollider myBody = GetComponent<CapsuleCollider>();
+        Vector3 closestPoint = other.ClosestPoint(transform.position);
+
         if (other.CompareTag("finish") && !isGameOver)
         {
             InstructionText.text = "Success! You stayed on the left.";
@@ -99,6 +84,29 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
             Debug.Log("Scenario completed successfully!");
 
             isGameOver = true; // stops further logic
+        } else if (other.CompareTag("speedtrackerStop") && !isGameOver && myBody.bounds.Contains(closestPoint))
+        {
+            Debug.Log("Speed tracker Stop reached!");
+            if (Player.GetComponent<Rigidbody>().linearVelocity.magnitude > stopAreaSpeedLimit)
+            {
+                PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
+                isGameOver = true;
+                timeToRespawn = 3f;
+                lessonRoundWarningCount = 0; // reset warning count for next round
+                StartCoroutine(GameOver2("You were going too fast in the stop area!"));
+            }
+
+        } else if (other.CompareTag("speedtrackerSlow") && !isGameOver && myBody.bounds.Contains(closestPoint))
+        {
+            Debug.Log("Speed tracker Slow Down reached!");
+            if (Player.GetComponent<Rigidbody>().linearVelocity.magnitude > slowDownAreaSpeedLimit)
+            {
+                PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
+                isGameOver = true;
+                timeToRespawn = 3f;
+                lessonRoundWarningCount = 0; // reset warning count for next round
+                StartCoroutine(GameOver2("You were going too fast in the slow down area!"));
+            }
         }
     }
 

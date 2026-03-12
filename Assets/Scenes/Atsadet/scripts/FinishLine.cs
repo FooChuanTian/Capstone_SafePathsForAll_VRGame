@@ -13,11 +13,7 @@ public class FinishLine : MonoBehaviour
     {
         if (collision.tag == "Player")
         {   
-            // Todo 1: Show a message to the player
-            // Todo 2: Play a sound effect
-            // Todo 3: Wait for a few seconds before loading the next scene
-            // popUpWindow.ForceCloseAlert(); // Ensure any existing pop-ups are closed
-            cleanup();
+            // cleanup();  // Disable for testing
 
             tutorial.ShowTutorial("Congrats on completing lesson 1!", 4);
             hasShownLaneTutorial = true; // Ensures it only freezes the game once

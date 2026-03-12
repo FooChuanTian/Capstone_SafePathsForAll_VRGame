@@ -34,15 +34,11 @@ public class Checkpoint_3 : MonoBehaviour
     {
         if (collision.tag == "Player" && hasShownLaneTutorial == false)
         {   
-            // Todo 1: Show a message to the player
-            // Todo 2: Play a sound effect
-            // Todo 3: Wait for a few seconds before loading the next scene
-            // popUpWindow.ForceCloseAlert(); // Ensure any existing pop-ups are closed
-            cleanup();
+            // cleanup(); //Disable for testing
             if (currentsceneName == "Cyclist_lesson1")  // Keep to cyclist lane
             {
                 displayMessage = "Slower cyclist ahead. When overtaking, remember to stay in the cyclist lane!";
-                runLesson1stage3();
+                runLesson1Stage3();
             }
             else if (currentsceneName == "Cyclist_lesson2") // Keep to left of cyclist lane
             {
@@ -69,7 +65,7 @@ public class Checkpoint_3 : MonoBehaviour
         }
     }
 
-    void runLesson1stage3()
+    void runLesson1Stage3()
     {   
         for (int i = spawnPoints.Count - 1; i >= 0; i--)
         {

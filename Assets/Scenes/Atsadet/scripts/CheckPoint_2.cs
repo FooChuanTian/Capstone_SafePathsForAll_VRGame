@@ -33,16 +33,12 @@ public class Checkpoint_2 : MonoBehaviour
     {
         if (collision.tag == "Player" && hasShownLaneTutorial == false)
         {   
-            // Todo 1: Show a message to the player
-            // Todo 2: Play a sound effect
-            // Todo 3: Wait for a few seconds before loading the next scene
-            // popUpWindow.ForceCloseAlert(); // Ensure any existing pop-ups are closed
-            cleanup();
+            // cleanup();  //Diable for testing
 
             if (currentsceneName == "Cyclist_lesson1")  // Keep to cyclist lane
             {
                 displayMessage = "Pedestrians ahead using the wrong lane! Ring them and maintain your lane.";
-                runLesson1stage2();
+                runLesson1Stage2();
             }
             else if (currentsceneName == "Cyclist_lesson2") // Keep to left of cyclist lane
             {
@@ -55,11 +51,6 @@ public class Checkpoint_2 : MonoBehaviour
             tutorial.ShowTutorial(displayMessage, 2);
             hasShownLaneTutorial = true; // Ensures it only freezes the game once
 
-            // SceneManager.LoadScene("Cyclist_lesson1_endpage");
-            // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
-            // This allows us to set the build order scene in Unity editor and 
-            // then use this same script to jump to the next scene in the sequence of the build scene order in build profiles
-
             // Update the manager on the player
             PlayerPositionManager_Ats positionManager = collision.GetComponent<PlayerPositionManager_Ats>();
             if (positionManager != null)
@@ -69,7 +60,7 @@ public class Checkpoint_2 : MonoBehaviour
         }
     }
 
-    void runLesson1stage2()
+    void runLesson1Stage2()
     {   
         for (int i = spawnPoints.Count - 1; i >= 0; i--)
         {

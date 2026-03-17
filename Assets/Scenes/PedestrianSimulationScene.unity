@@ -1972,7 +1972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Movement
   rb: {fileID: 1240974496}
   jumpForce: 35
-  moveSpeed: 5
+  moveSpeed: 8
 --- !u!114 &1240974503
 MonoBehaviour:
   m_ObjectHideFlags: 0

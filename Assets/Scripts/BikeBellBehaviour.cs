@@ -24,6 +24,8 @@ public class BikeBellBehaviour : MonoBehaviour
             rb_other.AddForce(pos_difference*50, ForceMode.Acceleration);
         }
     }
+
+    
     void Update()
     {
         if (Keyboard.current.zKey.wasPressedThisFrame)

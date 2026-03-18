@@ -49,6 +49,7 @@ public class PlayerCollisionHandler : MonoBehaviour
                 }
                 else if (collision.gameObject.CompareTag("pedestrian"))
                 {
+                    collision.gameObject.GetComponent<Animator>().Play("Death");
                     livesManager.NumLives--;
                 }
                 livesManager.UpdateHearts(livesManager.NumLives);

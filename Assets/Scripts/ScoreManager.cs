@@ -36,8 +36,8 @@ public class ScoreManager : MonoBehaviour
         foreach (var hitCollider in hitColliders) {
             if (AllLanes.Contains(hitCollider.gameObject.tag))
             {
-                Debug.Log("Score Manager here");
                 CurrentLane = hitCollider.gameObject.tag;
+                break;
             }
         }
         if (CurrentLane != null)

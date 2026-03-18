@@ -3870,7 +3870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5709474836970b942a7d7cc4653fd582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextLevel
-  NextLevelString: Cyclist_lesson1
+  NextLevelString: Cyclist_lesson_instructions
 --- !u!1001 &1911527986
 PrefabInstance:
   m_ObjectHideFlags: 0

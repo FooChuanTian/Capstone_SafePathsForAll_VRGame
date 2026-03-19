@@ -18,11 +18,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Atsadet/Cyclist_lesson1.unity
     guid: e08dd22b45c2f574a9ba3d47c43a57f3
   - enabled: 1
-    path: Assets/Scenes/Atsadet/Cyclist_lesson1_instructions.unity
+    path: Assets/Scenes/Atsadet/Cyclist_lesson_instructions.unity
     guid: b8beec11a704ce74385ae18bda343415
   - enabled: 1
-    path: Assets/Scenes/Atsadet/Cyclist_lesson1_endpage.unity
+    path: Assets/Scenes/Atsadet/Cyclist_lesson_endpage.unity
     guid: f87c5075f58bb79409d388d2b348a6dd
+  - enabled: 1
+    path: Assets/Scenes/Atsadet/Cyclist_lesson2.unity
+    guid: aeb582885191e41b4826adadfd87a7a1
+  - enabled: 1
+    path: Assets/Scenes/Atsadet/Cyclist_lesson3.unity
+    guid: a7265440cca0446d695c2f0ceb920167
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

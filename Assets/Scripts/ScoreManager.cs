@@ -1,0 +1,58 @@
+using System.Linq;
+using TMPro;
+using UnityEngine;
+
+public class ScoreManager : MonoBehaviour
+{
+    public int SecondsOnCorrectLane;
+    public int SecondsOnWrongLane;
+    public string PlayerType;
+    public TextMeshProUGUI CorrectLaneDebug;
+    public TextMeshProUGUI WrongLaneDebug;
+    private string[] CorrectLanes;
+    private string CurrentLane;
+    private string[] AllLanes = {"pedestrian_lane_left", "pedestrian_lane_right", "cycling_lane_left", "cycling_lane_right"};
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        SecondsOnCorrectLane = 0;
+        SecondsOnWrongLane = 0;
+
+        if (PlayerType == "pedestrian")
+        {
+            CorrectLanes = new string[] {"pedestrian_lane_left", "pedestrian_lane_right"};
+
+        }
+        else if (PlayerType == "cyclist")
+        {
+            CorrectLanes = new string[] {"cycling_lane_left", "cycling_lane_right"};
+        }
+        InvokeRepeating(nameof(SecondUpdate), 0f, 1.0f);
+    }
+
+    void SecondUpdate()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 5f);
+        foreach (var hitCollider in hitColliders) {
+            if (AllLanes.Contains(hitCollider.gameObject.tag))
+            {
+                CurrentLane = hitCollider.gameObject.tag;
+                break;
+            }
+        }
+        if (CurrentLane != null)
+        {
+            if (CorrectLanes.Contains(CurrentLane))
+            {
+                SecondsOnCorrectLane++;
+                CorrectLaneDebug.text = "Correct Lane: " + SecondsOnCorrectLane;
+            }
+            else
+            {
+                SecondsOnWrongLane++;
+                WrongLaneDebug.text = "Wrong Lane: " + SecondsOnWrongLane;
+            }
+            CurrentLane = null;
+        }
+    }
+}

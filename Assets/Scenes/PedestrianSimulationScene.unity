@@ -2277,6 +2277,7 @@ GameObject:
   - component: {fileID: 1240974503}
   - component: {fileID: 1240974504}
   - component: {fileID: 1240974505}
+  - component: {fileID: 1240974507}
   - component: {fileID: 1240974506}
   m_Layer: 0
   m_Name: Player
@@ -2499,9 +2500,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
   SecondsOnCorrectLane: 0
   SecondsOnWrongLane: 0
+  PhoneOpened: 0
   PlayerType: pedestrian
   CorrectLaneDebug: {fileID: 285508441}
   WrongLaneDebug: {fileID: 812238966}
+  PhoneObject: {fileID: 2042238701}
+--- !u!114 &1240974507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240974495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07fee82ef20b354a82c1784c37019e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LivesManager
+  FilledHeart1: {fileID: 113372432}
+  FilledHeart2: {fileID: 1584249207}
+  FilledHeart3: {fileID: 1634911950}
+  EmptyHeart1: {fileID: 880451940}
+  EmptyHeart2: {fileID: 1353332105}
+  EmptyHeart3: {fileID: 839960639}
+  NumLives: 0
 --- !u!1 &1244267914
 GameObject:
   m_ObjectHideFlags: 0

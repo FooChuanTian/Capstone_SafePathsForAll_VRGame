@@ -92,7 +92,7 @@ public class Checkpoint_3 : MonoBehaviour
             }
             
 
-            GameNavigationManager.Instance.activeClones.Add(Clone);
+            GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
 
             // To make animation slightly diff for each otter
             // Animator anim = Clone.GetComponent<Animator>();

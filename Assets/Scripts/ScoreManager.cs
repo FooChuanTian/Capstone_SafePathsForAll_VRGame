@@ -38,7 +38,7 @@ public class ScoreManager : MonoBehaviour
 
     void SecondUpdate()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.2f);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1f);
         foreach (var hitCollider in hitColliders) {
             if (AllLanes.Contains(hitCollider.gameObject.tag))
             {

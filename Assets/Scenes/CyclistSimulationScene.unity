@@ -979,6 +979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpeedIndicator
   SpeedText: {fileID: 750881921}
   rb: {fileID: 1954611122}
+  tf: {fileID: 0}
 --- !u!114 &234451310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5870,6 +5871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpeedIndicator
   SpeedText: {fileID: 580886360}
   rb: {fileID: 1240974496}
+  tf: {fileID: 1240974500}
 --- !u!114 &1240974506
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,48 +3,50 @@ using UnityEngine;
 public class Checkpoint_3_Pedestrian : MonoBehaviour
 {
     public TutorialPanel_Pedestrian tutorial;
+    public Transform respawnPoint;
 
     public GameObject npcPrefab;
-
     public Transform[] spawnPoints;
 
     private bool hasTriggered = false;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !hasTriggered)
+        if (!other.CompareTag("Player")) return;
+
+        PlayerPositionManager_Pedestrian pm = other.GetComponent<PlayerPositionManager_Pedestrian>();
+        if (pm != null && respawnPoint != null)
         {
-            hasTriggered = true;
+            pm.SetCheckpoint(respawnPoint);
+        }
 
-            Debug.Log("Checkpoint 3 triggered");
+        if (hasTriggered) return;
+        hasTriggered = true;
 
-            // Show final lesson message
-            tutorial.ShowTutorial("Be aware of others and return to the left after overtaking", 3);
+        if (tutorial != null)
+        {
+            tutorial.ShowTutorial(
+                "Be aware of others and return to the left after overtaking.",
+                3
+            );
 
-            SpawnMultipleNPCs();
+            tutorial.onTutorialClosed = RunCheckpointLogic;
         }
     }
 
-    void SpawnMultipleNPCs()
+    void RunCheckpointLogic()
     {
-        if (npcPrefab == null || spawnPoints.Length == 0)
+        if (npcPrefab != null && spawnPoints != null)
         {
-            Debug.LogWarning("NPC prefab or spawn points not assigned!");
-            return;
-        }
-
-        for (int i = 0; i < spawnPoints.Length; i++)
-        {
-            Transform spawn = spawnPoints[i];
-
-            GameObject npc = Instantiate(npcPrefab, spawn.position, spawn.rotation);
-
-            // Randomize speed slightly
-            NPCWalker walker = npc.GetComponent<NPCWalker>();
-            if (walker != null)
+            foreach (Transform point in spawnPoints)
             {
-                walker.speed = Random.Range(1.5f, 3.5f);
+                if (point != null)
+                {
+                    Instantiate(npcPrefab, point.position, point.rotation);
+                }
             }
+
+            Debug.Log("CP3 NPCs spawned");
         }
     }
 }

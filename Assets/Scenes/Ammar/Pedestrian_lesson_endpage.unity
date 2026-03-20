@@ -940,8 +940,8 @@ GameObject:
   - component: {fileID: 749691193}
   - component: {fileID: 749691192}
   - component: {fileID: 749691191}
-  - component: {fileID: 749691195}
   - component: {fileID: 749691196}
+  - component: {fileID: 749691197}
   m_Layer: 5
   m_Name: TryAgainButton
   m_TagString: Untagged
@@ -1013,8 +1013,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 749691195}
-        m_TargetAssemblyTypeName: StartCyclistLesson, Assembly-CSharp
+      - m_Target: {fileID: 749691197}
+        m_TargetAssemblyTypeName: StartPedestrianLesson, Assembly-CSharp
         m_MethodName: RepeatLesson
         m_Mode: 1
         m_Arguments:
@@ -1075,18 +1075,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749691189}
   m_CullTransparentMesh: 1
---- !u!114 &749691195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749691189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e40a0ae4b9dec404c8ceac0eebed8871, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StartCyclistLesson1
 --- !u!114 &749691196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,6 +1087,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c3a1b361d57e4a6ba44b3584e3a965a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaySoundOnClick
+--- !u!114 &749691197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749691189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a95ac266c7a1dc4aa11898ba29c0d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StartPedestrianLesson
 --- !u!1 &961525238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,8 +1111,8 @@ GameObject:
   - component: {fileID: 961525244}
   - component: {fileID: 961525243}
   - component: {fileID: 961525242}
-  - component: {fileID: 961525240}
   - component: {fileID: 961525245}
+  - component: {fileID: 961525246}
   m_Layer: 5
   m_Name: MoveOnButton
   m_TagString: Untagged
@@ -1140,18 +1140,6 @@ RectTransform:
   m_AnchoredPosition: {x: -200, y: 100}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &961525240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 961525238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e40a0ae4b9dec404c8ceac0eebed8871, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StartCyclistLesson1
 --- !u!114 &961525242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,9 +1184,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 961525240}
-        m_TargetAssemblyTypeName: StartCyclistLesson, Assembly-CSharp
-        m_MethodName: LessonStartCyclist
+      - m_Target: {fileID: 961525246}
+        m_TargetAssemblyTypeName: StartPedestrianLesson, Assembly-CSharp
+        m_MethodName: StartLesson
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1270,6 +1258,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c3a1b361d57e4a6ba44b3584e3a965a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaySoundOnClick
+--- !u!114 &961525246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961525238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a95ac266c7a1dc4aa11898ba29c0d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StartPedestrianLesson
 --- !u!1 &1071374557
 GameObject:
   m_ObjectHideFlags: 0

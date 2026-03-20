@@ -5,6 +5,7 @@ public class TutorialPanel_Pedestrian : MonoBehaviour
 {
     public GameObject tutorialPanel;
     public TextMeshProUGUI tutorialText;
+    public System.Action onTutorialClosed;
 
     public bool isTutorialActive = false;
     public int currentTutorialCheckpoint = 0;
@@ -13,15 +14,16 @@ public class TutorialPanel_Pedestrian : MonoBehaviour
     public AudioSource victorySoundEffect;
     public AudioSource checkpointSoundEffect;
 
-    // ❌ REMOVE popup dependency completely
-    // public GameObject popUpWindow;
-
     public void ShowTutorial(string message, int checkpointNumber)
     {
         tutorialText.text = message;
         isTutorialActive = true;
         tutorialPanel.SetActive(true);
         currentTutorialCheckpoint = checkpointNumber;
+
+        // 🔥 FIX 1: Unlock cursor so UI can be clicked
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         if (currentTutorialCheckpoint == 4)
         {
@@ -45,10 +47,27 @@ public class TutorialPanel_Pedestrian : MonoBehaviour
         tutorialPanel.SetActive(false);
         Time.timeScale = 1f;
         isTutorialActive = false;
+
+        // 🔥 FIX 2: Lock cursor back to gameplay
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        // Trigger callback AFTER unpausing
+        if (onTutorialClosed != null)
+        {
+            onTutorialClosed.Invoke();
+            onTutorialClosed = null;
+        }
     }
 
     public void ClickToNextScene()
     {
+        // FIX 3: Always restore time + cursor before switching scene
+        Time.timeScale = 1f;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         if (currentTutorialCheckpoint == 1 ||
             currentTutorialCheckpoint == 2 ||
             currentTutorialCheckpoint == 3)
@@ -57,7 +76,7 @@ public class TutorialPanel_Pedestrian : MonoBehaviour
             return;
         }
 
-        Time.timeScale = 1f;
+        // Finish case (checkpoint 4)
         PedestrianGameNavigationManager.Instance.LoadNextScene();
     }
 }

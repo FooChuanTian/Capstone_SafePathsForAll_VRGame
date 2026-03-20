@@ -2,50 +2,38 @@ using UnityEngine;
 
 public class PlayerPositionManager_Pedestrian : MonoBehaviour
 {
-    public Transform Player;
+    public Transform player;
 
-    // Store last safe position (checkpoint)
-    private Vector3 lastSafePosition;
-    private bool hasCheckpoint = false;
+    // Static = persists even after scene reload (same as cyclist system)
+    public static Vector3 lastCheckpointPosition;
+    public static bool hasCheckpoint = false;
 
-    void Start()
+    void Awake()
     {
-        // Set initial spawn as safe position
-        if (Player != null)
+        // When scene reloads, move player to last checkpoint
+        if (hasCheckpoint && player != null)
         {
-            lastSafePosition = Player.position;
-            hasCheckpoint = true;
+            player.position = lastCheckpointPosition;
+            Debug.Log("Restored to checkpoint: " + lastCheckpointPosition);
         }
     }
 
-    // Call this when reaching checkpoint
     public void SetCheckpoint(Transform checkpoint)
     {
-        if (checkpoint != null)
-        {
-            lastSafePosition = checkpoint.position;
-            hasCheckpoint = true;
-            Debug.Log("[Pedestrian] Checkpoint saved at: " + lastSafePosition);
-        }
+        if (checkpoint == null || player == null) return;
+
+        lastCheckpointPosition = checkpoint.position;
+        hasCheckpoint = true;
+
+        Debug.Log("Checkpoint saved at: " + lastCheckpointPosition);
     }
 
-    // Teleport player back to last checkpoint
-    public void Respawn()
+    // OPTIONAL: if you ever want to reset everything (e.g. restart lesson)
+    public void ResetCheckpoint()
     {
-        if (hasCheckpoint && Player != null)
-        {
-            Player.position = lastSafePosition;
-            Debug.Log("[Pedestrian] Respawned at checkpoint");
-        }
-    }
+        hasCheckpoint = false;
+        lastCheckpointPosition = Vector3.zero;
 
-    // Optional: reset checkpoint (e.g. at end of lesson)
-    public void ResetCheckpoint(Transform startPoint)
-    {
-        if (startPoint != null)
-        {
-            lastSafePosition = startPoint.position;
-            hasCheckpoint = true;
-        }
+        Debug.Log("Checkpoint reset");
     }
 }

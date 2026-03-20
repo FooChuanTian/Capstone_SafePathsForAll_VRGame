@@ -3,26 +3,26 @@
 public class Checkpoint_1_Pedestrian : MonoBehaviour
 {
     public TutorialPanel_Pedestrian tutorial;
+    public Transform respawnPoint;
+
     private bool hasTriggered = false;
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Something entered: " + other.name);
+        if (!other.CompareTag("Player")) return;
+
+        PlayerPositionManager_Pedestrian pm = other.GetComponent<PlayerPositionManager_Pedestrian>();
+        if (pm != null && respawnPoint != null)
+        {
+            pm.SetCheckpoint(respawnPoint);
+        }
 
         if (hasTriggered) return;
+        hasTriggered = true;
 
-        if (other.CompareTag("Player"))
+        if (tutorial != null)
         {
-            Debug.Log("PLAYER HIT CHECKPOINT 1");
-
-            tutorial.gameObject.SetActive(true);
-
-            tutorial.ShowTutorial(
-                "Stay on the pedestrian path. Avoid the cycling lane.",
-                1
-            );
-
-            hasTriggered = true;
+            tutorial.ShowTutorial("Stay on the pedestrian path. Do not enter the cycling lane.", 1);
         }
     }
 }

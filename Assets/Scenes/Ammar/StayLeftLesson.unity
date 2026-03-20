@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &38458801
 RectTransform:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaneTrigger
   laneType: 0
-  lesson: {fileID: 1021037161}
+  lesson: {fileID: 0}
 --- !u!1 &107481759
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +651,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnCyclists
   CyclistObject: {fileID: 1623719816}
   rb: {fileID: 1623719817}
-  timeToSpawn: 4
   FirstSpawn: 10
   cont: 1
 --- !u!4 &343390920
@@ -1125,7 +1124,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1144,7 +1143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaneTrigger
   laneType: 1
-  lesson: {fileID: 1021037161}
+  lesson: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1355,7 +1354,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1021037160}
-  - component: {fileID: 1021037161}
   m_Layer: 0
   m_Name: Lesson_StayLeft
   m_TagString: Untagged
@@ -1378,23 +1376,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1021037161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021037159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7deddd5faec1dc042a7d0887ae715b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StayLeftLesson
-  instructionText: {fileID: 548452611}
-  correctMessage: Good! Pedestrians should keep left.
-  wrongMessage: Oops! Pedestrians should keep left on shared paths.
-  correctColor: {r: 0, g: 1, b: 0, a: 1}
-  wrongColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1240974495
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,8 +1391,9 @@ GameObject:
   - component: {fileID: 1240974496}
   - component: {fileID: 1240974502}
   - component: {fileID: 1240974501}
-  - component: {fileID: 1240974503}
   - component: {fileID: 1240974504}
+  - component: {fileID: 1240974505}
+  - component: {fileID: 1240974506}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1571,25 +1553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Movement
   rb: {fileID: 1240974496}
   jumpForce: 35
-  moveSpeed: 2
---- !u!114 &1240974503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240974495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0529e53ffd0b8e4eaa76ae14e4c129d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerGroundCollision
-  InstructionText: {fileID: 548452611}
-  Checkpoint0: {fileID: 1008161880}
-  Player: {fileID: 1240974500}
-  warningCount: 0
-  maxWarnings: 3
-  isGameOver: 0
+  moveSpeed: 25
 --- !u!114 &1240974504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1604,6 +1568,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPositionManager
   PreviousCheckpoint: {fileID: 1008161880}
   Player: {fileID: 1240974500}
+--- !u!114 &1240974505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240974495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c3234c4253ac545ab0ee651c5a68c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaneLessonFeedback
+  instructionText: {fileID: 548452611}
+  positionManager: {fileID: 1240974504}
+--- !u!114 &1240974506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240974495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8de5f5b6335aa4696ff1bd89907915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PedestrianLessonCollision
+  WhichLaneText: {fileID: 38458802}
+  InstructionText: {fileID: 548452611}
+  GameOverText: {fileID: 0}
+  Player: {fileID: 0}
+  Checkpoint0: {fileID: 0}
 --- !u!1 &1244267914
 GameObject:
   m_ObjectHideFlags: 0

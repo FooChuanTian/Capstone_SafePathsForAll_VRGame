@@ -38,14 +38,18 @@ public class ScoreManager : MonoBehaviour
 
     void SecondUpdate()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1f);
-        foreach (var hitCollider in hitColliders) {
-            if (AllLanes.Contains(hitCollider.gameObject.tag))
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 2f))
+        {
+            foreach (var lane in AllLanes)
             {
-                CurrentLane = hitCollider.gameObject.tag;
-                break;
+                if (hit.collider.CompareTag(lane))
+                {
+                    CurrentLane = hit.collider.tag;
+                }
             }
         }
+
         if (CurrentLane != null)
         {
             if (CorrectLanes.Contains(CurrentLane))

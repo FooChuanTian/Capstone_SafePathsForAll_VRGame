@@ -18,6 +18,7 @@ TagManager:
   - obstacle
   - speedtrackerStop
   - speedtrackerSlow
+  - npc
   layers:
   - Default
   - TransparentFX

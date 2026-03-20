@@ -29,6 +29,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Atsadet/Cyclist_lesson3.unity
     guid: a7265440cca0446d695c2f0ceb920167
+  - enabled: 1
+    path: Assets/Scenes/Ammar/Pedestrian_lesson_instructions.unity
+    guid: 843ea07413f28a74c8d4554744eb0654
+  - enabled: 1
+    path: Assets/Scenes/Ammar/Pedestrian_lesson1.unity
+    guid: 925613fc709e95d4296818dc28f4143a
+  - enabled: 1
+    path: Assets/Scenes/Ammar/Pedestrian_lesson2.unity
+    guid: 4cbc4570a8111a7469090dde70bf13fd
+  - enabled: 1
+    path: Assets/Scenes/Ammar/Pedestrian_lesson3.unity
+    guid: 9065742f9a22b9a4f959d4599bb1cdba
+  - enabled: 1
+    path: Assets/Scenes/Ammar/Pedestrian_lesson_endpage.unity
+    guid: 5b72abd7ee63ef54d8cb984889baa101
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

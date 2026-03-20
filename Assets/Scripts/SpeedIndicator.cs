@@ -22,7 +22,7 @@ public class SpeedIndicator : MonoBehaviour
         PositionDelta = rb.linearVelocity;
         PositionDelta = tf.position - PreviousPosition;
         float rawspeed = PositionDelta.magnitude / Time.deltaTime;
-        SmoothSpeed = Mathf.Lerp(SmoothSpeed, rawspeed, Time.deltaTime*2f);
+        SmoothSpeed = Mathf.Lerp(SmoothSpeed, rawspeed, Time.deltaTime*5f);
         SpeedText.text = "Speed: " + Math.Round(SmoothSpeed);
         //SpeedText.text = "Speed: " + (int) ((CurrentPosition - PreviousPosition).magnitude / Time.deltaTime);
         PreviousPosition = tf.position;

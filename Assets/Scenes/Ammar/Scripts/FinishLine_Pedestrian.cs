@@ -17,6 +17,7 @@ public class FinishLine_Pedestrian : MonoBehaviour
         if (tutorial != null)
         {
             tutorial.ShowTutorial("Congrats on completing lesson 1!", 4);
+
         }
     }
 }

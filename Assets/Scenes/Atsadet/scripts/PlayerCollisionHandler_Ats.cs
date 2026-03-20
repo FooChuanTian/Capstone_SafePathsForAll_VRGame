@@ -41,6 +41,8 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
     public Sprite deathSprite_HardPenalty;  //type 0 (Wrong lane/ Collision)
     public Sprite deathSprite_SoftPenalty;   //type 1 (Wrong side/ Speeding)
     public Transform recurringPopups; // AKA the warning popups for wrong side
+    public AudioSource collisionSoundEffectSource;
+    public AudioClip collisionSoundEffect;
 
     void Start()
     {
@@ -64,6 +66,8 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
         if (collision.gameObject.CompareTag("cyclist") || collision.gameObject.CompareTag("pedestrian") || collision.gameObject.CompareTag("obstacle"))
         {
             Debug.Log("Collided");
+            collisionSoundEffectSource.clip = collisionSoundEffect;
+            collisionSoundEffectSource.Play();
             PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
             isGameOver = true;
             timeToRespawn = 3f;

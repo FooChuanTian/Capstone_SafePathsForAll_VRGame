@@ -4245,7 +4245,7 @@ GameObject:
   - component: {fileID: 1144542638}
   - component: {fileID: 1144542637}
   m_Layer: 0
-  m_Name: warningSoundEffectSource
+  m_Name: collisionSoundEffectSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4815,6 +4815,8 @@ MonoBehaviour:
   deathSprite_HardPenalty: {fileID: 21300000, guid: f1985b43df1f84a9197fc5198debfbcf, type: 3}
   deathSprite_SoftPenalty: {fileID: 21300000, guid: a33cfb163442c4bd2aedc49a0ef0f044, type: 3}
   recurringPopups: {fileID: 921860908}
+  collisionSoundEffectSource: {fileID: 1144542637}
+  collisionSoundEffect: {fileID: 8300000, guid: cc62e30608557466ca8fccfa7465c125, type: 3}
 --- !u!114 &1240974508
 MonoBehaviour:
   m_ObjectHideFlags: 0

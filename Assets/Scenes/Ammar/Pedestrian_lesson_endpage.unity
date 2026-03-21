@@ -1186,7 +1186,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 961525246}
         m_TargetAssemblyTypeName: StartPedestrianLesson, Assembly-CSharp
-        m_MethodName: StartLesson
+        m_MethodName: MoveOn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

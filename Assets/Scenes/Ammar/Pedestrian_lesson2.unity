@@ -4102,12 +4102,12 @@ GameObject:
   - component: {fileID: 1240974498}
   - component: {fileID: 1240974497}
   - component: {fileID: 1240974496}
-  - component: {fileID: 1240974502}
   - component: {fileID: 1240974501}
   - component: {fileID: 1240974505}
   - component: {fileID: 1240974506}
   - component: {fileID: 1240974507}
   - component: {fileID: 1240974508}
+  - component: {fileID: 1240974509}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -4254,21 +4254,6 @@ MonoBehaviour:
   sensitivityY: 2
   minimumY: -60
   maximumY: 60
---- !u!114 &1240974502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240974495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b3dd20cb1b747d41861398c2c958f8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Movement
-  rb: {fileID: 1240974496}
-  jumpForce: 35
-  moveSpeed: 25
 --- !u!114 &1240974505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4328,6 +4313,22 @@ MonoBehaviour:
   warningSound: {fileID: 1144542637}
   popup: {fileID: 921860915}
   rightLaneTimeLimit: 3
+--- !u!114 &1240974509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240974495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b51968285fa0d44bbc88168682d3c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Movement_Pedestrian
+  rb: {fileID: 1240974496}
+  jumpForce: 35
+  moveSpeed: 10
+  maxSpeed: 40
 --- !u!1 &1244267914
 GameObject:
   m_ObjectHideFlags: 0
@@ -5109,7 +5110,7 @@ Transform:
   m_GameObject: {fileID: 1599057550}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -107.3, y: 3.7, z: -1.1}
+  m_LocalPosition: {x: -124.4, y: 3.7, z: 6.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

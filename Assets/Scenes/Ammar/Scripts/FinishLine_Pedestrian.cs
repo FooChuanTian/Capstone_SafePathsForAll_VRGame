@@ -14,10 +14,13 @@ public class FinishLine_Pedestrian : MonoBehaviour
 
         Debug.Log("Player reached finish line");
 
+        // Reset checkpoint so "practice again" starts from the beginning
+        PlayerPositionManager_Pedestrian.hasCheckpoint = false;
+        PlayerPositionManager_Pedestrian.lastCheckpointPosition = Vector3.zero;
+
         if (tutorial != null)
         {
             tutorial.ShowTutorial("Congrats on completing lesson 1!", 4);
-
         }
     }
 }

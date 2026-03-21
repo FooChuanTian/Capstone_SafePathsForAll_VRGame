@@ -13,16 +13,12 @@ public class Checkpoint_1_Pedestrian : MonoBehaviour
 
         PlayerPositionManager_Pedestrian pm = other.GetComponent<PlayerPositionManager_Pedestrian>();
         if (pm != null && respawnPoint != null)
-        {
             pm.SetCheckpoint(respawnPoint);
-        }
 
         if (hasTriggered) return;
         hasTriggered = true;
 
         if (tutorial != null)
-        {
-            tutorial.ShowTutorial("Stay on the pedestrian path. Do not enter the cycling lane.", 1);
-        }
+            tutorial.ShowTutorial("Welcome! The red lane is for cyclists only. Always stay on the pedestrian path.", 1);
     }
 }

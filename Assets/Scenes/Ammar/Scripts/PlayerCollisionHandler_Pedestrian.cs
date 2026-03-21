@@ -18,8 +18,7 @@ public class PlayerCollisionHandler_Pedestrian : MonoBehaviour
     {
         if (isGameOver) return;
 
-        Debug.Log("COLLISION: " + collision.gameObject.name + " | TAG: " + collision.gameObject.tag);
-
+        // In Lesson 1, only game over if entering cycling lane or hitting a cyclist
         if (collision.gameObject.CompareTag("cyclist") ||
             collision.gameObject.CompareTag("obstacle"))
         {
@@ -27,11 +26,7 @@ public class PlayerCollisionHandler_Pedestrian : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.CompareTag("npc"))
-        {
-            TriggerGameOver("You blocked another pedestrian!");
-            return;
-        }
+        // NPC collision is ignored in Lesson 1 — player is still learning
     }
 
     void OnCollisionStay(Collision collision)
@@ -47,15 +42,12 @@ public class PlayerCollisionHandler_Pedestrian : MonoBehaviour
                 InstructionText.color = Color.green;
             }
 
-            if (popup != null)
-                popup.HideWarning();
+            if (popup != null) popup.HideWarning();
         }
         else if (collision.gameObject.CompareTag("cycling_lane_left") ||
                  collision.gameObject.CompareTag("cycling_lane_right"))
         {
-            if (popup != null)
-                popup.ShowWarning();
-
+            if (popup != null) popup.ShowWarning();
             TriggerGameOver("You entered the cycling lane!");
         }
     }
@@ -66,13 +58,9 @@ public class PlayerCollisionHandler_Pedestrian : MonoBehaviour
 
         isGameOver = true;
 
-        Debug.Log("GAME OVER: " + reason);
-
-        if (backgroundMusic != null)
-            backgroundMusic.Pause();
-
-        if (gameOverSound != null)
-            gameOverSound.Play();
+        if (backgroundMusic != null) backgroundMusic.Pause();
+        if (gameOverSound != null) gameOverSound.Play();
+        if (popup != null) popup.HideWarning();
 
         if (GameOverText != null)
         {
@@ -86,7 +74,6 @@ public class PlayerCollisionHandler_Pedestrian : MonoBehaviour
     IEnumerator RestartSceneAfterDelay()
     {
         yield return new WaitForSecondsRealtime(3f);
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

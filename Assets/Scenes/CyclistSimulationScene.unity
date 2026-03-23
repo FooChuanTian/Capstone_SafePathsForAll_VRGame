@@ -927,6 +927,7 @@ MonoBehaviour:
   TotalScoreText: {fileID: 312546732}
   WrongLaneScoreText: {fileID: 1412623882}
   CorrectLaneScoreText: {fileID: 1819117438}
+  LivesLeftText: {fileID: 0}
 --- !u!114 &234451307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5008,6 +5009,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1096211549}
+  - component: {fileID: 1096211550}
   m_Layer: 5
   m_Name: ScoreBoard
   m_TagString: Untagged
@@ -5045,6 +5047,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1096211550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096211548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e527928ee1ec03645803450218484ac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreBoardManager
+  player: {fileID: 1240974495}
+  TotalScoreText: {fileID: 274263239}
+  WrongLaneScoreText: {fileID: 544846874}
+  CorrectLaneScoreText: {fileID: 1398454935}
+  LivesLeftText: {fileID: 1897953305}
 --- !u!1 &1111696313
 GameObject:
   m_ObjectHideFlags: 0
@@ -5661,7 +5680,6 @@ GameObject:
   - component: {fileID: 1240974505}
   - component: {fileID: 1240974506}
   - component: {fileID: 1240974507}
-  - component: {fileID: 1240974508}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5910,22 +5928,6 @@ MonoBehaviour:
   CorrectLaneDebug: {fileID: 1297167441}
   WrongLaneDebug: {fileID: 593206803}
   PhoneObject: {fileID: 0}
---- !u!114 &1240974508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240974495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e527928ee1ec03645803450218484ac9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScoreBoardManager
-  player: {fileID: 1240974495}
-  TotalScoreText: {fileID: 1422306295}
-  WrongLaneScoreText: {fileID: 544846874}
-  CorrectLaneScoreText: {fileID: 1398454935}
 --- !u!1 &1244267914
 GameObject:
   m_ObjectHideFlags: 0

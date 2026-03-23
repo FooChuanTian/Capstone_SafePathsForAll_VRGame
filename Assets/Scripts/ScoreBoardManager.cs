@@ -8,7 +8,9 @@ public class ScoreBoardManager : MonoBehaviour
     public TextMeshProUGUI WrongLaneScoreText;
     public TextMeshProUGUI CorrectLaneScoreText;
     public TextMeshProUGUI PhoneOpenedText;
-    public TextMeshProUGUI SpeedControlText;
+    public TextMeshProUGUI TimeSlowText;
+    public TextMeshProUGUI TimeStopText;
+    public TextMeshProUGUI SpeedPenaltyText;
     public TextMeshProUGUI LivesLeftText;
     private ScoreManager scoreManager;
     private LivesManager livesManager;
@@ -34,7 +36,6 @@ public class ScoreBoardManager : MonoBehaviour
         int livesLeft = livesManager.NumLives;
         int secondsCorrect = scoreManager.SecondsOnCorrectLane;
         int secondsWrong = scoreManager.SecondsOnWrongLane;
-        int phoneOpened = scoreManager.PhoneOpened;
 
         WrongLaneScoreText.text = "" + secondsWrong;
         CorrectLaneScoreText.text = "" + secondsCorrect;
@@ -42,13 +43,22 @@ public class ScoreBoardManager : MonoBehaviour
         if (PhoneOpenedText)
         {
             // Score for pedestrian
+            int phoneOpened = scoreManager.PhoneOpened;
             PhoneOpenedText.text = "" + phoneOpened;
             int totalScore = (livesLeft * 10) + secondsCorrect - (secondsWrong * 5);
             TotalScoreText.text = "" + totalScore;
         }
-        else if (SpeedControlText)
+        else if (TimeSlowText && TimeStopText && SpeedPenaltyText)
         {
             // Score for cyclist
+            float timeToSlow = scoreManager.TimetoSlow;
+            float timeToStop = scoreManager.TimetoStop;
+            int speedPenalty = scoreManager.MaximumSpeedPenalty;
+            TimeSlowText.text = "" + timeToSlow;
+            TimeStopText.text = "" + timeToStop;
+            SpeedPenaltyText.text = "" + speedPenalty;
+            int totalScore = (livesLeft * 10) + secondsCorrect - (secondsWrong * 10) - (int) (timeToSlow / 0.25f * 2) - (int) (timeToStop / 0.25f * 2) - speedPenalty;
+            TotalScoreText.text = "" + totalScore;
         }
 
 

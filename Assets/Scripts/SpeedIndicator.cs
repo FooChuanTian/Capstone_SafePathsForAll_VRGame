@@ -11,7 +11,7 @@ public class SpeedIndicator : MonoBehaviour
     private Vector3 PreviousPosition;
     private Vector3 CurrentPosition;
     private Vector3 PositionDelta;
-    private float SmoothSpeed;
+    public float SmoothSpeed;
     void Start()
     {
         PreviousPosition = tf.position;

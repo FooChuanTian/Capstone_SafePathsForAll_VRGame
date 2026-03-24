@@ -13,7 +13,7 @@ public class StartPedestrianLesson : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[Pedestrian] NavigationManager Instance is null! Loading lesson directly.");
+            UnityEngine.Debug.LogWarning("[Pedestrian] NavigationManager Instance is null! Loading lesson directly.");
             SceneManager.LoadScene("Pedestrian_lesson1");
         }
     }
@@ -21,13 +21,17 @@ public class StartPedestrianLesson : MonoBehaviour
     // Called by "Move On" button on end page — progresses to next lesson
     public void MoveOn()
     {
+        UnityEngine.Debug.Log("[Pedestrian] MoveOn called. currentLevelIndex = " +
+            (PedestrianGameNavigationManager.Instance != null ?
+            PedestrianGameNavigationManager.Instance.currentLevelIndex.ToString() : "NULL"));
+
         if (PedestrianGameNavigationManager.Instance != null)
         {
             PedestrianGameNavigationManager.Instance.LoadNextScene();
         }
         else
         {
-            Debug.LogWarning("[Pedestrian] NavigationManager Instance is null! Loading lesson directly.");
+            UnityEngine.Debug.LogWarning("[Pedestrian] NavigationManager Instance is null! Loading lesson directly.");
             SceneManager.LoadScene("Pedestrian_lesson1");
         }
     }
@@ -41,7 +45,7 @@ public class StartPedestrianLesson : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[Pedestrian] NavigationManager Instance is null! Reloading lesson directly.");
+            UnityEngine.Debug.LogWarning("[Pedestrian] NavigationManager Instance is null! Reloading lesson directly.");
             SceneManager.LoadScene("Pedestrian_lesson1");
         }
     }

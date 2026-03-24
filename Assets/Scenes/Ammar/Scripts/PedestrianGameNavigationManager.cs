@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
 
 public class PedestrianGameNavigationManager : MonoBehaviour
 {
@@ -12,7 +12,8 @@ public class PedestrianGameNavigationManager : MonoBehaviour
     private string[] sceneSequence = {
         "Pedestrian_lesson1", "Pedestrian_lesson_endpage",
         "Pedestrian_lesson2", "Pedestrian_lesson_endpage",
-        "Pedestrian_lesson3", "Pedestrian_lesson_endpage"
+        "Pedestrian_lesson3", "Pedestrian_lesson_endpage",
+        "PedestrianSimulationScene"
     };
 
     public List<GameObject> activeClones = new List<GameObject>();
@@ -30,7 +31,6 @@ public class PedestrianGameNavigationManager : MonoBehaviour
         }
     }
 
-    // Called by finish line tutorial to move to end page
     public void LoadNextScene()
     {
         if (currentLevelIndex < sceneSequence.Length)
@@ -42,17 +42,11 @@ public class PedestrianGameNavigationManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("MainMenu");
+            // End of all lessons — go back to player selection or main menu
+            SceneManager.LoadScene("PlayerSelectionScene");
         }
     }
 
-    // Called by "Move On" button on end page — already advanced by LoadNextScene so just load next
-    public void LoadNextLesson()
-    {
-        LoadNextScene();
-    }
-
-    // Called by "Replay" button on end page — go back 2 steps to reload the lesson (not the end page)
     public void ReloadCurrentScene()
     {
         if (currentLevelIndex >= 2)
@@ -63,7 +57,6 @@ public class PedestrianGameNavigationManager : MonoBehaviour
         }
         else
         {
-            // Fallback
             SceneManager.LoadScene("Pedestrian_lesson1");
         }
     }

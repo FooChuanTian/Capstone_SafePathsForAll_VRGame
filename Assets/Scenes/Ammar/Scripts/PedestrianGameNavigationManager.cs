@@ -30,13 +30,13 @@ public class PedestrianGameNavigationManager : MonoBehaviour
         }
     }
 
+    // Called by finish line tutorial to move to end page
     public void LoadNextScene()
     {
         if (currentLevelIndex < sceneSequence.Length)
         {
             string sceneToLoad = sceneSequence[currentLevelIndex];
             currentLevelIndex++;
-
             Debug.Log("[Pedestrian] Loading: " + sceneToLoad);
             SceneManager.LoadScene(sceneToLoad);
         }
@@ -46,12 +46,25 @@ public class PedestrianGameNavigationManager : MonoBehaviour
         }
     }
 
+    // Called by "Move On" button on end page — already advanced by LoadNextScene so just load next
+    public void LoadNextLesson()
+    {
+        LoadNextScene();
+    }
+
+    // Called by "Replay" button on end page — go back 2 steps to reload the lesson (not the end page)
     public void ReloadCurrentScene()
     {
-        if (currentLevelIndex > 0)
+        if (currentLevelIndex >= 2)
         {
-            string sceneToLoad = sceneSequence[currentLevelIndex - 1];
+            string sceneToLoad = sceneSequence[currentLevelIndex - 2];
+            Debug.Log("[Pedestrian] Reloading lesson: " + sceneToLoad);
             SceneManager.LoadScene(sceneToLoad);
+        }
+        else
+        {
+            // Fallback
+            SceneManager.LoadScene("Pedestrian_lesson1");
         }
     }
 

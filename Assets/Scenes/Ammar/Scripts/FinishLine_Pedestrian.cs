@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinishLine_Pedestrian : MonoBehaviour
 {
@@ -12,11 +13,23 @@ public class FinishLine_Pedestrian : MonoBehaviour
 
         hasFinished = true;
 
-        Debug.Log("Player reached finish line");
+        // Reset checkpoint so "practice again" starts from the beginning
+        PlayerPositionManager_Pedestrian.hasCheckpoint = false;
+        PlayerPositionManager_Pedestrian.lastCheckpointPosition = Vector3.zero;
+
+        string sceneName = SceneManager.GetActiveScene().name;
+        string message = "Congrats on completing the lesson!";
+
+        if (sceneName == "Pedestrian_lesson1")
+            message = "Congrats on completing Lesson 1!";
+        else if (sceneName == "Pedestrian_lesson2")
+            message = "Congrats on completing Lesson 2!";
+        else if (sceneName == "Pedestrian_lesson3")
+            message = "Congrats on completing Lesson 3!";
+
+        Debug.Log("Player reached finish line in " + sceneName);
 
         if (tutorial != null)
-        {
-            tutorial.ShowTutorial("Congrats on completing lesson 1!", 4);
-        }
+            tutorial.ShowTutorial(message, 4);
     }
 }

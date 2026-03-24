@@ -62,9 +62,7 @@ public class TutorialPanel_Pedestrian : MonoBehaviour
 
     public void ClickToNextScene()
     {
-        // FIX 3: Always restore time + cursor before switching scene
         Time.timeScale = 1f;
-
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -77,6 +75,15 @@ public class TutorialPanel_Pedestrian : MonoBehaviour
         }
 
         // Finish case (checkpoint 4)
-        PedestrianGameNavigationManager.Instance.LoadNextScene();
+        if (PedestrianGameNavigationManager.Instance != null)
+        {
+            PedestrianGameNavigationManager.Instance.LoadNextScene();
+        }
+        else
+        {
+            // Fallback: load end page directly if manager wasn't created
+            Debug.LogWarning("[Pedestrian] NavigationManager Instance is null! Loading end page directly.");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Pedestrian_lesson_endpage");
+        }
     }
 }

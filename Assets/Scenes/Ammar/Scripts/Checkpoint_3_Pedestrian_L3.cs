@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class Checkpoint_2_Pedestrian : MonoBehaviour
+public class Checkpoint_3_Pedestrian_L3 : MonoBehaviour
 {
     public TutorialPanel_Pedestrian tutorial;
     public Transform respawnPoint;
+    public PhoneDistraction_Pedestrian phoneDistraction;
 
     private bool hasTriggered = false;
 
@@ -19,6 +20,15 @@ public class Checkpoint_2_Pedestrian : MonoBehaviour
         hasTriggered = true;
 
         if (tutorial != null)
-            tutorial.ShowTutorial("The cycling lane may look empty, but always stay on the pedestrian path. It's safer for everyone.", 2);
+        {
+            tutorial.ShowTutorial("Stay aware! Don't let your phone distract you from your surroundings.", 3);
+            tutorial.onTutorialClosed = TriggerCP3Distraction;
+        }
+    }
+
+    void TriggerCP3Distraction()
+    {
+        if (phoneDistraction != null)
+            phoneDistraction.TriggerCP3Distraction();
     }
 }

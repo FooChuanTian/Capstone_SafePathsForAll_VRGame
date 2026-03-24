@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class Checkpoint_2_Pedestrian : MonoBehaviour
+public class Checkpoint_1_Pedestrian_L2 : MonoBehaviour
 {
     public TutorialPanel_Pedestrian tutorial;
     public Transform respawnPoint;
@@ -19,6 +19,6 @@ public class Checkpoint_2_Pedestrian : MonoBehaviour
         hasTriggered = true;
 
         if (tutorial != null)
-            tutorial.ShowTutorial("The cycling lane may look empty, but always stay on the pedestrian path. It's safer for everyone.", 2);
+            tutorial.ShowTutorial("Keep to the left side of the pedestrian path to allow others to pass.", 1);
     }
 }

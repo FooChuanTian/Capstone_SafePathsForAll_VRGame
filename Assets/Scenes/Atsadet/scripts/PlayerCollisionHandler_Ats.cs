@@ -6,6 +6,8 @@ using System.ComponentModel.Design;
 using System.Collections;
 using Unity.VisualScripting;
 using System.Data;
+using UnityEngine.UI;
+
 
 public class PlayerCollisionHandler_Ats : MonoBehaviour
 {
@@ -34,6 +36,13 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
     private string currentsceneName;
     private int slowDownAreaSpeedLimit = 100;
     private int stopAreaSpeedLimit = 50;
+    public Transform deathPopup;  // default sprite is type 0: Wrong lane
+    public Image deathPopupImage;
+    public Sprite deathSprite_HardPenalty;  //type 0 (Wrong lane/ Collision)
+    public Sprite deathSprite_SoftPenalty;   //type 1 (Wrong side/ Speeding)
+    public Transform recurringPopups; // AKA the warning popups for wrong side
+    public AudioSource collisionSoundEffectSource;
+    public AudioClip collisionSoundEffect;
 
     void Start()
     {
@@ -57,12 +66,14 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
         if (collision.gameObject.CompareTag("cyclist") || collision.gameObject.CompareTag("pedestrian") || collision.gameObject.CompareTag("obstacle"))
         {
             Debug.Log("Collided");
+            collisionSoundEffectSource.clip = collisionSoundEffect;
+            collisionSoundEffectSource.Play();
             PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
             isGameOver = true;
             timeToRespawn = 3f;
             lessonRoundWarningCount = 0; // reset warning count for next round
             // StartCoroutine(GameOver2("You crashed into " + collision.gameObject.name + "!"));
-            StartCoroutine(GameOver2("You crashed into obstacle!"));
+            StartCoroutine(GameOver2("You crashed into obstacle!", 0));
         }
         else if (collision.gameObject.CompareTag("checkpoint"))
         {
@@ -93,7 +104,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
                 isGameOver = true;
                 timeToRespawn = 3f;
                 lessonRoundWarningCount = 0; // reset warning count for next round
-                StartCoroutine(GameOver2("You were going too fast in the stop area!"));
+                StartCoroutine(GameOver2("You were going too fast in the stop area!", 1));
             }
 
         } else if (other.CompareTag("speedtrackerSlow") && !isGameOver && myBody.bounds.Contains(closestPoint))
@@ -105,7 +116,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
                 isGameOver = true;
                 timeToRespawn = 3f;
                 lessonRoundWarningCount = 0; // reset warning count for next round
-                StartCoroutine(GameOver2("You were going too fast in the slow down area!"));
+                StartCoroutine(GameOver2("You were going too fast in the slow down area!", 1));
             }
         }
     }
@@ -133,7 +144,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
                     isGameOver = true;
                     timeToRespawn = 3f;
                     lessonRoundWarningCount = 0; // reset warning count for next round
-                    StartCoroutine(GameOver2("You spent too long on the wrong side!!"));
+                    StartCoroutine(GameOver2("You spent too long on the wrong side!!", 1));
                 }
             }
             
@@ -153,7 +164,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
             isGameOver = true;
             timeToRespawn = 3f;
             lessonRoundWarningCount = 0; // reset warning count for next round
-            StartCoroutine(GameOver2("You went onto the pedestrian lane!"));
+            StartCoroutine(GameOver2("You went onto the pedestrian lane!", 0));
         }
     }
 
@@ -196,7 +207,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
     //     }
     // }
 
-    IEnumerator GameOver2(string reason)
+    IEnumerator GameOver2(string reason, int popupType)
     {   
         backgroundMusicSource.Pause(); // Pause background music
         gameOverSoundEffectSource.Play(); // Play the game over sound effect
@@ -204,6 +215,24 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
         string outString = "Game over. \nReason: " + reason;
         GameOverText.text = outString;
         GameOverText.transform.parent.gameObject.SetActive(true);
+
+        // Hide the Recurring Popups
+        recurringPopups.gameObject.SetActive(false);
+
+        // Show different popups based on the type of game over
+        deathPopup.GetComponentInChildren<TextMeshProUGUI>().text = outString;
+        deathPopup.gameObject.SetActive(true);
+        switch (popupType)
+        {   case 0: //Hard penalty (Wrong lane/ Collision)
+                deathPopupImage.sprite = deathSprite_HardPenalty;
+                break;
+            case 1: //Soft penalty (Wrong side/ Speeding)
+                deathPopupImage.sprite = deathSprite_SoftPenalty;
+                break;
+            default:
+                break;
+        }
+
         yield return new WaitForSecondsRealtime(3);
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

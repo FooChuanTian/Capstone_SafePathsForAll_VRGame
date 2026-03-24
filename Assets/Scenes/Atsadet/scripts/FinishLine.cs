@@ -9,13 +9,23 @@ public class FinishLine : MonoBehaviour
     public TutorialPanel tutorial;
     private bool hasShownLaneTutorial = false;
     public Transform initialCheckpointLocation;
+    private string currentsceneName;
+    private int lessonIndex;
+
+    void Start()
+    {
+        currentsceneName = SceneManager.GetActiveScene().name; // Get the current scene name from the GameNavigationManager
+        lessonIndex = currentsceneName.Contains("lesson1") ? 1 : 
+                      currentsceneName.Contains("lesson2") ? 2 : 
+                      currentsceneName.Contains("lesson3") ? 3 : 0;
+    }
     void OnTriggerEnter(Collider collision)
     {
         if (collision.tag == "Player")
         {   
             cleanup();  // Disable for testing
 
-            tutorial.ShowTutorial("Congrats on completing lesson 1!", 4);
+            tutorial.ShowTutorial($"Congrats on completing lesson {lessonIndex}!", 4);
             hasShownLaneTutorial = true; // Ensures it only freezes the game once
 
             // SceneManager.LoadScene("Cyclist_lesson1_endpage");

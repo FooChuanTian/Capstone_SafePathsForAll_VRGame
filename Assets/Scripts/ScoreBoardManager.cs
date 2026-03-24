@@ -33,6 +33,8 @@ public class ScoreBoardManager : MonoBehaviour
 
     void DisplayScore()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         int livesLeft = livesManager.NumLives;
         int secondsCorrect = scoreManager.SecondsOnCorrectLane;
         int secondsWrong = scoreManager.SecondsOnWrongLane;

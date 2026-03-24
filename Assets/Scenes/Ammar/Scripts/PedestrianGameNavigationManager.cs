@@ -42,8 +42,8 @@ public class PedestrianGameNavigationManager : MonoBehaviour
         }
         else
         {
-            // End of all lessons — go back to player selection or main menu
-            SceneManager.LoadScene("PlayerSelectionScene");
+            // End of all lessons ï¿½ go back to player selection or main menu
+            SceneManager.LoadScene("PedestrianSimulationScene");
         }
     }
 

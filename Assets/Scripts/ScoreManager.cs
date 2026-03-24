@@ -58,6 +58,7 @@ public class ScoreManager : MonoBehaviour
                 if (hit.collider.CompareTag(lane))
                 {
                     CurrentLane = hit.collider.tag;
+                    break;
                 }
             }
         }

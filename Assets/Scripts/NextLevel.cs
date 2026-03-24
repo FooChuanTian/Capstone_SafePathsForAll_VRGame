@@ -8,6 +8,13 @@ public class NextLevel : MonoBehaviour
     public void StartNextLevel()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(NextLevelString);
+        if (GameNavigationManager.Instance || PedestrianGameNavigationManager.Instance)
+        {
+            SceneManager.LoadScene("FinalScene");
+        }
+        else 
+        {
+            SceneManager.LoadScene(NextLevelString);
+        }
     }
 }

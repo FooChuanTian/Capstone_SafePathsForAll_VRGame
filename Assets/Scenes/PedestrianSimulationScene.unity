@@ -3242,7 +3242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e527928ee1ec03645803450218484ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreBoardManager
-  player: {fileID: 1240974495}
+  player: {fileID: 1665045890}
   TotalScoreText: {fileID: 2140515575}
   WrongLaneScoreText: {fileID: 1243538932}
   CorrectLaneScoreText: {fileID: 45744211}

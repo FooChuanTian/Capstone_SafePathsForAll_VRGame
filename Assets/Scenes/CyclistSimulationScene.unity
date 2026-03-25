@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ba11e99ea65d743a9939908c8aa121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
-  player: {fileID: 0}
+  player: {fileID: 234451304}
   SecondsOnCorrectLane: 0
   SecondsOnWrongLane: 0
   PhoneOpened: 0

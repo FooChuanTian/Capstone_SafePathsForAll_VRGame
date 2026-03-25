@@ -18,20 +18,20 @@ public class Checkpoint_3 : MonoBehaviour
     float rnd_velo;
     private List<Vector3> spawnPoints_lesson1 = new List<Vector3>
     {
-        new Vector3(-250, 1, 35),
-        new Vector3(-300, 1, 43),
-        new Vector3(-350, 1, 40),
-        new Vector3(-380, 1, 60),
-        new Vector3(-350, 1, 55)
+        new Vector3(-250, 3, 35),
+        new Vector3(-300, 3, 43),
+        new Vector3(-350, 3, 40),
+        new Vector3(-380, 3, 60),
+        new Vector3(-350, 3, 55)
     };
 
     private List<Vector3> spawnPoints_lesson2 = new List<Vector3>
     {
-        new Vector3(-400, 1, 60),
-        new Vector3(-350, 1, 45),
-        new Vector3(-350, 1, 65),
-        new Vector3(-300, 1, 35),
-        new Vector3(-320, 1, 55)
+        new Vector3(-400, 3, 60),
+        new Vector3(-350, 3, 45),
+        new Vector3(-350, 3, 65),
+        new Vector3(-300, 3, 35),
+        new Vector3(-320, 3, 55)
     };
     public GameObject pedestrianNPCObject;
     void Start()
@@ -87,11 +87,11 @@ public class Checkpoint_3 : MonoBehaviour
 
             if (spawnPoint.z > 50)
             {
-                Clone = Instantiate(CyclistObject, spawnPoint, new Quaternion(0, 180f, 0, 1)) as GameObject;
+                Clone = Instantiate(CyclistObject, spawnPoint, Quaternion.Euler(0, 90, 0)) as GameObject;
                 rnd_velo = UnityEngine.Random.Range(1f, 2f);
             } else
             {
-                Clone = Instantiate(CyclistObject, spawnPoint, new Quaternion(0, 0, 0, 1)) as GameObject;
+                Clone = Instantiate(CyclistObject, spawnPoint, Quaternion.Euler(0, -90, 0)) as GameObject;
                 rnd_velo = UnityEngine.Random.Range(-0.5f, -1.0f);
             }
             
@@ -106,9 +106,9 @@ public class Checkpoint_3 : MonoBehaviour
             //     anim.Play("Walk", 0, randomStart); 
             //     anim.speed = UnityEngine.Random.Range(0.8f, 1.2f);
             // }
-            Rigidbody cloneRb = Clone.GetComponent<Rigidbody>();
+            Rigidbody cloneRb = Clone.GetComponentInChildren<Rigidbody>();
             Clone.AddComponent<NPCStraight_Ats>();
-            Clone.GetComponent<NPCStraight_Ats>().gb = Clone.gameObject;
+            Clone.GetComponent<NPCStraight_Ats>().gb = cloneRb != null ? cloneRb.gameObject : Clone.gameObject;
             Clone.GetComponent<NPCStraight_Ats>().velocity = rnd_velo;
         }
 
@@ -127,7 +127,7 @@ public class Checkpoint_3 : MonoBehaviour
         {   
             Vector3 spawnPoint = spawnPoints_lesson2[i];
 
-            Clone = Instantiate(CyclistObject, spawnPoint, new Quaternion(0, 180f, 0, 1)) as GameObject;
+            Clone = Instantiate(CyclistObject, spawnPoint, Quaternion.Euler(0, 90, 0)) as GameObject;
             rnd_velo = UnityEngine.Random.Range(1f, 2f);
 
             GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
@@ -140,9 +140,9 @@ public class Checkpoint_3 : MonoBehaviour
             //     anim.Play("Walk", 0, randomStart); 
             //     anim.speed = UnityEngine.Random.Range(0.8f, 1.2f);
             // }
-            Rigidbody cloneRb = Clone.GetComponent<Rigidbody>();
+            Rigidbody cloneRb = Clone.GetComponentInChildren<Rigidbody>();
             Clone.AddComponent<NPCStraight_Ats>();
-            Clone.GetComponent<NPCStraight_Ats>().gb = Clone.gameObject;
+            Clone.GetComponent<NPCStraight_Ats>().gb = cloneRb != null ? cloneRb.gameObject : Clone.gameObject;
             Clone.GetComponent<NPCStraight_Ats>().velocity = rnd_velo;
         }
 
@@ -203,9 +203,9 @@ public class Checkpoint_3 : MonoBehaviour
             anim.Play("Walk", 0, randomStart); 
             anim.speed = UnityEngine.Random.Range(1f, 1.5f);
         }
-        Rigidbody cloneRb = Clone.GetComponent<Rigidbody>();
+        Rigidbody cloneRb = Clone.GetComponentInChildren<Rigidbody>();
         Clone.AddComponent<NPCStraight_Ats>();
-        Clone.GetComponent<NPCStraight_Ats>().gb = Clone.gameObject;
+        Clone.GetComponent<NPCStraight_Ats>().gb = cloneRb != null ? cloneRb.gameObject : Clone.gameObject;
         Clone.GetComponent<NPCStraight_Ats>().velocity = rnd_velo;
     }
 

@@ -2100,7 +2100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e88193d110ce34b98bcb39a47cbf4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnCyclists
-  CyclistObject: {fileID: 2084199392}
+  CyclistObject: {fileID: 7400918100829728250, guid: ea0b3cf11014a504da092c4e9b4b65db, type: 3}
   rb: {fileID: 2084199394}
   FirstSpawn: 1
   cont: 1

@@ -9,7 +9,7 @@ public class TutorialPanelSimulation : MonoBehaviour
     private string textToShow;
     void Start()
     {
-        //Time.timeScale = 0f;
+        Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         string playerType = player.GetComponent<ScoreManager>().PlayerType;
@@ -46,6 +46,14 @@ public class TutorialPanelSimulation : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void Update()
+    {
+        if (OVRInput.GetDown(OVRInput.Button.Three))
+        {
+            CloseTutorialPanel();
+        }
     }
 
 }

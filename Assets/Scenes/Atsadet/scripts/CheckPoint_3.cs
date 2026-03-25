@@ -18,21 +18,22 @@ public class Checkpoint_3 : MonoBehaviour
     float rnd_velo;
     private List<Vector3> spawnPoints_lesson1 = new List<Vector3>
     {
-        new Vector3(-250, 0, 35),
-        new Vector3(-300, 0, 43),
-        new Vector3(-350, 0, 40),
-        new Vector3(-380, 0, 60),
-        new Vector3(-350, 0, 55)
+        new Vector3(-250, 1, 35),
+        new Vector3(-300, 1, 43),
+        new Vector3(-350, 1, 40),
+        new Vector3(-380, 1, 60),
+        new Vector3(-350, 1, 55)
     };
 
     private List<Vector3> spawnPoints_lesson2 = new List<Vector3>
     {
-        new Vector3(-400, 0, 60),
-        new Vector3(-350, 0, 45),
-        new Vector3(-350, 0, 65),
-        new Vector3(-300, 0, 35),
-        new Vector3(-320, 0, 55)
+        new Vector3(-400, 1, 60),
+        new Vector3(-350, 1, 45),
+        new Vector3(-350, 1, 65),
+        new Vector3(-300, 1, 35),
+        new Vector3(-320, 1, 55)
     };
+    public GameObject pedestrianNPCObject;
     void Start()
     {
         currentsceneName = SceneManager.GetActiveScene().name; // Get the current scene name from the GameNavigationManager
@@ -46,18 +47,20 @@ public class Checkpoint_3 : MonoBehaviour
             cleanup(); //Disable for testing
             if (currentsceneName == "Cyclist_lesson1")  // Keep to cyclist lane
             {
-                displayMessage = "Slower cyclist ahead. When overtaking, remember to stay in the cyclist lane!";
+                displayMessage = "Watch out for slower cyclist ahead!\nWhen overtaking remember to stay in the cyclist lane";
                 runLesson1Stage3();
+                StartCoroutine(spawnRandomNPCsRoutine_checkpoint3());
             }
             else if (currentsceneName == "Cyclist_lesson2") // Keep to left of cyclist lane
             {   
-                displayMessage = "Oncoming cyclist ahead using the wrong side! Ring to alert them and maintain your lane.";
+                displayMessage = "Oncoming cyclist ahead using the wrong side!\nRing them and continue on the left side of thecyclist lane";
                 runLesson2Stage3();
+                StartCoroutine(spawnRandomNPCsRoutine_checkpoint3());
             }
-            else if (currentsceneName == "Cyclist_lesson3") // Follow the tactile strips
-            {
-                displayMessage = "Follow the tactile strips!";
-            }
+            // else if (currentsceneName == "Cyclist_lesson3") // Follow the tactile strips
+            // {
+            //     displayMessage = "Follow the tactile strips!";
+            // }
             tutorial.ShowTutorial(displayMessage, 3);
             hasShownLaneTutorial = true; // Ensures it only freezes the game once
 
@@ -77,6 +80,7 @@ public class Checkpoint_3 : MonoBehaviour
 
     void runLesson1Stage3()
     {   
+        int counter = 0;
         for (int i = spawnPoints_lesson1.Count - 1; i >= 0; i--)
         {
             Vector3 spawnPoint = spawnPoints_lesson1[i];
@@ -107,10 +111,18 @@ public class Checkpoint_3 : MonoBehaviour
             Clone.GetComponent<NPCStraight_Ats>().gb = Clone.gameObject;
             Clone.GetComponent<NPCStraight_Ats>().velocity = rnd_velo;
         }
+
+        while (counter < 2)
+        {
+            SpawnNPC_checkpoint3(-500, -166, -7, 7);
+            SpawnNPC_checkpoint3(-500, -166, 13, 27);
+            counter++;
+        }
     }
 
     void runLesson2Stage3()
     {   
+        int counter = 0;
         for (int i = spawnPoints_lesson2.Count - 1; i >= 0; i--)
         {   
             Vector3 spawnPoint = spawnPoints_lesson2[i];
@@ -133,11 +145,68 @@ public class Checkpoint_3 : MonoBehaviour
             Clone.GetComponent<NPCStraight_Ats>().gb = Clone.gameObject;
             Clone.GetComponent<NPCStraight_Ats>().velocity = rnd_velo;
         }
+
+        while (counter < 2)
+        {
+            SpawnNPC_checkpoint3(-500, -166, -7, 7);
+            SpawnNPC_checkpoint3(-500, -166, 13, 27);
+            counter++;
+        }
     }
 
     public void cleanup()
     {
         GameNavigationManager.Instance.Cleanup();
+    }
+
+    IEnumerator spawnRandomNPCsRoutine_checkpoint3()
+    {   
+        int counter = 0;
+        while (counter < 3)
+        {
+            // Spawn at random intervals between 1 and 3 seconds
+            float randomTimer = Random.Range(0.5f, 1f);
+            yield return new WaitForSeconds(randomTimer);
+            SpawnNPC_checkpoint3(-500, -166, -7, 7);
+            SpawnNPC_checkpoint3(-500, -166, 13, 27);
+            counter++;
+        }
+    }
+
+    void SpawnNPC_checkpoint3(float minX, float maxX, float minZ, float maxZ)
+    {   
+        float random_z = Random.Range(minZ, maxZ);
+        float rnd_velo = 0f;
+        Vector3 randomPos = new Vector3(
+            Random.Range(minX, maxX), 
+            1, 
+            random_z
+        );
+        if (random_z < 10)
+        {
+            Clone = Instantiate(pedestrianNPCObject, randomPos, new Quaternion(0, -0.90f, 0, 1)) as GameObject;
+            rnd_velo = UnityEngine.Random.Range(-1f, -5f);
+        } else
+        {
+            Clone = Instantiate(pedestrianNPCObject, randomPos, new Quaternion(0, 0.90f, 0, 1)) as GameObject;
+            rnd_velo = UnityEngine.Random.Range(1f, 5f);
+
+        }
+
+        GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
+
+        // To make animation slightly diff for each otter
+        Animator anim = Clone.GetComponent<Animator>();
+        if (anim != null)
+        {
+            float randomStart = UnityEngine.Random.Range(3f, 5f);
+            anim.Play("Walk", 0, randomStart); 
+            anim.speed = UnityEngine.Random.Range(1f, 1.5f);
+        }
+        Rigidbody cloneRb = Clone.GetComponent<Rigidbody>();
+        Clone.AddComponent<NPCStraight_Ats>();
+        Clone.GetComponent<NPCStraight_Ats>().gb = Clone.gameObject;
+        Clone.GetComponent<NPCStraight_Ats>().velocity = rnd_velo;
     }
 
 }

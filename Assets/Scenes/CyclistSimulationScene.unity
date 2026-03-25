@@ -2100,7 +2100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e88193d110ce34b98bcb39a47cbf4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnCyclists
-  CyclistObject: {fileID: 2084199392}
+  CyclistObject: {fileID: 7400918100829728250, guid: ea0b3cf11014a504da092c4e9b4b65db, type: 3}
   rb: {fileID: 2084199394}
   FirstSpawn: 1
   cont: 1
@@ -4907,6 +4907,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1058822513}
+    - targetCorrespondingSourceObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1058822514}
     - targetCorrespondingSourceObject: {fileID: 100002, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2017013494}
@@ -6563,6 +6566,22 @@ MonoBehaviour:
   warningCount: 0
   maxWarnings: 200
   isGameOver: 0
+--- !u!114 &1058822514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058822510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30e6c6c0fc346c04cb0c2da86c50638d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpeedIndicator
+  SpeedText: {fileID: 0}
+  rb: {fileID: 0}
+  tf: {fileID: 361716180}
+  SmoothSpeed: 0
 --- !u!4 &1073357169 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1678554349857304353, guid: 34a22dd67c1e5344591237fdd61e78ec, type: 3}

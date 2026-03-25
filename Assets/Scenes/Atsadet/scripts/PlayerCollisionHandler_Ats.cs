@@ -34,7 +34,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
     public AudioSource gameOverSoundEffectSource;
     public AudioSource backgroundMusicSource;
     private string currentsceneName;
-    private int slowDownAreaSpeedLimit = 100;
+    private int slowDownAreaSpeedLimit = 80;
     private int stopAreaSpeedLimit = 50;
     public Transform deathPopup;  // default sprite is type 0: Wrong lane
     public Image deathPopupImage;
@@ -73,7 +73,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
             timeToRespawn = 3f;
             lessonRoundWarningCount = 0; // reset warning count for next round
             // StartCoroutine(GameOver2("You crashed into " + collision.gameObject.name + "!"));
-            StartCoroutine(GameOver2("You crashed into obstacle!", 0));
+            StartCoroutine(GameOver2("You crashed into " + collision.gameObject.tag + "\nRemember to look out for other users or obstacles", 0));
         }
         else if (collision.gameObject.CompareTag("checkpoint"))
         {
@@ -104,7 +104,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
                 isGameOver = true;
                 timeToRespawn = 3f;
                 lessonRoundWarningCount = 0; // reset warning count for next round
-                StartCoroutine(GameOver2("You were going too fast in the stop area!", 1));
+                StartCoroutine(GameOver2("You were going too fast in the stop area\nRemember to slow down", 1));
             }
 
         } else if (other.CompareTag("speedtrackerSlow") && !isGameOver && myBody.bounds.Contains(closestPoint))
@@ -116,7 +116,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
                 isGameOver = true;
                 timeToRespawn = 3f;
                 lessonRoundWarningCount = 0; // reset warning count for next round
-                StartCoroutine(GameOver2("You were going too fast in the slow down area!", 1));
+                StartCoroutine(GameOver2("You were going too fast in the slow area\nRemember to slow down", 1));
             }
         }
     }
@@ -144,7 +144,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
                     isGameOver = true;
                     timeToRespawn = 3f;
                     lessonRoundWarningCount = 0; // reset warning count for next round
-                    StartCoroutine(GameOver2("You spent too long on the wrong side!!", 1));
+                    StartCoroutine(GameOver2("You spent too long on the wrong side\nRemember to stick to the left side of the cycling lane", 1));
                 }
             }
             
@@ -164,7 +164,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
             isGameOver = true;
             timeToRespawn = 3f;
             lessonRoundWarningCount = 0; // reset warning count for next round
-            StartCoroutine(GameOver2("You went onto the pedestrian lane!", 0));
+            StartCoroutine(GameOver2("You went to the wrong lane\nRemember to stick to the cyclist lane", 0));
         }
     }
 
@@ -212,9 +212,9 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
         backgroundMusicSource.Pause(); // Pause background music
         gameOverSoundEffectSource.Play(); // Play the game over sound effect
         Time.timeScale = 0;
-        string outString = "Game over. \nReason: " + reason;
-        GameOverText.text = outString;
-        GameOverText.transform.parent.gameObject.SetActive(true);
+        string outString = reason + "\n\nLet's try that again!";
+        // GameOverText.text = outString;
+        // GameOverText.transform.parent.gameObject.SetActive(true);
 
         // Hide the Recurring Popups
         recurringPopups.gameObject.SetActive(false);
@@ -233,7 +233,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
                 break;
         }
 
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(4);
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameOverText.transform.parent.gameObject.SetActive(false);

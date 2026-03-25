@@ -912,6 +912,7 @@ GameObject:
   - component: {fileID: 8241816687295792099}
   - component: {fileID: 5008152238653895626}
   - component: {fileID: 5339616213527173660}
+  - component: {fileID: -9190000470929513636}
   m_Layer: 0
   m_Name: Bike
   m_TagString: cyclist
@@ -993,6 +994,20 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &-9190000470929513636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7521140603360992538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7f2289915829d24fb4833f56ebcad8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BikeCollisionImpact
+  impactForce: 500
+  upwardForce: 200
 --- !u!1 &8970609098746093910
 GameObject:
   m_ObjectHideFlags: 0

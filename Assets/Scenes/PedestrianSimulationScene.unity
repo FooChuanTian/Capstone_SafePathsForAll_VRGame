@@ -2949,7 +2949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e88193d110ce34b98bcb39a47cbf4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnCyclists
-  CyclistObject: {fileID: 1066859102}
+  CyclistObject: {fileID: 7400918100829728250, guid: ea0b3cf11014a504da092c4e9b4b65db, type: 3}
   rb: {fileID: 1066859106}
   FirstSpawn: 5
   cont: 1
@@ -2961,13 +2961,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343390918}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 208.4, y: 5, z: 48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &354452054
 GameObject:
   m_ObjectHideFlags: 0
@@ -7189,6 +7189,10 @@ PrefabInstance:
     - target: {fileID: 6669599918551377397, guid: 1539865e7e6633d48ae273348fe7f433, type: 3}
       propertyPath: m_Name
       value: BMXBikeE
+      objectReference: {fileID: 0}
+    - target: {fileID: 6669599918551377397, guid: 1539865e7e6633d48ae273348fe7f433, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6669599918551377397, guid: 1539865e7e6633d48ae273348fe7f433, type: 3}
       propertyPath: m_TagString

@@ -1612,6 +1612,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2207154213089371542, guid: ac69127a6aed3bc43bd8eb65a99046d9, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1e516bc18e30342b8853b0c5fc1710ce, type: 3}
       propertyPath: m_LocalScale.x
       value: 7
@@ -1671,10 +1675,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1e516bc18e30342b8853b0c5fc1710ce, type: 3}
       propertyPath: m_TagString
       value: obstacle
-      objectReference: {fileID: 0}
-    - target: {fileID: 2207154213089371542, guid: ac69127a6aed3bc43bd8eb65a99046d9, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2287,6 +2287,8 @@ MonoBehaviour:
   tutorial: {fileID: 1104494622}
   PedestrianObject: {fileID: 214576705}
   rb: {fileID: 214576706}
+  GoalText: {fileID: 1043149716}
+  pedestrianNPCObject: {fileID: 214576705}
 --- !u!65 &572482373
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3673,7 +3675,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &943896257
 Transform:
   m_ObjectHideFlags: 0
@@ -4464,6 +4466,7 @@ MonoBehaviour:
   checkPointlocation_2: {fileID: 656800197}
   CyclistObject: {fileID: 220668343}
   rb: {fileID: 220668346}
+  pedestrianNPCObject: {fileID: 214576705}
 --- !u!1 &1144542636
 GameObject:
   m_ObjectHideFlags: 0
@@ -4926,6 +4929,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpeedIndicator
   SpeedText: {fileID: 580886360}
   rb: {fileID: 1240974496}
+  tf: {fileID: 1240974500}
+  SmoothSpeed: 0
 --- !u!114 &1240974506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4939,6 +4944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhoneToggle
   PhoneImage: {fileID: 1687899041}
+  targetImage: {fileID: 0}
 --- !u!114 &1240974507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5984,6 +5990,7 @@ MonoBehaviour:
   checkPointlocation_2: {fileID: 870048479}
   PedestrianObject: {fileID: 214576705}
   rb: {fileID: 214576706}
+  pedestrianNPCObject: {fileID: 214576705}
 --- !u!65 &1636692969
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6379,6 +6386,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6372757692968905945, guid: 209544c3ad79c8941a8c96984f3ceb07, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f97f0487a624e48d99a7d09f429b0902, type: 3}
       propertyPath: m_LocalScale.x
       value: 7
@@ -6438,10 +6449,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f97f0487a624e48d99a7d09f429b0902, type: 3}
       propertyPath: m_TagString
       value: obstacle
-      objectReference: {fileID: 0}
-    - target: {fileID: 6372757692968905945, guid: 209544c3ad79c8941a8c96984f3ceb07, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6832,6 +6839,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 39857cfad1651644682ff5b772e6e697, type: 3}
       propertyPath: m_Name
       value: UnityMaterialBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 39857cfad1651644682ff5b772e6e697, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

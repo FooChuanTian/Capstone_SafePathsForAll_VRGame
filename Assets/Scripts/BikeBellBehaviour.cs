@@ -14,7 +14,7 @@ public class BikeBellBehaviour : MonoBehaviour
     void OnTriggerStay(Collider other)
     {
         Debug.Log("Bike Bell Range");
-        if (Keyboard.current.zKey.wasPressedThisFrame && (other.gameObject.CompareTag("pedestrian") || other.gameObject.CompareTag("cyclist")))
+        if ((Keyboard.current.zKey.wasPressedThisFrame || OVRInput.GetDown(OVRInput.Button.Four)) && (other.gameObject.CompareTag("pedestrian") || other.gameObject.CompareTag("cyclist")))
         {
             other.gameObject.GetComponent<SetTextAcive>().SetTextActive();
             Rigidbody rb_other = other.gameObject.GetComponent<Rigidbody>();
@@ -32,7 +32,7 @@ public class BikeBellBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.zKey.wasPressedThisFrame)
+        if (Keyboard.current.zKey.wasPressedThisFrame || OVRInput.GetDown(OVRInput.Button.Four))
         {
             Debug.Log("Bike bell");
             BellSound.Play();

@@ -4464,7 +4464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint_3
   tutorial: {fileID: 1104494622}
   checkPointlocation_2: {fileID: 656800197}
-  CyclistObject: {fileID: 220668343}
+  CyclistObject: {fileID: 7400918100829728250, guid: ea0b3cf11014a504da092c4e9b4b65db, type: 3}
   rb: {fileID: 220668346}
   pedestrianNPCObject: {fileID: 214576705}
 --- !u!1 &1144542636
@@ -6386,10 +6386,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6372757692968905945, guid: 209544c3ad79c8941a8c96984f3ceb07, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f97f0487a624e48d99a7d09f429b0902, type: 3}
       propertyPath: m_LocalScale.x
       value: 7
@@ -6449,6 +6445,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f97f0487a624e48d99a7d09f429b0902, type: 3}
       propertyPath: m_TagString
       value: obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372757692968905945, guid: 209544c3ad79c8941a8c96984f3ceb07, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

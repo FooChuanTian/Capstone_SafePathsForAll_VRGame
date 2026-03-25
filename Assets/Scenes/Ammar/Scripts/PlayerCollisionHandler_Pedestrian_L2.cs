@@ -3,17 +3,21 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class PlayerCollisionHandler_Pedestrian_L2 : MonoBehaviour
 {
     public TextMeshProUGUI InstructionText;
-    public TextMeshProUGUI GameOverText;
-
     public AudioSource gameOverSound;
     public AudioSource backgroundMusic;
     public AudioSource warningSound;
     public PopUpWindow_Pedestrian popup;
 
-    // How long player can stay in right lane before game over
+    // Death Popup
+    public Transform deathPopup;
+    public Sprite deathSprite_HardPenalty;
+    public Sprite deathSprite_SoftPenalty;
+    public UnityEngine.UI.Image deathPopupImage;
+
     public float rightLaneTimeLimit = 3f;
 
     private bool isGameOver = false;
@@ -29,24 +33,18 @@ public class PlayerCollisionHandler_Pedestrian_L2 : MonoBehaviour
         {
             rightLaneTimer += Time.deltaTime;
 
-            // Show warning at half the time limit
             if (!warningShown)
             {
                 warningShown = true;
                 if (popup != null) popup.ShowWarning();
                 if (warningSound != null) warningSound.Play();
-                UnityEngine.Debug.Log("Right lane warning shown");
             }
 
-            // Game over after time limit
             if (rightLaneTimer >= rightLaneTimeLimit)
-            {
-                TriggerGameOver("You spent too long on the right side! Keep left.");
-            }
+                TriggerGameOver("You spent too long on the right side!\nRemember to keep left.", 1);
         }
         else
         {
-            // Reset timer and warning when back on left lane
             if (rightLaneTimer > 0f)
             {
                 rightLaneTimer = 0f;
@@ -63,13 +61,13 @@ public class PlayerCollisionHandler_Pedestrian_L2 : MonoBehaviour
         if (collision.gameObject.CompareTag("cyclist") ||
             collision.gameObject.CompareTag("obstacle"))
         {
-            TriggerGameOver("You hit an obstacle!");
+            TriggerGameOver("You hit an obstacle!\nStay on the pedestrian path.", 0);
             return;
         }
 
         if (collision.gameObject.CompareTag("npc"))
         {
-            TriggerGameOver("You blocked another pedestrian!");
+            TriggerGameOver("You blocked another pedestrian!\nKeep left to let others pass.", 0);
             return;
         }
     }
@@ -81,7 +79,6 @@ public class PlayerCollisionHandler_Pedestrian_L2 : MonoBehaviour
         if (collision.gameObject.CompareTag("pedestrian_lane_left"))
         {
             isInRightLane = false;
-
             if (InstructionText != null)
             {
                 InstructionText.text = "Good! Keep to the left.";
@@ -91,7 +88,6 @@ public class PlayerCollisionHandler_Pedestrian_L2 : MonoBehaviour
         else if (collision.gameObject.CompareTag("pedestrian_lane_right"))
         {
             isInRightLane = true;
-
             if (InstructionText != null)
             {
                 InstructionText.text = "Move to the left side!";
@@ -101,43 +97,43 @@ public class PlayerCollisionHandler_Pedestrian_L2 : MonoBehaviour
         else if (collision.gameObject.CompareTag("cycling_lane_left") ||
                  collision.gameObject.CompareTag("cycling_lane_right"))
         {
-            TriggerGameOver("You entered the cycling lane!");
+            TriggerGameOver("You entered the cycling lane!\nThe red lane is for cyclists only.", 0);
         }
     }
 
     void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("pedestrian_lane_right"))
-        {
             isInRightLane = false;
-        }
     }
 
-    void TriggerGameOver(string reason)
+    void TriggerGameOver(string reason, int popupType)
     {
         if (isGameOver) return;
-
         isGameOver = true;
         isInRightLane = false;
-
-        UnityEngine.Debug.Log("GAME OVER: " + reason);
 
         if (backgroundMusic != null) backgroundMusic.Pause();
         if (gameOverSound != null) gameOverSound.Play();
         if (popup != null) popup.HideWarning();
 
-        if (GameOverText != null)
-        {
-            GameOverText.text = "Game Over\n" + reason;
-            GameOverText.transform.parent.gameObject.SetActive(true);
-        }
-
-        StartCoroutine(RestartSceneAfterDelay());
+        StartCoroutine(ShowDeathPopup(reason, popupType));
     }
 
-    IEnumerator RestartSceneAfterDelay()
+    IEnumerator ShowDeathPopup(string reason, int popupType)
     {
-        yield return new WaitForSecondsRealtime(3f);
+        Time.timeScale = 0f;
+
+        if (deathPopup != null)
+        {
+            deathPopup.GetComponentInChildren<TextMeshProUGUI>().text = reason + "\n\nLet's try that again!";
+            if (deathPopupImage != null)
+                deathPopupImage.sprite = popupType == 0 ? deathSprite_HardPenalty : deathSprite_SoftPenalty;
+            deathPopup.gameObject.SetActive(true);
+        }
+
+        yield return new WaitForSecondsRealtime(4f);
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

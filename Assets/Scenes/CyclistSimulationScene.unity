@@ -7693,7 +7693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1235772838
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7742,7 +7742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e527928ee1ec03645803450218484ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreBoardManager
-  player: {fileID: 1240974495}
+  player: {fileID: 234451304}
   TotalScoreText: {fileID: 427257693}
   WrongLaneScoreText: {fileID: 1314573331}
   CorrectLaneScoreText: {fileID: 132795055}

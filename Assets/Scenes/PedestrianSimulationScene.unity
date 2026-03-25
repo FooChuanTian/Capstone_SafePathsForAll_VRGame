@@ -11102,8 +11102,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665045890}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 482.7, y: 0.8, z: 44.28}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11169,7 +11169,7 @@ MonoBehaviour:
   WhichLaneText: {fileID: 1376265020}
   InstructionText: {fileID: 0}
   GameOverText: {fileID: 1970317009}
-  Checkpoint0: {fileID: 0}
+  Checkpoint0: {fileID: 1008161880}
   Player: {fileID: 1665045891}
   warningCount: 0
   maxWarnings: 200

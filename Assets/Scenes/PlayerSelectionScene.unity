@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 287183045}
   - component: {fileID: 287183044}
   - component: {fileID: 287183043}
+  - component: {fileID: 287183047}
   m_Layer: 5
   m_Name: VR Canvas
   m_TagString: Untagged
@@ -529,6 +530,18 @@ RectTransform:
   m_AnchoredPosition: {x: 493.42, y: 199.5}
   m_SizeDelta: {x: 958, y: 399}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &287183047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287183042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db46a356ab4c2d45845ccaed7c32a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRPlayerSelect
 --- !u!1 &331992373
 GameObject:
   m_ObjectHideFlags: 0

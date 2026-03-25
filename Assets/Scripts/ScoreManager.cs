@@ -3,6 +3,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -89,10 +90,21 @@ public class ScoreManager : MonoBehaviour
     {
         if (PhoneObject != null)
         {
-            if (Keyboard.current.xKey.wasPressedThisFrame && PhoneObject.activeSelf)
+            if (XRSettings.enabled)
             {
-                PhoneOpened++;   
+                if (OVRInput.GetDown(OVRInput.Button.Four))
+                {
+                    PhoneOpened++;
+                }
             }
+            else
+            {
+                if (Keyboard.current.xKey.wasPressedThisFrame && PhoneObject.activeSelf)
+                {
+                    PhoneOpened++;   
+                }
+            }
+            
         }
     }
 

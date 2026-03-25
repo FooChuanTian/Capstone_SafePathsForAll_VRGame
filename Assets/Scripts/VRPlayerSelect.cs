@@ -8,11 +8,11 @@ public class VRPlayerSelect : MonoBehaviour
     {
         if (OVRInput.GetDown(OVRInput.Button.Three))
         {
-            SceneManager.LoadScene("CyclistSimulationScene");
+            SceneManager.LoadScene("PedestrianSimulationScene");
         }
         else if (OVRInput.GetDown(OVRInput.Button.Four))
         {
-            SceneManager.LoadScene("PedestrianSimulationScene");
+            SceneManager.LoadScene("CyclistSimulationScene");
         }
     }
 }

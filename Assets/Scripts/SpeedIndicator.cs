@@ -19,7 +19,8 @@ public class SpeedIndicator : MonoBehaviour
     }
     void Update()
     {
-        PositionDelta = rb.linearVelocity;
+        if (Time.deltaTime == 0f) return;
+        //PositionDelta = rb.linearVelocity;
         PositionDelta = tf.position - PreviousPosition;
         float rawspeed = PositionDelta.magnitude / Time.deltaTime;
         SmoothSpeed = Mathf.Lerp(SmoothSpeed, rawspeed, Time.deltaTime*5f);

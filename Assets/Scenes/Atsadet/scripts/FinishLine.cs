@@ -38,6 +38,9 @@ public class FinishLine : MonoBehaviour
                 positionManager.ChangePreviousCheckpoint(initialCheckpointLocation);
                 positionManager.ResetPositionChangeFlag(); // Reset the flag 
             }
+        } else if (collision.tag == "pedestrian" || collision.tag == "cyclist")
+        {
+            Destroy(collision.gameObject); // Remove the NPC from the scene
         }
     }
 

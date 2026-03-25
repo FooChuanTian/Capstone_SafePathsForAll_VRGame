@@ -23,6 +23,8 @@ public class Checkpoint_1 : MonoBehaviour
         new Vector3(270, 0, 17)
     };
     float rnd_velo;
+    public TextMeshProUGUI GoalText;
+    public GameObject pedestrianNPCObject;
 
     void Start()
     {
@@ -36,16 +38,22 @@ public class Checkpoint_1 : MonoBehaviour
         {   
             if (currentsceneName == "Cyclist_lesson1")  // Keep to cyclist lane
             {
-                displayMessage = "Pedestrian lane is empty, but doesn't mean you should go there.";
+                displayMessage = "Pedestrian lane may be empty but as a cyclist you should stick to the cyclist lane";
+                GoalText.text = "Keep to the cyclist lane";
             }
             else if (currentsceneName == "Cyclist_lesson2") // Keep to left of cyclist lane
             {
-                displayMessage = "Right side is empty, but always keep left to practice good cycling habits!";
+                displayMessage = "The right side of the cyclist lane may be empty but always keep left to practice good cycling habits";
+                GoalText.text = "Keep to the left side of the cyclist lane";
                 runLesson2Stage1();
+                StartCoroutine(spawnRandomNPCsRoutine_checkpoint1());
             }
             else if (currentsceneName == "Cyclist_lesson3") // Follow the tactile strips
             {
-                displayMessage = "Follow the tactile strips as per colour.";
+                displayMessage = "Look out for our speed-guide tactile strips ahead!\nFollow them to practice navigating crowded areas safely\nYellow means slow down and red means stop";
+                GoalText.text = "Follow the tactile strips to navigate crowded areas safely";
+                runLesson3Stage1();
+                StartCoroutine(spawnRandomNPCsRoutine_checkpoint1());
             }
 
             tutorial.ShowTutorial(displayMessage, 1);
@@ -60,6 +68,7 @@ public class Checkpoint_1 : MonoBehaviour
 
     void runLesson2Stage1()
     {   
+        int counter = 0;
         for (int i = spawnPoints.Count - 1; i >= 0; i--)
         {
             Vector3 spawnPoint = spawnPoints[i];
@@ -94,6 +103,74 @@ public class Checkpoint_1 : MonoBehaviour
             Clone.GetComponent<NPCStraight_Ats>().velocity = rnd_velo;
 
         }
+
+        while (counter < 3)
+        {
+            SpawnNPC_checkpoint1(167, 480, -7, 7);
+            SpawnNPC_checkpoint1(167, 480, 13, 27);
+            counter++;
+        }
+    }
+
+    void runLesson3Stage1()
+    {
+        int counter = 0;
+        while (counter < 3)
+        {
+            SpawnNPC_checkpoint1(167, 480, -7, 7);
+            SpawnNPC_checkpoint1(167, 480, 13, 27);
+            counter++;
+        }
+    }
+
+    IEnumerator spawnRandomNPCsRoutine_checkpoint1()
+    {   
+        int counter = 0;
+        while (counter < 3)
+        {
+            // Spawn at random intervals between 1 and 3 seconds
+            float randomTimer = Random.Range(0.5f, 1f);
+            yield return new WaitForSeconds(randomTimer);
+            SpawnNPC_checkpoint1(167, 480, -7, 7);
+            SpawnNPC_checkpoint1(167, 480, 13, 27);
+            counter++;
+        }
+    }
+
+    void SpawnNPC_checkpoint1(float minX, float maxX, float minZ, float maxZ)
+    {   
+        float random_z = Random.Range(minZ, maxZ);
+        float rnd_velo = 0f;
+        Vector3 randomPos = new Vector3(
+            Random.Range(minX, maxX), 
+            1, 
+            random_z
+        );
+        if (random_z < 10)
+        {
+            Clone = Instantiate(pedestrianNPCObject, randomPos, new Quaternion(0, -0.90f, 0, 1)) as GameObject;
+            rnd_velo = UnityEngine.Random.Range(-1f, -5f);
+        } else
+        {
+            Clone = Instantiate(pedestrianNPCObject, randomPos, new Quaternion(0, 0.90f, 0, 1)) as GameObject;
+            rnd_velo = UnityEngine.Random.Range(1f, 5f);
+
+        }
+
+        GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
+
+        // To make animation slightly diff for each otter
+        Animator anim = Clone.GetComponent<Animator>();
+        if (anim != null)
+        {
+            float randomStart = UnityEngine.Random.Range(3f, 5f);
+            anim.Play("Walk", 0, randomStart); 
+            anim.speed = UnityEngine.Random.Range(1f, 1.5f);
+        }
+        Rigidbody cloneRb = Clone.GetComponent<Rigidbody>();
+        Clone.AddComponent<NPCStraight_Ats>();
+        Clone.GetComponent<NPCStraight_Ats>().gb = Clone.gameObject;
+        Clone.GetComponent<NPCStraight_Ats>().velocity = rnd_velo;
     }
 
 }

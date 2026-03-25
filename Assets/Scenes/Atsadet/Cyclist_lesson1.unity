@@ -1330,7 +1330,6 @@ GameObject:
   - component: {fileID: 293705798}
   - component: {fileID: 293705800}
   - component: {fileID: 293705799}
-  - component: {fileID: 293705802}
   - component: {fileID: 293705803}
   - component: {fileID: 293705801}
   m_Layer: 6
@@ -1490,18 +1489,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &293705802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 293705797}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a03dd016692134ca4eed1d732e70c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BikeBellBehaviour
 --- !u!114 &293705803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2315,6 +2302,7 @@ MonoBehaviour:
   tutorial: {fileID: 1104494622}
   PedestrianObject: {fileID: 400155438}
   rb: {fileID: 400155440}
+  GoalText: {fileID: 1043149716}
 --- !u!65 &572482373
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4234,6 +4222,7 @@ MonoBehaviour:
   checkPointlocation_2: {fileID: 1472511115}
   CyclistObject: {fileID: 1481928014}
   rb: {fileID: 1481928017}
+  pedestrianNPCObject: {fileID: 214576705}
 --- !u!1 &1144542636
 GameObject:
   m_ObjectHideFlags: 0
@@ -4771,6 +4760,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpeedIndicator
   SpeedText: {fileID: 580886360}
   rb: {fileID: 1240974496}
+  tf: {fileID: 1240974500}
+  SmoothSpeed: 0
 --- !u!114 &1240974506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4784,6 +4775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhoneToggle
   PhoneImage: {fileID: 1687899041}
+  targetImage: {fileID: 0}
 --- !u!114 &1240974507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6087,6 +6079,7 @@ MonoBehaviour:
   checkPointlocation_2: {fileID: 870048479}
   PedestrianObject: {fileID: 400155438}
   rb: {fileID: 400155440}
+  pedestrianNPCObject: {fileID: 214576705}
 --- !u!65 &1636692969
 BoxCollider:
   m_ObjectHideFlags: 0

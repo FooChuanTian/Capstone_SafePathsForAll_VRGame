@@ -30,12 +30,12 @@ public class PlayerCollisionHandler_Pedestrian_L2 : MonoBehaviour
             rightLaneTimer += Time.deltaTime;
 
             // Show warning at half the time limit
-            if (rightLaneTimer >= rightLaneTimeLimit * 0.5f && !warningShown)
+            if (!warningShown)
             {
                 warningShown = true;
                 if (popup != null) popup.ShowWarning();
                 if (warningSound != null) warningSound.Play();
-                Debug.Log("Right lane warning shown");
+                UnityEngine.Debug.Log("Right lane warning shown");
             }
 
             // Game over after time limit
@@ -120,7 +120,7 @@ public class PlayerCollisionHandler_Pedestrian_L2 : MonoBehaviour
         isGameOver = true;
         isInRightLane = false;
 
-        Debug.Log("GAME OVER: " + reason);
+        UnityEngine.Debug.Log("GAME OVER: " + reason);
 
         if (backgroundMusic != null) backgroundMusic.Pause();
         if (gameOverSound != null) gameOverSound.Play();

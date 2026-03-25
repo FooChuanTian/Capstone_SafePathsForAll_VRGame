@@ -8,7 +8,7 @@ public class Checkpoint_3_Pedestrian_L2 : MonoBehaviour
     public GameObject npcPrefab;
     public Transform[] spawnPoints;
 
-    public float npcSpeed = 3f;
+    public float npcSpeed = 10f;
 
     private bool hasTriggered = false;
 

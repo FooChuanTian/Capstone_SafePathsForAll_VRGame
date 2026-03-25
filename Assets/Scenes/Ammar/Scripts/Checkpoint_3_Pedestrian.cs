@@ -5,14 +5,15 @@ public class Checkpoint_3_Pedestrian : MonoBehaviour
     public TutorialPanel_Pedestrian tutorial;
     public Transform respawnPoint;
 
-    public GameObject npcPrefab;      // Otter
-    public Transform[] spawnPoints;   // NPC_Spawn_1, 2, 3
+    public GameObject npcPrefab;
+    public Transform spawnPointWith;      // NPC_Spawn_1 — walks same direction as player (Vector3.left)
+    public Transform[] spawnPointsToward; // NPC_Spawn_2, 3 — walks towards player (Vector3.right)
 
-    public GameObject bikePrefab;     // Bike
-    public Transform bikeSpawnPoint;  // NPC_Spawn_4
+    public GameObject bikePrefab;
+    public Transform bikeSpawnPoint;
 
-    public float npcSpeed = 0.8f;
-    public float bikeSpeed = 5f;
+    public float npcSpeed = 10f;
+    public float bikeSpeed = 20f;
 
     private bool hasTriggered = false;
 
@@ -29,41 +30,44 @@ public class Checkpoint_3_Pedestrian : MonoBehaviour
 
         if (tutorial != null)
         {
-            tutorial.ShowTutorial("Well done! Remember — red lane is for cyclists, pedestrian path is for you. Stay safe!", 3);
+            tutorial.ShowTutorial("Great job staying on the pedestrian path! But also watch out for other pedestrians and be aware of those walking towards you!", 3);
             tutorial.onTutorialClosed = RunCheckpointLogic;
         }
     }
 
     void RunCheckpointLogic()
     {
-        // Spawn Otters on pedestrian path
-        if (npcPrefab != null && spawnPoints != null)
+        // Spawn Otter walking with player (same direction)
+        if (npcPrefab != null && spawnPointWith != null)
         {
-            foreach (Transform point in spawnPoints)
+            GameObject npc = Instantiate(npcPrefab, spawnPointWith.position, spawnPointWith.rotation);
+            NPCWalker walker = npc.AddComponent<NPCWalker>();
+            walker.direction = Vector3.left;
+            walker.speed = npcSpeed;
+        }
+
+        // Spawn Otters walking towards player
+        if (npcPrefab != null && spawnPointsToward != null)
+        {
+            foreach (Transform point in spawnPointsToward)
             {
                 if (point == null) continue;
 
                 GameObject npc = Instantiate(npcPrefab, point.position, point.rotation);
-                NPCWalker walker = npc.GetComponent<NPCWalker>();
-                if (walker != null)
-                {
-                    walker.direction = Vector3.left;
-                    walker.speed = npcSpeed;
-                }
+                NPCWalker walker = npc.AddComponent<NPCWalker>();
+                walker.direction = Vector3.right;
+                walker.speed = npcSpeed;
             }
         }
 
-        // Spawn Bike in cycling lane and add NPCWalker at runtime
+        // Spawn Bike in cycling lane
         if (bikePrefab != null && bikeSpawnPoint != null)
         {
             GameObject bike = Instantiate(bikePrefab, bikeSpawnPoint.position, bikeSpawnPoint.rotation);
-
-            // Add NPCWalker at runtime since bike prefab doesn't have it
             NPCWalker bikeWalker = bike.AddComponent<NPCWalker>();
-            bikeWalker.direction = Vector3.left;
+            bikeWalker.direction = Vector3.right;
             bikeWalker.speed = bikeSpeed;
-
-            Debug.Log("CP3 (L1): Bike spawned with NPCWalker added at runtime");
+            UnityEngine.Debug.Log("CP3 (L1): Bike spawned");
         }
     }
 }

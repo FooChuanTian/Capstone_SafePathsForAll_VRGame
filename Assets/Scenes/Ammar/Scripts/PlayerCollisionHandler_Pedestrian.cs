@@ -18,7 +18,6 @@ public class PlayerCollisionHandler_Pedestrian : MonoBehaviour
     {
         if (isGameOver) return;
 
-        // In Lesson 1, only game over if entering cycling lane or hitting a cyclist
         if (collision.gameObject.CompareTag("cyclist") ||
             collision.gameObject.CompareTag("obstacle"))
         {
@@ -26,7 +25,12 @@ public class PlayerCollisionHandler_Pedestrian : MonoBehaviour
             return;
         }
 
-        // NPC collision is ignored in Lesson 1 — player is still learning
+        // Lesson 1: game over if you collide with an NPC (otter)
+        if (collision.gameObject.CompareTag("npc"))
+        {
+            TriggerGameOver("You walked into another pedestrian!");
+            return;
+        }
     }
 
     void OnCollisionStay(Collision collision)
@@ -41,8 +45,6 @@ public class PlayerCollisionHandler_Pedestrian : MonoBehaviour
                 InstructionText.text = "Good! Stay on pedestrian path";
                 InstructionText.color = Color.green;
             }
-
-            if (popup != null) popup.HideWarning();
         }
         else if (collision.gameObject.CompareTag("cycling_lane_left") ||
                  collision.gameObject.CompareTag("cycling_lane_right"))

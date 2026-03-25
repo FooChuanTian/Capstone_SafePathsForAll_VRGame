@@ -1886,7 +1886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &580886359
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2005,6 +2005,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580886358}
   m_CullTransparentMesh: 1
+--- !u!1 &590967718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 590967719}
+  m_Layer: 0
+  m_Name: NPC_SpawnCP2_Bike
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &590967719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590967718}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -202.1, y: 3.7, z: 43.2}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &798948535
 GameObject:
   m_ObjectHideFlags: 0
@@ -2646,6 +2677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PopUpWindow_Pedestrian
   popUpPanel: {fileID: 921860907}
+  flashSpeed: 3
 --- !u!1 &943896255
 GameObject:
   m_ObjectHideFlags: 0
@@ -3378,14 +3410,14 @@ MonoBehaviour:
   tutorial: {fileID: 1104494622}
   respawnPoint: {fileID: 1109100656}
   npcPrefab: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
-  spawnPoints:
-  - {fileID: 1599057551}
+  spawnPointWith: {fileID: 1599057551}
+  spawnPointsToward:
   - {fileID: 1870632324}
   - {fileID: 62685979}
   bikePrefab: {fileID: 7521140603360992538, guid: cf0c3712fe37c444e9b0391dc061eb58, type: 3}
   bikeSpawnPoint: {fileID: 1393876196}
-  npcSpeed: 0.8
-  bikeSpeed: 5
+  npcSpeed: 20
+  bikeSpeed: 30
 --- !u!1 &1144542636
 GameObject:
   m_ObjectHideFlags: 0
@@ -3670,9 +3702,9 @@ GameObject:
   - component: {fileID: 1240974501}
   - component: {fileID: 1240974505}
   - component: {fileID: 1240974506}
-  - component: {fileID: 1240974508}
   - component: {fileID: 1240974507}
   - component: {fileID: 1240974509}
+  - component: {fileID: 1240974510}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -3826,13 +3858,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1240974495}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30e6c6c0fc346c04cb0c2da86c50638d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedIndicator
   SpeedText: {fileID: 580886360}
   rb: {fileID: 1240974496}
+  tf: {fileID: 0}
+  SmoothSpeed: 0
 --- !u!114 &1240974506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3859,23 +3893,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPositionManager_Pedestrian
   player: {fileID: 1240974500}
---- !u!114 &1240974508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240974495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d093d80cfa4b6414892bdea8dc0b3f57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerCollisionHandler_Pedestrian
-  InstructionText: {fileID: 38458802}
-  GameOverText: {fileID: 1043149716}
-  gameOverSound: {fileID: 1379568623}
-  backgroundMusic: {fileID: 900228637}
-  popup: {fileID: 0}
 --- !u!114 &1240974509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3892,6 +3909,23 @@ MonoBehaviour:
   jumpForce: 35
   moveSpeed: 10
   maxSpeed: 40
+--- !u!114 &1240974510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240974495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d093d80cfa4b6414892bdea8dc0b3f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCollisionHandler_Pedestrian
+  InstructionText: {fileID: 38458802}
+  GameOverText: {fileID: 1043149716}
+  gameOverSound: {fileID: 1379568623}
+  backgroundMusic: {fileID: 900228637}
+  popup: {fileID: 0}
 --- !u!1 &1244267914
 GameObject:
   m_ObjectHideFlags: 0
@@ -4383,13 +4417,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393876195}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -470.1, y: 3.7, z: 51}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: -389.3, y: 3.7, z: 39.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1 &1433870502
 GameObject:
   m_ObjectHideFlags: 0
@@ -4877,6 +4911,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint_2_Pedestrian
   tutorial: {fileID: 1104494622}
   respawnPoint: {fileID: 1636692972}
+  npcPrefab: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
+  otterSpawnPoint: {fileID: 1900733049}
+  bikePrefab: {fileID: 7521140603360992538, guid: cf0c3712fe37c444e9b0391dc061eb58, type: 3}
+  bikeSpawnPoint: {fileID: 590967719}
+  bikeSpeed: 50
 --- !u!1 &1652762949
 GameObject:
   m_ObjectHideFlags: 0
@@ -5190,6 +5229,53 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 50, z: 70.5}
   m_LocalScale: {x: 1000, y: 100, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1757536027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1757536029}
+  - component: {fileID: 1757536028}
+  m_Layer: 0
+  m_Name: LessonIntro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1757536028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757536027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6fa2dcae121ad24d873de47ea4e00d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LessonIntro_Pedestrian
+  tutorial: {fileID: 1104494622}
+  introMessage: Welcome! The white path is for pedestrians, and the red lane is for
+    cyclists. Always stay on the pedestrian path!!
+--- !u!4 &1757536029
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757536027}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -404.79672, y: 0, z: 47.7274}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5553,7 +5639,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1900733049}
   m_Layer: 0
-  m_Name: NPC_SpawnPoint
+  m_Name: NPC_SpawnCP2_Otter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5567,13 +5653,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1900733048}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 91.3, y: 3.7, z: 16.2}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -50, y: 3.7, z: 46.7}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5607,7 +5693,9 @@ SceneRoots:
   - {fileID: 444576157}
   - {fileID: 1473087483}
   - {fileID: 1900733049}
+  - {fileID: 590967719}
   - {fileID: 1599057551}
   - {fileID: 1870632324}
   - {fileID: 62685979}
   - {fileID: 1393876196}
+  - {fileID: 1757536029}

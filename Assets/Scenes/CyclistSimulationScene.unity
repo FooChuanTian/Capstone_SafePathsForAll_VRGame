@@ -3674,6 +3674,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
   m_PrefabInstance: {fileID: 714507291}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &361716179 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 11400010, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+  m_PrefabInstance: {fileID: 714507291}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058822510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9f338034892c44ebb62d97894772f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &361716180 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
@@ -6929,8 +6940,7 @@ PrefabInstance:
       propertyPath: controllerDrivenHandPosesType
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 11400010, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
@@ -6955,9 +6965,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1058822513}
-    - targetCorrespondingSourceObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1058822514}
     - targetCorrespondingSourceObject: {fileID: 100002, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2017013494}
@@ -7555,8 +7562,6 @@ MonoBehaviour:
   player: {fileID: 1240974495}
   tutorialText: {fileID: 1431866014}
   TutorialPanel: {fileID: 763623315}
-  camera: {fileID: 0}
-  isVR: 0
 --- !u!114 &763623318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9752,21 +9757,6 @@ MonoBehaviour:
   warningCount: 0
   maxWarnings: 200
   isGameOver: 0
---- !u!114 &1058822514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058822510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed34808c514c4544b8014f685c5cb2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CustomCameraRig
-  usePerEyeCameras: 0
-  useFixedUpdateForTracking: 0
-  disableEyeAnchorCameras: 0
 --- !u!4 &1073357169 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1678554349857304353, guid: 34a22dd67c1e5344591237fdd61e78ec, type: 3}
@@ -12261,8 +12251,6 @@ MonoBehaviour:
   player: {fileID: 1240974495}
   tutorialText: {fileID: 315777514}
   TutorialPanel: {fileID: 1328721903}
-  camera: {fileID: 0}
-  isVR: 0
 --- !u!114 &1328721906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19410,11 +19398,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2d46393a9c8d342a04ce004621422f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialPanelSimulation
-  player: {fileID: 234451304}
+  player: {fileID: 1240974495}
   tutorialText: {fileID: 2011750922}
   TutorialPanel: {fileID: 2136567118}
-  camera: {fileID: 1058822510}
-  isVR: 1
 --- !u!114 &2136567121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19976,7 +19962,7 @@ PrefabInstance:
     - target: {fileID: 3730632290436700508, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
       propertyPath: _ovrCameraRig
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 361716179}
     - target: {fileID: 6357171400049970933, guid: 2f94427b8dd14ea498fd92aee3ec9f0f, type: 3}
       propertyPath: m_RootOrder
       value: 0

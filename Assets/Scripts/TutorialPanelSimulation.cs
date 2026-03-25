@@ -6,13 +6,10 @@ public class TutorialPanelSimulation : MonoBehaviour
     public GameObject player;
     public TextMeshProUGUI tutorialText;
     public GameObject TutorialPanel;
-    public GameObject camera;
     private string textToShow;
-    public bool isVR = false;
     void Start()
     {
         Time.timeScale = 0f;
-        if (isVR && camera!=null) camera.GetComponent<CustomCameraRig>().PublicUpdateAnchors(true, true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         string playerType = player.GetComponent<ScoreManager>().PlayerType;

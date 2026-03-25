@@ -4401,7 +4401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreBoardManager
   player: {fileID: 234451304}
-  TotalScoreText: {fileID: 1679884670}
+  TotalScoreText: {fileID: 1106386561}
   WrongLaneScoreText: {fileID: 1608036134}
   CorrectLaneScoreText: {fileID: 1411488106}
   PhoneOpenedText: {fileID: 0}

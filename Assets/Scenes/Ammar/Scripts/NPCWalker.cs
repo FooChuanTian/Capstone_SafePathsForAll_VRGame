@@ -9,8 +9,9 @@ public class NPCWalker : MonoBehaviour
     {
         Debug.Log("NPC spawned and moving");
     }
+
     void Update()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
+        transform.Translate(direction * speed * Time.deltaTime, Space.World);
     }
 }

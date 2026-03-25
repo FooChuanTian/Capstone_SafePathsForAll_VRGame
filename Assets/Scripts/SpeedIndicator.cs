@@ -1,14 +1,31 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SpeedIndicator : MonoBehaviour
 {
     public TextMeshProUGUI SpeedText;
     public Rigidbody rb;
-void Update()
+    public Transform tf;
+    private Vector3 PreviousPosition;
+    private Vector3 CurrentPosition;
+    private Vector3 PositionDelta;
+    public float SmoothSpeed;
+    void Start()
     {
-        float velocity = rb.linearVelocity.magnitude;
-        SpeedText.text = "Speed: " + (int) velocity;
+        PreviousPosition = tf.position;
+        SmoothSpeed = 0;
+    }
+    void Update()
+    {
+        if (Time.deltaTime == 0f) return;
+        //PositionDelta = rb.linearVelocity;
+        PositionDelta = tf.position - PreviousPosition;
+        float rawspeed = PositionDelta.magnitude / Time.deltaTime;
+        SmoothSpeed = Mathf.Lerp(SmoothSpeed, rawspeed, Time.deltaTime*5f);
+        SpeedText.text = "Speed: " + Math.Round(SmoothSpeed);
+        //SpeedText.text = "Speed: " + (int) ((CurrentPosition - PreviousPosition).magnitude / Time.deltaTime);
+        PreviousPosition = tf.position;
     }
 }

@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
 
 public class PedestrianGameNavigationManager : MonoBehaviour
 {
@@ -12,7 +12,8 @@ public class PedestrianGameNavigationManager : MonoBehaviour
     private string[] sceneSequence = {
         "Pedestrian_lesson1", "Pedestrian_lesson_endpage",
         "Pedestrian_lesson2", "Pedestrian_lesson_endpage",
-        "Pedestrian_lesson3", "Pedestrian_lesson_endpage"
+        "Pedestrian_lesson3", "Pedestrian_lesson_endpage",
+        "PedestrianSimulationScene"
     };
 
     public List<GameObject> activeClones = new List<GameObject>();
@@ -36,22 +37,27 @@ public class PedestrianGameNavigationManager : MonoBehaviour
         {
             string sceneToLoad = sceneSequence[currentLevelIndex];
             currentLevelIndex++;
-
             Debug.Log("[Pedestrian] Loading: " + sceneToLoad);
             SceneManager.LoadScene(sceneToLoad);
         }
         else
         {
-            SceneManager.LoadScene("MainMenu");
+            // End of all lessons � go back to player selection or main menu
+            SceneManager.LoadScene("PedestrianSimulationScene");
         }
     }
 
     public void ReloadCurrentScene()
     {
-        if (currentLevelIndex > 0)
+        if (currentLevelIndex >= 2)
         {
-            string sceneToLoad = sceneSequence[currentLevelIndex - 1];
+            string sceneToLoad = sceneSequence[currentLevelIndex - 2];
+            Debug.Log("[Pedestrian] Reloading lesson: " + sceneToLoad);
             SceneManager.LoadScene(sceneToLoad);
+        }
+        else
+        {
+            SceneManager.LoadScene("Pedestrian_lesson1");
         }
     }
 

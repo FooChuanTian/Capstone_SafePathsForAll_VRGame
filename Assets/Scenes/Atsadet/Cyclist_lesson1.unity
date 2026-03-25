@@ -4760,6 +4760,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpeedIndicator
   SpeedText: {fileID: 580886360}
   rb: {fileID: 1240974496}
+  tf: {fileID: 1240974500}
+  SmoothSpeed: 0
 --- !u!114 &1240974506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4773,6 +4775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhoneToggle
   PhoneImage: {fileID: 1687899041}
+  targetImage: {fileID: 0}
 --- !u!114 &1240974507
 MonoBehaviour:
   m_ObjectHideFlags: 0

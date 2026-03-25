@@ -1612,6 +1612,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2207154213089371542, guid: ac69127a6aed3bc43bd8eb65a99046d9, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1e516bc18e30342b8853b0c5fc1710ce, type: 3}
       propertyPath: m_LocalScale.x
       value: 7
@@ -1671,10 +1675,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1e516bc18e30342b8853b0c5fc1710ce, type: 3}
       propertyPath: m_TagString
       value: obstacle
-      objectReference: {fileID: 0}
-    - target: {fileID: 2207154213089371542, guid: ac69127a6aed3bc43bd8eb65a99046d9, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4929,6 +4929,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpeedIndicator
   SpeedText: {fileID: 580886360}
   rb: {fileID: 1240974496}
+  tf: {fileID: 1240974500}
+  SmoothSpeed: 0
 --- !u!114 &1240974506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4942,6 +4944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhoneToggle
   PhoneImage: {fileID: 1687899041}
+  targetImage: {fileID: 0}
 --- !u!114 &1240974507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6383,6 +6386,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6372757692968905945, guid: 209544c3ad79c8941a8c96984f3ceb07, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f97f0487a624e48d99a7d09f429b0902, type: 3}
       propertyPath: m_LocalScale.x
       value: 7
@@ -6442,10 +6449,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f97f0487a624e48d99a7d09f429b0902, type: 3}
       propertyPath: m_TagString
       value: obstacle
-      objectReference: {fileID: 0}
-    - target: {fileID: 6372757692968905945, guid: 209544c3ad79c8941a8c96984f3ceb07, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

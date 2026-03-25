@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class ScoreManager : MonoBehaviour
 {
+    public GameObject player;
     public int SecondsOnCorrectLane;
     public int SecondsOnWrongLane;
     public int PhoneOpened;
@@ -15,11 +16,22 @@ public class ScoreManager : MonoBehaviour
     public GameObject PhoneObject;
     private string[] CorrectLanes;
     private string CurrentLane;
-
     private string[] AllLanes = {"pedestrian_lane_left", "pedestrian_lane_right", "cycling_lane_left", "cycling_lane_right"};
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private SpeedIndicator speedIndicator;
+    private float lastCollisionTime = -1f;
+    [SerializeField] private float cooldown = 0.25f;
+    private float OverallSpeedLimit = 25f;
+    private float YellowSpeedLimit = 10f;
+    private float RedSpeedLimit = 6f;
+    public float TimetoSlow = 0f;
+    public float TimetoStop = 0f;
+    private bool HitYellow = false;
+    private bool HitRed = false;
+    public int MaximumSpeedPenalty = 0;
+    public float currentSpeed;
     void Start()
     {
+        speedIndicator = player.GetComponent<SpeedIndicator>();
         SecondsOnCorrectLane = 0;
         SecondsOnWrongLane = 0;
         PhoneOpened = 0;
@@ -38,14 +50,19 @@ public class ScoreManager : MonoBehaviour
 
     void SecondUpdate()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 5f);
-        foreach (var hitCollider in hitColliders) {
-            if (AllLanes.Contains(hitCollider.gameObject.tag))
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 2f))
+        {
+            foreach (var lane in AllLanes)
             {
-                CurrentLane = hitCollider.gameObject.tag;
-                break;
+                if (hit.collider.CompareTag(lane))
+                {
+                    CurrentLane = hit.collider.tag;
+                    break;
+                }
             }
         }
+
         if (CurrentLane != null)
         {
             if (CorrectLanes.Contains(CurrentLane))
@@ -53,12 +70,18 @@ public class ScoreManager : MonoBehaviour
                 SecondsOnCorrectLane++;
                 CorrectLaneDebug.text = "Correct Lane: " + SecondsOnCorrectLane;
             }
-            else
+            else if (AllLanes.Contains(CurrentLane))
             {
                 SecondsOnWrongLane++;
                 WrongLaneDebug.text = "Wrong Lane: " + SecondsOnWrongLane;
             }
             CurrentLane = null;
+        }
+
+        currentSpeed = speedIndicator.SmoothSpeed;
+        if (currentSpeed > OverallSpeedLimit)
+        {
+            MaximumSpeedPenalty += (int)(currentSpeed - OverallSpeedLimit) * 5;
         }
     }
 
@@ -72,4 +95,50 @@ public class ScoreManager : MonoBehaviour
             }
         }
     }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("speedtrackerSlow"))
+        {
+            if (Time.time - lastCollisionTime > cooldown)
+            {
+                if (speedIndicator.SmoothSpeed > YellowSpeedLimit)
+                {
+                    if (HitYellow) {
+                        TimetoSlow += cooldown;
+                    }
+                    else
+                    {
+                        HitYellow = true;
+                    }
+                }
+                else
+                {
+                    HitYellow = false;
+                }
+                lastCollisionTime = Time.time;
+            }
+        }
+        else if (other.CompareTag("speedtrackerStop"))
+        {
+            if (Time.time - lastCollisionTime > cooldown)
+            {
+                if (speedIndicator.SmoothSpeed > RedSpeedLimit)
+                {
+                    if (HitRed) {
+                        TimetoStop += cooldown;
+                    }
+                    else
+                    {
+                        HitRed = true;
+                    }
+                }
+                else
+                {
+                    HitRed = false;
+                }
+                lastCollisionTime = Time.time;
+            }
+        }
+    } 
 }

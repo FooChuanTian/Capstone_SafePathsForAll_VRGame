@@ -18,7 +18,5 @@ public class Checkpoint_1_Pedestrian : MonoBehaviour
         if (hasTriggered) return;
         hasTriggered = true;
 
-        if (tutorial != null)
-            tutorial.ShowTutorial("Welcome! The red lane is for cyclists only. Always stay on the pedestrian path.", 1);
     }
 }

@@ -21,7 +21,6 @@ public class Checkpoint_1_Pedestrian_L3 : MonoBehaviour
 
         if (tutorial != null)
         {
-            tutorial.ShowTutorial("Stay alert! If your phone buzzes, put it away before walking.", 1);
             tutorial.onTutorialClosed = TriggerIntroDistraction;
         }
     }

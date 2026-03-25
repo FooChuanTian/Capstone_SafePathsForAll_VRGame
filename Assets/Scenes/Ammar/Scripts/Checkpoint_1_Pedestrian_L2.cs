@@ -17,8 +17,5 @@ public class Checkpoint_1_Pedestrian_L2 : MonoBehaviour
 
         if (hasTriggered) return;
         hasTriggered = true;
-
-        if (tutorial != null)
-            tutorial.ShowTutorial("Keep to the left side of the pedestrian path to allow others to pass.", 1);
     }
 }

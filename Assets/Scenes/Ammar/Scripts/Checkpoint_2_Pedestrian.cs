@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.XR;
 
 public class Checkpoint_2_Pedestrian : MonoBehaviour
 {
     public TutorialPanel_Pedestrian tutorial;
+    public TutorialPanel_Pedestrian tutorial_vr;
     public Transform respawnPoint;
 
     public GameObject npcPrefab;        // Otter
@@ -29,6 +31,11 @@ public class Checkpoint_2_Pedestrian : MonoBehaviour
         {
             tutorial.ShowTutorial("The cycling lane may look empty, but bikes can zoom in at any time. Never walk on the red lane!", 2);
             tutorial.onTutorialClosed = RunCheckpointLogic;
+        }
+        if (tutorial_vr != null && XRSettings.enabled)
+        {
+            tutorial_vr.ShowTutorial("The cycling lane may look empty, but bikes can zoom in at any time. Never walk on the red lane!", 2);
+            tutorial_vr.onTutorialClosed = RunCheckpointLogic;
         }
     }
 

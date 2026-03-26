@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.XR;
 
 public class TutorialPanel_Pedestrian : MonoBehaviour
 {
@@ -84,6 +85,14 @@ public class TutorialPanel_Pedestrian : MonoBehaviour
             // Fallback: load end page directly if manager wasn't created
             Debug.LogWarning("[Pedestrian] NavigationManager Instance is null! Loading end page directly.");
             UnityEngine.SceneManagement.SceneManager.LoadScene("Pedestrian_lesson_endpage");
+        }
+    }
+
+    public void Update()
+    {
+        if (XRSettings.enabled && OVRInput.GetDown(OVRInput.Button.Three))
+        {
+            ClickToNextScene();
         }
     }
 }

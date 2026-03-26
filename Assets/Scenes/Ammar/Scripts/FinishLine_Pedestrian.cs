@@ -32,5 +32,8 @@ public class FinishLine_Pedestrian : MonoBehaviour
 
         if (tutorial != null)
             tutorial.ShowTutorial(message, 4);
+
+        if (tutorial_vr != null)
+            tutorial_vr.ShowTutorial(message, 4);
     }
 }

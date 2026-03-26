@@ -5353,7 +5353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119f9cabb0ede0b4c84f44179dc8dd21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint_3_Pedestrian
-  tutorial: {fileID: 986945851}
+  tutorial: {fileID: 1551268913}
+  tutorial_vr: {fileID: 986945851}
   respawnPoint: {fileID: 1109100656}
   npcPrefab: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
   spawnPointWith: {fileID: 1599057551}

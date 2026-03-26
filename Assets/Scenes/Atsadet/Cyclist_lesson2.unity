@@ -4524,7 +4524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint_3
   tutorial: {fileID: 1104494622}
   checkPointlocation_2: {fileID: 656800197}
-  CyclistObject: {fileID: 220668343}
+  CyclistObject: {fileID: 7400918100829728250, guid: ea0b3cf11014a504da092c4e9b4b65db, type: 3}
   rb: {fileID: 220668346}
   pedestrianNPCObject: {fileID: 214576705}
 --- !u!1 &1144542636

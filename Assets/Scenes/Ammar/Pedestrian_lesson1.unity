@@ -6465,8 +6465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b000b52a2b1bf4ee38aea87f0238d95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PopupUI
-  popUpPanel: {fileID: 0}
-  whichlanetext: {fileID: 0}
+  popUpPanel: {fileID: 1949136340}
+  whichlanetext: {fileID: 778915545}
   hasTriggered: 0
 --- !u!114 &1463205919
 MonoBehaviour:
@@ -8661,6 +8661,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5568758620505594004, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2847800610956040460}
+    - targetCorrespondingSourceObject: {fileID: 5568758620505594004, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2847800610956040462}
+    - targetCorrespondingSourceObject: {fileID: 5568758620505594004, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2847800610956040463}
   m_SourcePrefab: {fileID: 100100000, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
 --- !u!4 &2847800610956040457 stripped
 Transform:
@@ -8703,6 +8709,38 @@ MonoBehaviour:
   deathSprite_HardPenalty: {fileID: 21300000, guid: f1985b43df1f84a9197fc5198debfbcf, type: 3}
   deathSprite_SoftPenalty: {fileID: 21300000, guid: a33cfb163442c4bd2aedc49a0ef0f044, type: 3}
   deathPopupImage: {fileID: 1449153540}
+--- !u!4 &2847800610956040461 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5568758620505594000, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
+  m_PrefabInstance: {fileID: 2847800610956040456}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2847800610956040462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2847800610956040459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2759f9699a23694a818620726e833b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPositionManager_Pedestrian
+  player: {fileID: 2847800610956040461}
+--- !u!114 &2847800610956040463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2847800610956040459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f77028885e96742aa4e3e4a991dd1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhoneToggle
+  PhoneImage: {fileID: 593445655}
+  targetImage: {fileID: 0}
 --- !u!1001 &3458530240072260760
 PrefabInstance:
   m_ObjectHideFlags: 0

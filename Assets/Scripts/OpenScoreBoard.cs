@@ -3,12 +3,30 @@ using UnityEngine;
 public class OpenScoreBoard : MonoBehaviour
 {
     public Transform ScoreBoardObject;
+    public bool isPedestrianSimulation = true;
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag != "Player") return;
+
+        bool isFinalSim = isPedestrianSimulation
+            ? PedestrianGameNavigationManager.Instance != null
+            : GameNavigationManager.Instance != null;
+
+        Time.timeScale = 0;
+        ScoreBoardObject.gameObject.SetActive(true);
+
+        // Show or hide scoreboard list based on whether it's the final sim
+        Transform scoreboardList = ScoreBoardObject.Find("ScoreboardList");
+        if (scoreboardList != null)
+            scoreboardList.gameObject.SetActive(isFinalSim);
+
+        // Refresh scoreboard entries now that it's visible
+        ScoreBoardManager manager = ScoreBoardObject.GetComponent<ScoreBoardManager>();
+        if (manager != null)
         {
-            Time.timeScale = 0;
-            ScoreBoardObject.gameObject.SetActive(true);
+            string type = isPedestrianSimulation ? "pedestrian" : "cyclist";
+            manager.RefreshScoreboard(type, isFinalSim);
         }
     }
 }

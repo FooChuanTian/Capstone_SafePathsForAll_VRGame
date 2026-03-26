@@ -44,6 +44,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ammar/Pedestrian_lesson_endpage.unity
     guid: 5b72abd7ee63ef54d8cb984889baa101
+  - enabled: 1
+    path: Assets/Scenes/FinalScene.unity
+    guid: 0e03813ad752ce640bead4356e0c8224
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 61fe78f30049010419f1b562b31ca17f, type: 2}

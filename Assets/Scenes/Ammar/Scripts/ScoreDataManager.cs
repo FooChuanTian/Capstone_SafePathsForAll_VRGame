@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 public class ScoreDataManager : MonoBehaviour
@@ -150,12 +151,26 @@ public class ScoreDataManager : MonoBehaviour
 
     public List<ScoreEntry> GetPedestrianScoreboard()
     {
-        return LoadScoreboard("pedestrian_scoreboard");
+        List<ScoreEntry> entries = LoadScoreboard("pedestrian_scoreboard");
+
+        // Filter for only "last" simulation runs
+        return entries
+            .Where(s => s.simRun == "last")
+            .OrderByDescending(s => s.score)
+            .Take(20)
+            .ToList();
     }
 
     public List<ScoreEntry> GetCyclistScoreboard()
     {
-        return LoadScoreboard("cyclist_scoreboard");
+        List<ScoreEntry> entries = LoadScoreboard("cyclist_scoreboard");
+
+        // Filter for only "last" simulation runs
+        return entries
+            .Where(s => s.simRun == "last")
+            .OrderByDescending(s => s.score)
+            .Take(20)
+            .ToList();
     }
 
     [System.Serializable]

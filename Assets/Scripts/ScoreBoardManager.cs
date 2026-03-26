@@ -21,8 +21,28 @@ public class ScoreBoardManager : MonoBehaviour
 
     void Start()
     {
-        scoreManager = player.GetComponent<ScoreManager>();
-        livesManager = player.GetComponent<LivesManager>();
+        InitializeComponents();
+    }
+
+    private void InitializeComponents()
+    {
+        if (scoreManager == null || livesManager == null)
+        {
+            if (player != null)
+            {
+                scoreManager = player.GetComponent<ScoreManager>();
+                livesManager = player.GetComponent<LivesManager>();
+
+                if (scoreManager == null)
+                    Debug.LogError("[ScoreBoardManager] ScoreManager not found on Player!");
+                if (livesManager == null)
+                    Debug.LogError("[ScoreBoardManager] LivesManager not found on Player!");
+            }
+            else
+            {
+                Debug.LogError("[ScoreBoardManager] Player GameObject is not assigned!");
+            }
+        }
     }
 
     void Update()
@@ -48,6 +68,15 @@ public class ScoreBoardManager : MonoBehaviour
     void SaveScore()
     {
         if (scoreSaved || ScoreDataManager.Instance == null) return;
+
+        // Make sure components are initialized
+        InitializeComponents();
+
+        if (scoreManager == null || livesManager == null)
+        {
+            Debug.LogError("[ScoreBoardManager] Cannot save score - components not initialized!");
+            return;
+        }
 
         int livesLeft = livesManager.NumLives;
         int secondsCorrect = scoreManager.SecondsOnCorrectLane;
@@ -119,9 +148,17 @@ public class ScoreBoardManager : MonoBehaviour
             if (scoreboardEntries[i] == null) continue;
 
             if (i < entries.Count)
-                scoreboardEntries[i].text = $"{i + 1}. {entries[i].playerID} - {entries[i].score} ({entries[i].simRun})";
+            {
+                // Get last 8 characters of player ID
+                string shortID = entries[i].playerID.Length >= 8
+                    ? entries[i].playerID.Substring(entries[i].playerID.Length - 8)
+                    : entries[i].playerID;
+                scoreboardEntries[i].text = $"{i + 1}. {shortID} - {entries[i].score}";
+            }
             else
+            {
                 scoreboardEntries[i].text = $"{i + 1}. ---";
+            }
         }
     }
 }

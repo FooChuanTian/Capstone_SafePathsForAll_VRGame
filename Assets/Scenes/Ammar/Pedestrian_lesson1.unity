@@ -3032,6 +3032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint_1_Pedestrian
   tutorial: {fileID: 1551268913}
+  tutorial_vr: {fileID: 986945851}
   respawnPoint: {fileID: 572482376}
 --- !u!1 &580886358
 GameObject:

@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint_0
   rb: {fileID: 1240974496}
+  rb_vr: {fileID: 0}
 --- !u!65 &2936454
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2954,7 +2955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d737dc2ad90e84e87e4d4a898df7c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint_1_Pedestrian
-  tutorial: {fileID: 0}
+  tutorial: {fileID: 986945851}
   respawnPoint: {fileID: 572482376}
 --- !u!1 &580886358
 GameObject:
@@ -3521,11 +3522,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d093d80cfa4b6414892bdea8dc0b3f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCollisionHandler_Pedestrian
-  InstructionText: {fileID: 38458802}
+  InstructionText: {fileID: 778915545}
   gameOverSound: {fileID: 1379568623}
   backgroundMusic: {fileID: 900228637}
   popup: {fileID: 921860915}
-  deathPopup: {fileID: 363051782}
+  deathPopup: {fileID: 61213714}
   deathSprite_HardPenalty: {fileID: 21300000, guid: f1985b43df1f84a9197fc5198debfbcf, type: 3}
   deathSprite_SoftPenalty: {fileID: 21300000, guid: a33cfb163442c4bd2aedc49a0ef0f044, type: 3}
   deathPopupImage: {fileID: 1449153540}
@@ -5140,7 +5141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119f9cabb0ede0b4c84f44179dc8dd21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint_3_Pedestrian
-  tutorial: {fileID: 0}
+  tutorial: {fileID: 986945851}
   respawnPoint: {fileID: 1109100656}
   npcPrefab: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
   spawnPointWith: {fileID: 1599057551}
@@ -5165,7 +5166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_TagString
@@ -7686,7 +7687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce98911c7c69274b90949f6ff1a84d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint_2_Pedestrian
-  tutorial: {fileID: 0}
+  tutorial: {fileID: 986945851}
   respawnPoint: {fileID: 1636692972}
   npcPrefab: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
   otterSpawnPoint: {fileID: 1900733049}

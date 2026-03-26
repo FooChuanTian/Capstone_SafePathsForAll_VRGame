@@ -37,7 +37,7 @@ public class Checkpoint_3_Pedestrian : MonoBehaviour
 
         if (tutorial_vr != null && XRSettings.enabled)
         {
-            tutorial_vr.ShowTutorial("The cycling lane may look empty, but bikes can zoom in at any time. Never walk on the red lane!", 2);
+            tutorial_vr.ShowTutorial("Great job staying on the pedestrian path! But also watch out for other pedestrians and be aware of those walking towards you!", 2);
             tutorial_vr.onTutorialClosed = RunCheckpointLogic;
         }
     }

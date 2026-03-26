@@ -3,6 +3,7 @@ using UnityEngine;
 public class Checkpoint_1_Pedestrian_L2 : MonoBehaviour
 {
     public TutorialPanel_Pedestrian tutorial;
+    public TutorialPanel_Pedestrian tutorial_vr;
     public Transform respawnPoint;
 
     private bool hasTriggered = false;

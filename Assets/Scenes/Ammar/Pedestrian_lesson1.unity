@@ -2555,7 +2555,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e789281b1d9df142b03833e2ad769c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FinishLine_Pedestrian
-  tutorial: {fileID: 0}
+  tutorial: {fileID: 1551268913}
+  tutorial_vr: {fileID: 986945851}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -7588,7 +7589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1551268913
 MonoBehaviour:
   m_ObjectHideFlags: 0

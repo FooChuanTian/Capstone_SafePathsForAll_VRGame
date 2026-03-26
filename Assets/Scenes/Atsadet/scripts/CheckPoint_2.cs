@@ -34,7 +34,7 @@ public class Checkpoint_2 : MonoBehaviour
     {
         if (collision.tag == "Player" && hasShownLaneTutorial == false)
         {   
-            cleanup();  //Disable for testing
+            // cleanup();  //Disable for testing
 
             if (currentsceneName == "Cyclist_lesson1")  // Keep to cyclist lane
             {
@@ -74,7 +74,7 @@ public class Checkpoint_2 : MonoBehaviour
             Vector3 spawnPoint = spawnPoints[i];
             Clone = Instantiate(PedestrianObject, spawnPoint, new Quaternion(0, -0.90f, 0, 1)) as GameObject;
 
-            GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
+            // GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
 
             // To make animation slightly diff for each otter
             Animator anim = Clone.GetComponent<Animator>();
@@ -159,7 +159,7 @@ public class Checkpoint_2 : MonoBehaviour
 
         }
 
-        GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
+        // GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
 
         // To make animation slightly diff for each otter
         Animator anim = Clone.GetComponent<Animator>();

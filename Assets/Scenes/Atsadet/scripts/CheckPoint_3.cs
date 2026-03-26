@@ -44,7 +44,7 @@ public class Checkpoint_3 : MonoBehaviour
     {
         if (collision.tag == "Player" && hasShownLaneTutorial == false)
         {   
-            cleanup(); //Disable for testing
+            // cleanup(); //Disable for testing
             if (currentsceneName == "Cyclist_lesson1")  // Keep to cyclist lane
             {
                 displayMessage = "Watch out for slower cyclist ahead!\nWhen overtaking remember to stay in the cyclist lane";
@@ -96,7 +96,7 @@ public class Checkpoint_3 : MonoBehaviour
             }
             
 
-            GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
+            // GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
 
             // To make animation slightly diff for each otter
             // Animator anim = Clone.GetComponent<Animator>();
@@ -130,7 +130,7 @@ public class Checkpoint_3 : MonoBehaviour
             Clone = Instantiate(CyclistObject, spawnPoint, new Quaternion(0, 180f, 0, 1)) as GameObject;
             rnd_velo = UnityEngine.Random.Range(1f, 2f);
 
-            GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
+            // GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
 
             // To make animation slightly diff for each otter
             // Animator anim = Clone.GetComponent<Animator>();
@@ -193,7 +193,7 @@ public class Checkpoint_3 : MonoBehaviour
 
         }
 
-        GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
+        // GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
 
         // To make animation slightly diff for each otter
         Animator anim = Clone.GetComponent<Animator>();

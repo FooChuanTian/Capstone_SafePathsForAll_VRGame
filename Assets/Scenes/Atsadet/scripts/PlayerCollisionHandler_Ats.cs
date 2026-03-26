@@ -30,7 +30,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
     private List<Transform> CheckpointList = new List<Transform>();
     private int lifeCount = 3;
     private int lessonRoundWarningCount = 0;
-    private int lessonRoundMaxWarnings = 300;
+    private int lessonRoundMaxWarnings = 800;
     public AudioSource gameOverSoundEffectSource;
     public AudioSource backgroundMusicSource;
     private string currentsceneName;
@@ -144,7 +144,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
                     isGameOver = true;
                     timeToRespawn = 3f;
                     lessonRoundWarningCount = 0; // reset warning count for next round
-                    StartCoroutine(GameOver2("You spent too long on the wrong side\nRemember to stick to the left side of the cycling lane", 1));
+                    StartCoroutine(GameOver2("You spent too long cycling on the wrong side\nRemember to stick to the left side of the cycling lane", 1));
                 }
             }
             

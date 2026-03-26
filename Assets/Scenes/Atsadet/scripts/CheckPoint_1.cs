@@ -83,7 +83,7 @@ public class Checkpoint_1 : MonoBehaviour
                 rnd_velo = UnityEngine.Random.Range(-1f, -4f);
             }
 
-            GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
+            // GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
 
             // To make animation slightly diff for each otter
             Animator anim = Clone.GetComponent<Animator>();
@@ -157,7 +157,7 @@ public class Checkpoint_1 : MonoBehaviour
 
         }
 
-        GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
+        // GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
 
         // To make animation slightly diff for each otter
         Animator anim = Clone.GetComponent<Animator>();

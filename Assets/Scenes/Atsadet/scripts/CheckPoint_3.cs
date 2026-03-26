@@ -34,6 +34,8 @@ public class Checkpoint_3 : MonoBehaviour
         new Vector3(-320, 3, 55)
     };
     public GameObject pedestrianNPCObject;
+    public TextMeshProUGUI GoalText;
+
     void Start()
     {
         currentsceneName = SceneManager.GetActiveScene().name; // Get the current scene name from the GameNavigationManager
@@ -48,12 +50,14 @@ public class Checkpoint_3 : MonoBehaviour
             if (currentsceneName == "Cyclist_lesson1")  // Keep to cyclist lane
             {
                 displayMessage = "Watch out for slower cyclist ahead!\nWhen overtaking remember to stay in the cyclist lane";
+                GoalText.text = "Keep to the cyclist lane";
                 runLesson1Stage3();
                 StartCoroutine(spawnRandomNPCsRoutine_checkpoint3());
             }
             else if (currentsceneName == "Cyclist_lesson2") // Keep to left of cyclist lane
             {   
                 displayMessage = "Oncoming cyclist ahead using the wrong side!\nRing them and continue on the left side of thecyclist lane";
+                GoalText.text = "Keep to the left side of the cyclist lane";
                 runLesson2Stage3();
                 StartCoroutine(spawnRandomNPCsRoutine_checkpoint3());
             }

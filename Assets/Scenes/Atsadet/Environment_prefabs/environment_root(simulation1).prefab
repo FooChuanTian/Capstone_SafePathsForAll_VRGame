@@ -706,7 +706,7 @@ GameObject:
   - component: {fileID: 1444551718825307498}
   m_Layer: 0
   m_Name: Pedestrian Path Left (1)
-  m_TagString: pedestrian_lane_left
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1043,7 +1043,7 @@ GameObject:
   - component: {fileID: 46904566715043176}
   m_Layer: 0
   m_Name: Cycling Path Right (1)
-  m_TagString: cycling_lane_right
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

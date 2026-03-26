@@ -24,6 +24,8 @@ public class Checkpoint_2 : MonoBehaviour
         new Vector3(-9, 1, 64)
     };
     public GameObject pedestrianNPCObject;
+    public TextMeshProUGUI GoalText;
+
     void Start()
     {
         currentsceneName = SceneManager.GetActiveScene().name; // Get the current scene name from the GameNavigationManager
@@ -39,18 +41,21 @@ public class Checkpoint_2 : MonoBehaviour
             if (currentsceneName == "Cyclist_lesson1")  // Keep to cyclist lane
             {
                 displayMessage = "Pedestrians ahead using the wrong lane!\nRing them and continue on the cyclist lane";
+                GoalText.text = "Keep to the cyclist lane";
                 runLesson1Stage2();
                 StartCoroutine(spawnRandomNPCsRoutine_checkpoint2());
             }
             else if (currentsceneName == "Cyclist_lesson2") // Keep to left of cyclist lane
             {
                 displayMessage = "Look out for obstacles ahead!\nAvoid them and continue on the left side of the cyclist lane";
+                GoalText.text = "Keep to the left side of the cyclist lane";
                 runLesson2Stage2();
                 StartCoroutine(spawnRandomNPCsRoutine_checkpoint2());
             }
             else if (currentsceneName == "Cyclist_lesson3") // Follow the tactile strips
             {
                 displayMessage = "Obstacles may be hard to tell from afar\nTactile strips help to alert you earlier so you have ample time to react";
+                GoalText.text = "Follow the tactile strips to navigate crowded areas safely";
                 runLesson3Stage2();
                 StartCoroutine(spawnRandomNPCsRoutine_checkpoint2());
             }

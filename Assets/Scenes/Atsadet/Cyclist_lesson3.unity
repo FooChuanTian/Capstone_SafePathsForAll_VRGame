@@ -4701,7 +4701,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278321666
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -4964,6 +4964,7 @@ MonoBehaviour:
   PedestrianObject: {fileID: 0}
   rb: {fileID: 0}
   pedestrianNPCObject: {fileID: 0}
+  GoalText: {fileID: 0}
 --- !u!65 &1109100653
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5073,6 +5074,7 @@ MonoBehaviour:
   CyclistObject: {fileID: 0}
   rb: {fileID: 0}
   pedestrianNPCObject: {fileID: 0}
+  GoalText: {fileID: 0}
 --- !u!1001 &1130252551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7082,6 +7084,7 @@ MonoBehaviour:
   PedestrianObject: {fileID: 0}
   rb: {fileID: 0}
   pedestrianNPCObject: {fileID: 214576705}
+  GoalText: {fileID: 1043149716}
 --- !u!65 &1636692969
 BoxCollider:
   m_ObjectHideFlags: 0

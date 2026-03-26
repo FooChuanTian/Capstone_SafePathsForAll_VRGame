@@ -30,7 +30,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
     private List<Transform> CheckpointList = new List<Transform>();
     private int lifeCount = 3;
     private int lessonRoundWarningCount = 0;
-    private int lessonRoundMaxWarnings = 800;
+    private int lessonRoundMaxWarnings = 300;
     public AudioSource gameOverSoundEffectSource;
     public AudioSource backgroundMusicSource;
     private string currentsceneName;
@@ -138,6 +138,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
             if (currentsceneName != "Cyclist_lesson1") // No warnings for right cycling lane in lesson 1 as it's not relevant to the learning outcomes of that lesson
             {
                 lessonRoundWarningCount++;
+                Debug.Log("TESTCOUNT: " + lessonRoundWarningCount);
                 if (lessonRoundWarningCount >= lessonRoundMaxWarnings)
                 {
                     PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();

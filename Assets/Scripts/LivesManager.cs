@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LivesManager : MonoBehaviour
 {
-public Transform FilledHeart1;
+    public Transform FilledHeart1;
     public Transform FilledHeart2;
     public Transform FilledHeart3;
     public Transform EmptyHeart1;

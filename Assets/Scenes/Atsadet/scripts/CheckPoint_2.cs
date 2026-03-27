@@ -36,7 +36,7 @@ public class Checkpoint_2 : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider collision)
-    {
+    {   Debug.Log("TESTVR20");
         if (collision.tag == "Player" && hasShownLaneTutorial == false)
         {   
             // cleanup();  //Disable for testing

@@ -36,9 +36,9 @@ public class Checkpoint_1 : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider collision)
-    {
+    {   Debug.Log("TESTVR0");
         if (collision.tag == "Player" && hasShownLaneTutorial == false)
-        {   
+        {   Debug.Log("TESTVR1");
             if (currentsceneName == "Cyclist_lesson1")  // Keep to cyclist lane
             {
                 displayMessage = "Pedestrian lane may be empty but as a cyclist you should stick to the cyclist lane";

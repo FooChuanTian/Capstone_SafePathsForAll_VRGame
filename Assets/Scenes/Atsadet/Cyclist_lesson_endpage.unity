@@ -544,7 +544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &152703822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,7 +776,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &542229850
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1279,7 +1279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2233,7 +2233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2062855352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2760,11 +2760,7 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7270083273338163364}
     m_Modifications:
-    - target: {fileID: 1653136412239965873, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _hand
-      value: 
-      objectReference: {fileID: 1535967662013319320}
-    - target: {fileID: 1650073877979739832, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+    - target: {fileID: 490952685486786246, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2772,26 +2768,34 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 490952685486786246, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+    - target: {fileID: 1650073877979739832, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3220520892116957185, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _trackingToWorldTransformer
+    - target: {fileID: 1653136412239965873, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _hand
       value: 
-      objectReference: {fileID: 7270083273338163366}
+      objectReference: {fileID: 1535967662013319320}
     - target: {fileID: 2975771350353398104, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
       propertyPath: _hmd
       value: 
       objectReference: {fileID: 7270083273338163365}
-    - target: {fileID: 6366890345312225332, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+    - target: {fileID: 3220520892116957185, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _trackingToWorldTransformer
+      value: 
+      objectReference: {fileID: 7270083273338163366}
+    - target: {fileID: 5919172909653148107, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938094242724425506, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
       propertyPath: _updateAfter
       value: 
-      objectReference: {fileID: 1535967662013319322}
-    - target: {fileID: 6366890345312225332, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      objectReference: {fileID: 3187000733398371191}
+    - target: {fileID: 5938094242724425506, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
       propertyPath: _iModifyDataFromSourceMono
       value: 
-      objectReference: {fileID: 1535967662013319322}
+      objectReference: {fileID: 3187000733398371191}
     - target: {fileID: 6271591908007656929, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
       propertyPath: m_Name
       value: RightInteractions
@@ -2800,42 +2804,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5938094242724425506, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+    - target: {fileID: 6366890345312225332, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
       propertyPath: _updateAfter
       value: 
-      objectReference: {fileID: 3187000733398371191}
-    - target: {fileID: 5938094242724425506, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      objectReference: {fileID: 1535967662013319322}
+    - target: {fileID: 6366890345312225332, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
       propertyPath: _iModifyDataFromSourceMono
       value: 
-      objectReference: {fileID: 3187000733398371191}
-    - target: {fileID: 5919172909653148107, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8708096829136004369, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _handSkeletonProvider
-      value: 
-      objectReference: {fileID: 1535967662013319321}
-    - target: {fileID: 8708096829136004369, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _trackingToWorldTransformer
-      value: 
-      objectReference: {fileID: 7270083273338163366}
-    - target: {fileID: 7531310864705162082, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _handler
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7531310864705162082, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _handlers.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7531310864705162082, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: '_handlers.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8843335996968490889}
-    - target: {fileID: 7360287409523332041, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1535967662013319322}
     - target: {fileID: 7205652953064357395, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2880,6 +2856,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7360287409523332041, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531310864705162082, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _handler
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531310864705162082, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _handlers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531310864705162082, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: '_handlers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8843335996968490889}
+    - target: {fileID: 8708096829136004369, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _handSkeletonProvider
+      value: 
+      objectReference: {fileID: 1535967662013319321}
+    - target: {fileID: 8708096829136004369, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _trackingToWorldTransformer
+      value: 
+      objectReference: {fileID: 7270083273338163366}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3424,86 +3424,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7270083273338163364}
     m_Modifications:
-    - target: {fileID: 1653136412239965873, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _hand
-      value: 
-      objectReference: {fileID: 1535967662013319324}
-    - target: {fileID: 818365251364777215, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 490952685486786246, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4071969404038824073, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+    - target: {fileID: 818365251364777215, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3220520892116957185, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _trackingToWorldTransformer
+    - target: {fileID: 1653136412239965873, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _hand
       value: 
-      objectReference: {fileID: 7270083273338163366}
-    - target: {fileID: 2975771350353398104, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _hmd
-      value: 
-      objectReference: {fileID: 7270083273338163365}
-    - target: {fileID: 2631580102593673877, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1535967662013319324}
     - target: {fileID: 2477429933045340016, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6366890345312225332, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _updateAfter
-      value: 
-      objectReference: {fileID: 1535967662013319323}
-    - target: {fileID: 6366890345312225332, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _iModifyDataFromSourceMono
-      value: 
-      objectReference: {fileID: 1535967662013319323}
-    - target: {fileID: 6271591908007656929, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: m_Name
-      value: LeftInteractions
+    - target: {fileID: 2631580102593673877, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5938094242724425506, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _updateAfter
+    - target: {fileID: 2975771350353398104, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _hmd
       value: 
-      objectReference: {fileID: 3187000733398371192}
-    - target: {fileID: 5938094242724425506, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _iModifyDataFromSourceMono
+      objectReference: {fileID: 7270083273338163365}
+    - target: {fileID: 3220520892116957185, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _trackingToWorldTransformer
       value: 
-      objectReference: {fileID: 3187000733398371192}
+      objectReference: {fileID: 7270083273338163366}
+    - target: {fileID: 4071969404038824073, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5123218344157502612, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8708096829136004369, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _handSkeletonProvider
+    - target: {fileID: 5938094242724425506, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _updateAfter
       value: 
-      objectReference: {fileID: 1535967662013319321}
-    - target: {fileID: 8708096829136004369, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _trackingToWorldTransformer
+      objectReference: {fileID: 3187000733398371192}
+    - target: {fileID: 5938094242724425506, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _iModifyDataFromSourceMono
       value: 
-      objectReference: {fileID: 7270083273338163366}
-    - target: {fileID: 7531310864705162082, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _handler
-      value: 
+      objectReference: {fileID: 3187000733398371192}
+    - target: {fileID: 6271591908007656929, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: m_Name
+      value: LeftInteractions
       objectReference: {fileID: 0}
-    - target: {fileID: 7531310864705162082, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: _handlers.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7531310864705162082, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: '_handlers.Array.data[0]'
+    - target: {fileID: 6366890345312225332, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _updateAfter
       value: 
-      objectReference: {fileID: 8843335996968490889}
-    - target: {fileID: 7360287409523332041, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1535967662013319323}
+    - target: {fileID: 6366890345312225332, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _iModifyDataFromSourceMono
+      value: 
+      objectReference: {fileID: 1535967662013319323}
     - target: {fileID: 7205652953064357395, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3548,6 +3524,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7360287409523332041, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531310864705162082, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _handler
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531310864705162082, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _handlers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531310864705162082, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: '_handlers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8843335996968490889}
+    - target: {fileID: 8708096829136004369, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _handSkeletonProvider
+      value: 
+      objectReference: {fileID: 1535967662013319321}
+    - target: {fileID: 8708096829136004369, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
+      propertyPath: _trackingToWorldTransformer
+      value: 
+      objectReference: {fileID: 7270083273338163366}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

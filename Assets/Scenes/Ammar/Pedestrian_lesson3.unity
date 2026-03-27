@@ -1155,7 +1155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f77028885e96742aa4e3e4a991dd1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhoneToggle
-  PhoneImage: {fileID: 1687899041}
+  PhoneImage: {fileID: 1250568384}
   targetImage: {fileID: 0}
 --- !u!114 &143719430
 MonoBehaviour:

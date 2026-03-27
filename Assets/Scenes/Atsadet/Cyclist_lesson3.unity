@@ -1612,9 +1612,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 293705797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a03dd016692134ca4eed1d732e70c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 885672a70d6c54edea5f07b24731425e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BikeBellBehaviour
+  m_EditorClassIdentifier: Assembly-CSharp::BikeBellBehaviour_Ats
 --- !u!1 &295329661
 GameObject:
   m_ObjectHideFlags: 0

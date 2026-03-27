@@ -1065,6 +1065,7 @@ MonoBehaviour:
   TimeStopText: {fileID: 0}
   SpeedPenaltyText: {fileID: 0}
   LivesLeftText: {fileID: 0}
+  scoreboardEntries: []
 --- !u!114 &234451307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4409,6 +4410,7 @@ MonoBehaviour:
   TimeStopText: {fileID: 1468362464}
   SpeedPenaltyText: {fileID: 1191812970}
   LivesLeftText: {fileID: 674164398}
+  scoreboardEntries: []
 --- !u!114 &655269703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4421,7 +4423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5709474836970b942a7d7cc4653fd582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextLevel
-  NextLevelString: Pedestrian_lesson_instructions
+  NextLevelString: Cyclist_lesson_instructions
 --- !u!114 &659163365 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6991710078715564916, guid: bc9f96d985c6f55418bb576c2edd7d2a, type: 3}
@@ -6693,6 +6695,7 @@ MonoBehaviour:
   TimeStopText: {fileID: 1193393287}
   SpeedPenaltyText: {fileID: 2031223759}
   LivesLeftText: {fileID: 1897953305}
+  scoreboardEntries: []
 --- !u!1 &1106386559
 GameObject:
   m_ObjectHideFlags: 0
@@ -12961,6 +12964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OpenScoreBoard
   ScoreBoardObject: {fileID: 1096211549}
   ScoreBoardVR: {fileID: 655269701}
+  isPedestrianSimulation: 0
 --- !u!1 &2113457503
 GameObject:
   m_ObjectHideFlags: 0

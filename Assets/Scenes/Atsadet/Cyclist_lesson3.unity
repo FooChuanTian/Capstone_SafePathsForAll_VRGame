@@ -2680,7 +2680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   tutorial: {fileID: 1104494622}
-  tutorial_vr: {fileID: 0}
+  tutorial_vr: {fileID: 1356403830}
   initialCheckpointLocation: {fileID: 0}
 --- !u!65 &408913144
 BoxCollider:
@@ -9093,7 +9093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint_2
   tutorial: {fileID: 1104494622}
-  tutorial_vr: {fileID: 0}
+  tutorial_vr: {fileID: 1356403830}
   checkPointlocation_2: {fileID: 870048479}
   PedestrianObject: {fileID: 0}
   rb: {fileID: 0}

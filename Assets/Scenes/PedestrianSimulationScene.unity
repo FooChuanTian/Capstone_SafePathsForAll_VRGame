@@ -4930,7 +4930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2d46393a9c8d342a04ce004621422f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialPanelSimulation
-  player: {fileID: 0}
+  player: {fileID: 1665045890}
   tutorialText: {fileID: 2145866844}
   TutorialPanel: {fileID: 713202751}
 --- !u!114 &713202754

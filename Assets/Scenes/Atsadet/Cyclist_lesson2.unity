@@ -7554,7 +7554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562444503}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.9919947, z: -0, w: -0.12628025}
+  m_LocalRotation: {x: 0, y: -0.61215514, z: 0, w: 0.7907377}
   m_LocalPosition: {x: 0, y: 0.8000002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -7635,9 +7635,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e6c6c0fc346c04cb0c2da86c50638d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedIndicator
-  SpeedText: {fileID: 0}
-  rb: {fileID: 1562444511}
-  tf: {fileID: 1562444504}
+  SpeedText: {fileID: 2088047093}
+  rb: {fileID: 3879243334378267354}
+  tf: {fileID: 3879243334378267353}
   SmoothSpeed: 0
 --- !u!114 &1562444509
 MonoBehaviour:
@@ -10780,6 +10780,11 @@ MonoBehaviour:
 --- !u!4 &3879243334378267353 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5568758620505594000, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
+  m_PrefabInstance: {fileID: 3879243334378267350}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &3879243334378267354 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 5568758620505594007, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
   m_PrefabInstance: {fileID: 3879243334378267350}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4444936553318573894

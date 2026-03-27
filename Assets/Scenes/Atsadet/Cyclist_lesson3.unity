@@ -1100,7 +1100,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -1687,9 +1687,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 293705797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a03dd016692134ca4eed1d732e70c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 885672a70d6c54edea5f07b24731425e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BikeBellBehaviour
+  m_EditorClassIdentifier: Assembly-CSharp::BikeBellBehaviour_Ats
 --- !u!1 &295329661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2435,7 +2435,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -5990,7 +5990,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278321666
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -6254,6 +6254,7 @@ MonoBehaviour:
   PedestrianObject: {fileID: 0}
   rb: {fileID: 0}
   pedestrianNPCObject: {fileID: 0}
+  GoalText: {fileID: 0}
 --- !u!65 &1109100653
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6364,6 +6365,67 @@ MonoBehaviour:
   CyclistObject: {fileID: 0}
   rb: {fileID: 0}
   pedestrianNPCObject: {fileID: 0}
+  GoalText: {fileID: 0}
+--- !u!1001 &1130252551
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3522432250627781899, guid: a9ca0cfc7a1694105af233cde947d043, type: 3}
+      propertyPath: m_Name
+      value: environment_root(Lesson)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150107875348946989, guid: a9ca0cfc7a1694105af233cde947d043, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -42.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150107875348946989, guid: a9ca0cfc7a1694105af233cde947d043, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150107875348946989, guid: a9ca0cfc7a1694105af233cde947d043, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150107875348946989, guid: a9ca0cfc7a1694105af233cde947d043, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150107875348946989, guid: a9ca0cfc7a1694105af233cde947d043, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150107875348946989, guid: a9ca0cfc7a1694105af233cde947d043, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150107875348946989, guid: a9ca0cfc7a1694105af233cde947d043, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150107875348946989, guid: a9ca0cfc7a1694105af233cde947d043, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150107875348946989, guid: a9ca0cfc7a1694105af233cde947d043, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150107875348946989, guid: a9ca0cfc7a1694105af233cde947d043, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2352687768696500734, guid: a9ca0cfc7a1694105af233cde947d043, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: a9ca0cfc7a1694105af233cde947d043, type: 3}
 --- !u!1 &1144542636
 GameObject:
   m_ObjectHideFlags: 0
@@ -9098,6 +9160,7 @@ MonoBehaviour:
   PedestrianObject: {fileID: 0}
   rb: {fileID: 0}
   pedestrianNPCObject: {fileID: 214576705}
+  GoalText: {fileID: 1043149716}
 --- !u!65 &1636692969
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13226,3 +13289,4 @@ SceneRoots:
   - {fileID: 330182029}
   - {fileID: 1018786192}
   - {fileID: 1181702103}
+  - {fileID: 1130252551}

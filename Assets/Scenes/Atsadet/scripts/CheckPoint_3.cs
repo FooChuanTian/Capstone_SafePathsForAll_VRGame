@@ -20,22 +20,24 @@ public class Checkpoint_3 : MonoBehaviour
     float rnd_velo;
     private List<Vector3> spawnPoints_lesson1 = new List<Vector3>
     {
-        new Vector3(-250, 1, 35),
-        new Vector3(-300, 1, 43),
-        new Vector3(-350, 1, 40),
-        new Vector3(-380, 1, 60),
-        new Vector3(-350, 1, 55)
+        new Vector3(-250, 3, 35),
+        new Vector3(-300, 3, 43),
+        new Vector3(-350, 3, 40),
+        new Vector3(-380, 3, 60),
+        new Vector3(-350, 3, 55)
     };
 
     private List<Vector3> spawnPoints_lesson2 = new List<Vector3>
     {
-        new Vector3(-400, 1, 60),
-        new Vector3(-350, 1, 45),
-        new Vector3(-350, 1, 65),
-        new Vector3(-300, 1, 35),
-        new Vector3(-320, 1, 55)
+        new Vector3(-400, 3, 60),
+        new Vector3(-350, 3, 45),
+        new Vector3(-350, 3, 65),
+        new Vector3(-300, 3, 35),
+        new Vector3(-320, 3, 55)
     };
     public GameObject pedestrianNPCObject;
+    public TextMeshProUGUI GoalText;
+
     void Start()
     {
         currentsceneName = SceneManager.GetActiveScene().name; // Get the current scene name from the GameNavigationManager
@@ -46,16 +48,18 @@ public class Checkpoint_3 : MonoBehaviour
     {
         if (collision.tag == "Player" && hasShownLaneTutorial == false)
         {   
-            cleanup(); //Disable for testing
+            // cleanup(); //Disable for testing
             if (currentsceneName == "Cyclist_lesson1")  // Keep to cyclist lane
             {
                 displayMessage = "Watch out for slower cyclist ahead!\nWhen overtaking remember to stay in the cyclist lane";
+                GoalText.text = "Keep to the cyclist lane";
                 runLesson1Stage3();
                 StartCoroutine(spawnRandomNPCsRoutine_checkpoint3());
             }
             else if (currentsceneName == "Cyclist_lesson2") // Keep to left of cyclist lane
             {   
                 displayMessage = "Oncoming cyclist ahead using the wrong side!\nRing them and continue on the left side of thecyclist lane";
+                GoalText.text = "Keep to the left side of the cyclist lane";
                 runLesson2Stage3();
                 StartCoroutine(spawnRandomNPCsRoutine_checkpoint3());
             }
@@ -91,16 +95,16 @@ public class Checkpoint_3 : MonoBehaviour
 
             if (spawnPoint.z > 50)
             {
-                Clone = Instantiate(CyclistObject, spawnPoint, new Quaternion(0, 180f, 0, 1)) as GameObject;
+                Clone = Instantiate(CyclistObject, spawnPoint, Quaternion.Euler(0, 90, 0)) as GameObject;
                 rnd_velo = UnityEngine.Random.Range(1f, 2f);
             } else
             {
-                Clone = Instantiate(CyclistObject, spawnPoint, new Quaternion(0, 0, 0, 1)) as GameObject;
+                Clone = Instantiate(CyclistObject, spawnPoint, Quaternion.Euler(0, -90, 0)) as GameObject;
                 rnd_velo = UnityEngine.Random.Range(-0.5f, -1.0f);
             }
             
 
-            GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
+            // GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
 
             // To make animation slightly diff for each otter
             // Animator anim = Clone.GetComponent<Animator>();
@@ -110,9 +114,9 @@ public class Checkpoint_3 : MonoBehaviour
             //     anim.Play("Walk", 0, randomStart); 
             //     anim.speed = UnityEngine.Random.Range(0.8f, 1.2f);
             // }
-            Rigidbody cloneRb = Clone.GetComponent<Rigidbody>();
+            Rigidbody cloneRb = Clone.GetComponentInChildren<Rigidbody>();
             Clone.AddComponent<NPCStraight_Ats>();
-            Clone.GetComponent<NPCStraight_Ats>().gb = Clone.gameObject;
+            Clone.GetComponent<NPCStraight_Ats>().gb = cloneRb != null ? cloneRb.gameObject : Clone.gameObject;
             Clone.GetComponent<NPCStraight_Ats>().velocity = rnd_velo;
         }
 
@@ -131,10 +135,10 @@ public class Checkpoint_3 : MonoBehaviour
         {   
             Vector3 spawnPoint = spawnPoints_lesson2[i];
 
-            Clone = Instantiate(CyclistObject, spawnPoint, new Quaternion(0, 180f, 0, 1)) as GameObject;
+            Clone = Instantiate(CyclistObject, spawnPoint, Quaternion.Euler(0, 90, 0)) as GameObject;
             rnd_velo = UnityEngine.Random.Range(1f, 2f);
 
-            GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
+            // GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
 
             // To make animation slightly diff for each otter
             // Animator anim = Clone.GetComponent<Animator>();
@@ -144,9 +148,9 @@ public class Checkpoint_3 : MonoBehaviour
             //     anim.Play("Walk", 0, randomStart); 
             //     anim.speed = UnityEngine.Random.Range(0.8f, 1.2f);
             // }
-            Rigidbody cloneRb = Clone.GetComponent<Rigidbody>();
+            Rigidbody cloneRb = Clone.GetComponentInChildren<Rigidbody>();
             Clone.AddComponent<NPCStraight_Ats>();
-            Clone.GetComponent<NPCStraight_Ats>().gb = Clone.gameObject;
+            Clone.GetComponent<NPCStraight_Ats>().gb = cloneRb != null ? cloneRb.gameObject : Clone.gameObject;
             Clone.GetComponent<NPCStraight_Ats>().velocity = rnd_velo;
         }
 
@@ -197,7 +201,7 @@ public class Checkpoint_3 : MonoBehaviour
 
         }
 
-        GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
+        // GameNavigationManager.Instance.activeClones.Add(Clone); //Disable for testing
 
         // To make animation slightly diff for each otter
         Animator anim = Clone.GetComponent<Animator>();
@@ -207,9 +211,9 @@ public class Checkpoint_3 : MonoBehaviour
             anim.Play("Walk", 0, randomStart); 
             anim.speed = UnityEngine.Random.Range(1f, 1.5f);
         }
-        Rigidbody cloneRb = Clone.GetComponent<Rigidbody>();
+        Rigidbody cloneRb = Clone.GetComponentInChildren<Rigidbody>();
         Clone.AddComponent<NPCStraight_Ats>();
-        Clone.GetComponent<NPCStraight_Ats>().gb = Clone.gameObject;
+        Clone.GetComponent<NPCStraight_Ats>().gb = cloneRb != null ? cloneRb.gameObject : Clone.gameObject;
         Clone.GetComponent<NPCStraight_Ats>().velocity = rnd_velo;
     }
 

@@ -6,19 +6,34 @@ public class OpenScoreBoard : MonoBehaviour
 {
     public Transform ScoreBoardObject;
     public Transform ScoreBoardVR;
+    public bool isPedestrianSimulation = true;
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag != "Player") return;
+
+        bool isFinalSim = isPedestrianSimulation
+            ? PedestrianGameNavigationManager.Instance != null
+            : GameNavigationManager.Instance != null;
+
+        Time.timeScale = 0;
+        ScoreBoardObject.gameObject.SetActive(true);
+        if (XRSettings.enabled)
         {
-            Time.timeScale = 0;
-            if (XRSettings.enabled)
-            {
-                ScoreBoardVR.gameObject.SetActive(true);
-            }
-            else 
-            {
-                ScoreBoardObject.gameObject.SetActive(true);
-            }
+            ScoreBoardVR.gameObject.SetActive(true);
+        }
+
+        // Show or hide scoreboard list based on whether it's the final sim
+        Transform scoreboardList = ScoreBoardObject.Find("ScoreboardList");
+        if (scoreboardList != null)
+            scoreboardList.gameObject.SetActive(isFinalSim);
+
+        // Refresh scoreboard entries now that it's visible
+        ScoreBoardManager manager = ScoreBoardObject.GetComponent<ScoreBoardManager>();
+        if (manager != null)
+        {
+            string type = isPedestrianSimulation ? "pedestrian" : "cyclist";
+            manager.RefreshScoreboard(type, isFinalSim);
         }
     }
 }

@@ -25,7 +25,7 @@ public class FinishLine : MonoBehaviour
     {
         if (collision.tag == "Player")
         {   
-            cleanup();  // Disable for testing
+            // cleanup();  // Disable for testing
 
             tutorial.ShowTutorial($"Congrats on completing lesson {lessonIndex}!", 4);
             if (XRSettings.enabled)

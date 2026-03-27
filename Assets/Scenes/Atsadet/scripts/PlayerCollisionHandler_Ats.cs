@@ -138,13 +138,14 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
             if (currentsceneName != "Cyclist_lesson1") // No warnings for right cycling lane in lesson 1 as it's not relevant to the learning outcomes of that lesson
             {
                 lessonRoundWarningCount++;
+                Debug.Log("TESTCOUNT: " + lessonRoundWarningCount);
                 if (lessonRoundWarningCount >= lessonRoundMaxWarnings)
                 {
                     PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
                     isGameOver = true;
                     timeToRespawn = 3f;
                     lessonRoundWarningCount = 0; // reset warning count for next round
-                    StartCoroutine(GameOver2("You spent too long on the wrong side\nRemember to stick to the left side of the cycling lane", 1));
+                    StartCoroutine(GameOver2("You spent too long cycling on the wrong side\nRemember to stick to the left side of the cycling lane", 1));
                 }
             }
             

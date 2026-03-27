@@ -3,11 +3,13 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.XR;
 
 public class Checkpoint_2 : MonoBehaviour
 {   
     // public TextMeshProUGUI GoalText;
     public TutorialPanel tutorial;
+    public TutorialPanel tutorial_vr;
     private bool hasShownLaneTutorial = false;
     public Transform checkPointlocation_2;
     private string currentsceneName;
@@ -55,6 +57,8 @@ public class Checkpoint_2 : MonoBehaviour
                 StartCoroutine(spawnRandomNPCsRoutine_checkpoint2());
             }
             tutorial.ShowTutorial(displayMessage, 2);
+            if (XRSettings.enabled) 
+                tutorial_vr.ShowTutorial(displayMessage, 2);
             hasShownLaneTutorial = true; // Ensures it only freezes the game once
 
             // Update the manager on the player

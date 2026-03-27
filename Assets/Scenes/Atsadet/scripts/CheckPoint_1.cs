@@ -3,11 +3,13 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.XR;
 
 public class Checkpoint_1 : MonoBehaviour
 {   
     // public TextMeshProUGUI GoalText;
     public TutorialPanel tutorial;
+    public TutorialPanel tutorial_vr;
     private bool hasShownLaneTutorial = false;
     private string currentsceneName;
     private string displayMessage;
@@ -57,6 +59,8 @@ public class Checkpoint_1 : MonoBehaviour
             }
 
             tutorial.ShowTutorial(displayMessage, 1);
+            if (XRSettings.enabled) 
+                tutorial_vr.ShowTutorial(displayMessage, 1);
             hasShownLaneTutorial = true; // Ensures it only freezes the game once
 
             // SceneManager.LoadScene("Cyclist_lesson1_endpage");

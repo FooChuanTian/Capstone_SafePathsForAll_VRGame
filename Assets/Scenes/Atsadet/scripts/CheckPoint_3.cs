@@ -3,11 +3,13 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.XR;
 
 public class Checkpoint_3 : MonoBehaviour
 {   
     // public TextMeshProUGUI GoalText;
     public TutorialPanel tutorial;
+    public TutorialPanel tutorial_vr;
     private bool hasShownLaneTutorial = false;
     public Transform checkPointlocation_2;
     private string currentsceneName;
@@ -62,6 +64,8 @@ public class Checkpoint_3 : MonoBehaviour
             //     displayMessage = "Follow the tactile strips!";
             // }
             tutorial.ShowTutorial(displayMessage, 3);
+            if (XRSettings.enabled) 
+                tutorial_vr.ShowTutorial(displayMessage, 3);
             hasShownLaneTutorial = true; // Ensures it only freezes the game once
 
             // SceneManager.LoadScene("Cyclist_lesson1_endpage");

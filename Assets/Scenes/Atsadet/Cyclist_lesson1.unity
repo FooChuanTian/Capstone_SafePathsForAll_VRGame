@@ -12055,7 +12055,7 @@ MonoBehaviour:
   InstructionText: {fileID: 0}
   GameOverText: {fileID: 697516673}
   Checkpoint0: {fileID: 1008161880}
-  Player: {fileID: 0}
+  Player: {fileID: 8811246611572352621}
   isGameOver: 0
   FilledHeart1: {fileID: 0}
   FilledHeart2: {fileID: 0}

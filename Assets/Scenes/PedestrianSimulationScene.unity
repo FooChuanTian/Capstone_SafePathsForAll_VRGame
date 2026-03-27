@@ -3630,7 +3630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnCyclists
   CyclistObject: {fileID: 7400918100829728250, guid: ea0b3cf11014a504da092c4e9b4b65db, type: 3}
-  rb: {fileID: 1066859106}
+  rb: {fileID: 6385345511424022473, guid: ea0b3cf11014a504da092c4e9b4b65db, type: 3}
   FirstSpawn: 5
   cont: 1
 --- !u!4 &343390920

@@ -3335,6 +3335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb39029145f1641cf895343a821a9ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint1
+  trackingSpaceObj: {fileID: 388556463}
   tutorial: {fileID: 1104494622}
   tutorial_vr: {fileID: 444907708}
   PedestrianObject: {fileID: 400155438}
@@ -5893,6 +5894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3191ba9b5a91243fab41d29aef40f09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint_3
+  trackingSpaceObj: {fileID: 388556463}
   tutorial: {fileID: 1104494622}
   tutorial_vr: {fileID: 444907708}
   checkPointlocation_2: {fileID: 1472511115}
@@ -8074,6 +8076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af46da901b4d4f968cb261afbe8c9cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint_2
+  trackingSpaceObj: {fileID: 388556463}
   tutorial: {fileID: 1104494622}
   tutorial_vr: {fileID: 444907708}
   checkPointlocation_2: {fileID: 870048479}

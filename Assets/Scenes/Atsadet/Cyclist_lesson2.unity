@@ -2163,6 +2163,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2207154213089371542, guid: ac69127a6aed3bc43bd8eb65a99046d9, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1e516bc18e30342b8853b0c5fc1710ce, type: 3}
       propertyPath: m_LocalScale.x
       value: 7
@@ -2222,10 +2226,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1e516bc18e30342b8853b0c5fc1710ce, type: 3}
       propertyPath: m_TagString
       value: obstacle
-      objectReference: {fileID: 0}
-    - target: {fileID: 2207154213089371542, guid: ac69127a6aed3bc43bd8eb65a99046d9, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3008,6 +3008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb39029145f1641cf895343a821a9ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint1
+  trackingSpaceObj: {fileID: 1712991398}
   tutorial: {fileID: 1104494622}
   tutorial_vr: {fileID: 37131671}
   PedestrianObject: {fileID: 214576705}
@@ -5776,6 +5777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3191ba9b5a91243fab41d29aef40f09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint_3
+  trackingSpaceObj: {fileID: 1712991398}
   tutorial: {fileID: 1104494622}
   tutorial_vr: {fileID: 37131671}
   checkPointlocation_2: {fileID: 656800197}
@@ -7651,6 +7653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af46da901b4d4f968cb261afbe8c9cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint_2
+  trackingSpaceObj: {fileID: 1712991398}
   tutorial: {fileID: 1104494622}
   tutorial_vr: {fileID: 37131671}
   checkPointlocation_2: {fileID: 870048479}

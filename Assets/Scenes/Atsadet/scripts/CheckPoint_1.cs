@@ -7,6 +7,7 @@ using UnityEngine.XR;
 
 public class Checkpoint_1 : MonoBehaviour
 {   
+    public Transform trackingSpaceObj;
     // public TextMeshProUGUI GoalText;
     public TutorialPanel tutorial;
     public TutorialPanel tutorial_vr;
@@ -33,6 +34,8 @@ public class Checkpoint_1 : MonoBehaviour
     {
         currentsceneName = SceneManager.GetActiveScene().name; // Get the current scene name from the GameNavigationManager
         Debug.Log("TEST:Current scene: " + currentsceneName); // Debug log to check the current scene name
+        trackingSpaceObj.localPosition = new Vector3(0, 10f, 0);   //THIS LINE
+        trackingSpaceObj.localRotation = Quaternion.Euler(0, -90, 0);
     }
 
     void OnTriggerEnter(Collider collision)

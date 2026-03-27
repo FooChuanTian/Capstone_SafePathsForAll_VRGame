@@ -3149,6 +3149,7 @@ MonoBehaviour:
   PedestrianObject: {fileID: 400155438}
   rb: {fileID: 400155440}
   GoalText: {fileID: 1043149716}
+  GoalText_vr: {fileID: 697516673}
   pedestrianNPCObject: {fileID: 0}
 --- !u!65 &572482373
 BoxCollider:

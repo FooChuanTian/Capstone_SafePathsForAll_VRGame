@@ -26,6 +26,7 @@ public class Checkpoint_1 : MonoBehaviour
     };
     float rnd_velo;
     public TextMeshProUGUI GoalText;
+    public TextMeshProUGUI GoalText_vr;
     public GameObject pedestrianNPCObject;
 
     void Start()
@@ -42,11 +43,19 @@ public class Checkpoint_1 : MonoBehaviour
             {
                 displayMessage = "Pedestrian lane may be empty but as a cyclist you should stick to the cyclist lane";
                 GoalText.text = "Keep to the cyclist lane";
+                if (XRSettings.enabled)
+                {
+                    GoalText_vr.text = "Keep to the cyclist lane";
+                }
             }
             else if (currentsceneName == "Cyclist_lesson2") // Keep to left of cyclist lane
             {
                 displayMessage = "The right side of the cyclist lane may be empty but always keep left to practice good cycling habits";
                 GoalText.text = "Keep to the left side of the cyclist lane";
+                if (XRSettings.enabled)
+                {
+                    GoalText_vr.text = "Keep to the left side of the cyclist lane";
+                }
                 runLesson2Stage1();
                 StartCoroutine(spawnRandomNPCsRoutine_checkpoint1());
             }
@@ -54,6 +63,10 @@ public class Checkpoint_1 : MonoBehaviour
             {
                 displayMessage = "Look out for our speed-guide tactile strips ahead!\nFollow them to practice navigating crowded areas safely\nYellow means slow down and red means stop";
                 GoalText.text = "Follow the tactile strips to navigate crowded areas safely";
+                if (XRSettings.enabled)
+                {
+                    GoalText_vr.text = "Follow the tactile strips to navigate crowded areas safely";
+                }
                 runLesson3Stage1();
                 StartCoroutine(spawnRandomNPCsRoutine_checkpoint1());
             }

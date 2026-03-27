@@ -2489,6 +2489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   tutorial: {fileID: 1104494622}
+  tutorial_vr: {fileID: 444907708}
   initialCheckpointLocation: {fileID: 0}
 --- !u!65 &408913144
 BoxCollider:

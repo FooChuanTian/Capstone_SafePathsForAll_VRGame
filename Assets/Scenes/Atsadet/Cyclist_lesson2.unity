@@ -3009,7 +3009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint1
   tutorial: {fileID: 1104494622}
-  tutorial_vr: {fileID: 0}
+  tutorial_vr: {fileID: 37131671}
   PedestrianObject: {fileID: 214576705}
   rb: {fileID: 214576706}
   GoalText: {fileID: 1043149716}

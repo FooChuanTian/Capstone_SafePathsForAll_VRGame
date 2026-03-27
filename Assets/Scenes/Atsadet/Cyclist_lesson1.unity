@@ -4135,11 +4135,6 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 5568758620505594007, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
   m_PrefabInstance: {fileID: 8811246611572352617}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &851455941 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5568758620505594000, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
-  m_PrefabInstance: {fileID: 8811246611572352617}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &870048478
 GameObject:
   m_ObjectHideFlags: 0
@@ -5696,6 +5691,7 @@ MonoBehaviour:
   CyclistObject: {fileID: 1481928014}
   rb: {fileID: 1481928017}
   pedestrianNPCObject: {fileID: 214576705}
+  GoalText: {fileID: 697516673}
 --- !u!1 &1144542636
 GameObject:
   m_ObjectHideFlags: 0
@@ -7368,7 +7364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPositionManager_Ats
   PreviousCheckpoint: {fileID: 1008161880}
-  Player: {fileID: 851455941}
+  Player: {fileID: 1564351413}
 --- !u!114 &1564351415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7876,6 +7872,7 @@ MonoBehaviour:
   PedestrianObject: {fileID: 400155438}
   rb: {fileID: 400155440}
   pedestrianNPCObject: {fileID: 214576705}
+  GoalText: {fileID: 697516673}
 --- !u!65 &1636692969
 BoxCollider:
   m_ObjectHideFlags: 0

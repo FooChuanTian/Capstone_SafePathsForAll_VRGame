@@ -1142,7 +1142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2759f9699a23694a818620726e833b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPositionManager_Pedestrian
-  player: {fileID: 143719425}
+  player: {fileID: 8817339661084335919}
 --- !u!114 &143719429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6787,7 +6787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LessonIntro_Pedestrian
   tutorial: {fileID: 1104494622}
-  tutorial_vr: {fileID: 0}
+  tutorial_vr: {fileID: 1612188662}
   introMessage: Stay alert! If your phone buzzes while walking, press X to put it
     away. You'll be tested on how quickly you can dismiss distractions. Don't let
     your phone get you hurt!
@@ -11392,6 +11392,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ad4f1ddee798f45a20be4efda35c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &8817339661084335919 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5568758620505594000, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
+  m_PrefabInstance: {fileID: 8817339661084335916}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9043158810768337518
 PrefabInstance:
   m_ObjectHideFlags: 0

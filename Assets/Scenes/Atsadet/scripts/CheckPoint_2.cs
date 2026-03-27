@@ -17,10 +17,11 @@ public class Checkpoint_2 : MonoBehaviour
     private GameObject Clone;
     private List<Vector3> spawnPoints = new List<Vector3>
     {
-        new Vector3(0, 1, 35),
+        new Vector3(-9, 1, 35),
         new Vector3(-11, 1, 43),
         new Vector3(-15, 1, 50),
         new Vector3(-7, 1, 54),
+        new Vector3(-8, 1, 60),
         new Vector3(-9, 1, 64)
     };
     public GameObject pedestrianNPCObject;
@@ -90,7 +91,8 @@ public class Checkpoint_2 : MonoBehaviour
                 anim.speed = UnityEngine.Random.Range(0.8f, 1.2f);
             }
             Rigidbody cloneRb = Clone.GetComponent<Rigidbody>();
-            float rnd_velo = UnityEngine.Random.Range(-0.5f, -1.0f);
+            // float rnd_velo = UnityEngine.Random.Range(-0.5f, -1.0f);
+            float rnd_velo = -0.5f;
             Clone.AddComponent<NPCStraight_Ats>();
             Clone.GetComponent<NPCStraight_Ats>().gb = Clone.gameObject;
             Clone.GetComponent<NPCStraight_Ats>().velocity = rnd_velo;

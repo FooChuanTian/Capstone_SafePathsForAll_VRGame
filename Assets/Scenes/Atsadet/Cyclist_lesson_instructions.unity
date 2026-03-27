@@ -638,7 +638,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 20}
   m_SizeDelta: {x: 500, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &542372160
@@ -661,31 +661,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Mission
-
-    - Protect Pebbles and bring her back to her family
-
-    -
-    Learn the rules of path safety to earn more points later
+  m_text: 'Good job getting past the first level!
 
 
-    Rules
-
-    - Follow
-    the instructions given at each checkpoint
-
-    - Don''t collide into any pedestrians
-    or cyclist
+    However, it seems like you
+    still have much to learn about staying safe on shared paths...
 
 
-    Tools
+    The following
+    levels will teach you how to keep yourself and others safe while cycling on shared
+    paths!
 
-    - Use your bell when needed
 
-    - Unlimited tries
-
-    -
-    Checkpoints save progress
+    Happy Learning!
 
 
     Press X to continue'
@@ -723,7 +711,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1303,31 +1291,22 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Mission
-
-    - Protect Pebbles and bring her back to her family
-
-    -
-    Learn the rules of path safety to earn more points later
+  m_text: 'Good job getting past the first level!
 
 
-    Rules
-
-    - Follow
-    the instructions given at each checkpoint
-
-    - Don''t collide into any pedestrians
-    or cyclist
+    However, it seems like you
+    still have much to learn about staying safe on shared paths...
 
 
-    Tools
+    The following
+    levels will teach you how to keep yourself and others safe while cycling on shared
+    paths!
 
-    - Use your bell when needed
 
-    - Unlimited tries
+    Happy Learning!
 
-    -
-    Checkpoints save progress'
+
+    Press X to continue'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

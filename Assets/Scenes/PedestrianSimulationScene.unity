@@ -3069,6 +3069,7 @@ MonoBehaviour:
   TimeStopText: {fileID: 0}
   SpeedPenaltyText: {fileID: 0}
   LivesLeftText: {fileID: 1532194461}
+  scoreboardEntries: []
 --- !u!1001 &372972741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9854,6 +9855,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1446312500}
   m_CullTransparentMesh: 1
+--- !u!1001 &1480854886
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1100520737582866794, guid: 81689f36662f14b89aa398f13709a6a3, type: 3}
+      propertyPath: m_Name
+      value: environment_root(simulation1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445790047980790164, guid: 81689f36662f14b89aa398f13709a6a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445790047980790164, guid: 81689f36662f14b89aa398f13709a6a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445790047980790164, guid: 81689f36662f14b89aa398f13709a6a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445790047980790164, guid: 81689f36662f14b89aa398f13709a6a3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445790047980790164, guid: 81689f36662f14b89aa398f13709a6a3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445790047980790164, guid: 81689f36662f14b89aa398f13709a6a3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445790047980790164, guid: 81689f36662f14b89aa398f13709a6a3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445790047980790164, guid: 81689f36662f14b89aa398f13709a6a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445790047980790164, guid: 81689f36662f14b89aa398f13709a6a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445790047980790164, guid: 81689f36662f14b89aa398f13709a6a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9137473477599648191, guid: 81689f36662f14b89aa398f13709a6a3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 6303297285991217256, guid: 81689f36662f14b89aa398f13709a6a3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: 81689f36662f14b89aa398f13709a6a3, type: 3}
 --- !u!1 &1480870921
 GameObject:
   m_ObjectHideFlags: 0
@@ -11589,6 +11653,7 @@ MonoBehaviour:
   TimeStopText: {fileID: 0}
   SpeedPenaltyText: {fileID: 0}
   LivesLeftText: {fileID: 538397488}
+  scoreboardEntries: []
 --- !u!1 &1783752073
 GameObject:
   m_ObjectHideFlags: 0
@@ -12050,6 +12115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OpenScoreBoard
   ScoreBoardObject: {fileID: 1748053172}
   ScoreBoardVR: {fileID: 359248921}
+  isPedestrianSimulation: 1
 --- !u!65 &1868787801
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13516,3 +13582,4 @@ SceneRoots:
   - {fileID: 1871606355}
   - {fileID: 1066859101}
   - {fileID: 1105341543}
+  - {fileID: 1480854886}

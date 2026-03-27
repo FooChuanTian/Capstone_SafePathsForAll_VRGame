@@ -64,7 +64,7 @@ public class Checkpoint_1 : MonoBehaviour
             }
             else if (currentsceneName == "Cyclist_lesson3") // Follow the tactile strips
             {
-                displayMessage = "Look out for our speed-guide tactile strips ahead!\nFollow them to practice navigating crowded areas safely\nYellow means slow down and red means stop";
+                displayMessage = "Look out for our speed-guide tactile strips ahead!\nFollow them to practice navigating crowded areas safely\nYellow means slow down (<10km/h) and red means slow down more (<6km/h)!";
                 GoalText.text = "Follow the tactile strips to navigate crowded areas safely";
                 if (XRSettings.enabled)
                 {

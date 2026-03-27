@@ -60,7 +60,7 @@ public class Checkpoint_2 : MonoBehaviour
             }
             else if (currentsceneName == "Cyclist_lesson3") // Follow the tactile strips
             {
-                displayMessage = "Obstacles may be hard to tell from afar\nTactile strips help to alert you earlier so you have ample time to react";
+                displayMessage = "Tactile strips tell you to slow down so you have ample time to react.\n Regardless, ensure that you never travel above 25km/h on cycling paths!";
                 GoalText.text = "Follow the tactile strips to navigate crowded areas safely";
                 runLesson3Stage2();
                 StartCoroutine(spawnRandomNPCsRoutine_checkpoint2());

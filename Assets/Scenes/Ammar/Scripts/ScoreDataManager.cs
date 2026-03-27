@@ -10,7 +10,8 @@ public class ScoreDataManager : MonoBehaviour
 
     private string pedestrianCSVPath;
     private string cyclistCSVPath;
-    private string playerID;
+    private string currentPedestrianID;
+    private string currentCyclistID;
 
     void Awake()
     {
@@ -18,26 +19,12 @@ public class ScoreDataManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            InitialisePlayerID();
             InitialiseCSVFiles();
         }
         else
         {
             Destroy(gameObject);
         }
-    }
-
-    void InitialisePlayerID()
-    {
-        // Generate pedestrian ID (will be used for pedestrian sessions)
-        int nextPedID = PlayerPrefs.GetInt("NextPedestrianID", 1);
-        playerID = "P_" + nextPedID.ToString("D4"); // P_0001, P_0002, etc.
-
-        // Increment for next pedestrian session
-        PlayerPrefs.SetInt("NextPedestrianID", nextPedID + 1);
-        PlayerPrefs.Save();
-
-        UnityEngine.Debug.Log("[ScoreDataManager] Pedestrian ID initialized: " + playerID);
     }
 
     void InitialiseCSVFiles()
@@ -75,16 +62,51 @@ public class ScoreDataManager : MonoBehaviour
         }
     }
 
+    private string GeneratePedestrianID()
+    {
+        // Generate a new pedestrian ID only when needed
+        int nextPedID = PlayerPrefs.GetInt("NextPedestrianID", 1);
+        string newID = "P_" + nextPedID.ToString("D4");
+
+        // Increment for next pedestrian session
+        PlayerPrefs.SetInt("NextPedestrianID", nextPedID + 1);
+        PlayerPrefs.Save();
+
+        UnityEngine.Debug.Log("[ScoreDataManager] Generated Pedestrian ID: " + newID);
+        return newID;
+    }
+
+    private string GenerateCyclistID()
+    {
+        // Generate a new cyclist ID only when needed
+        int nextCycID = PlayerPrefs.GetInt("NextCyclistID", 1);
+        string newID = "C_" + nextCycID.ToString("D4");
+
+        // Increment for next cyclist session
+        PlayerPrefs.SetInt("NextCyclistID", nextCycID + 1);
+        PlayerPrefs.Save();
+
+        UnityEngine.Debug.Log("[ScoreDataManager] Generated Cyclist ID: " + newID);
+        return newID;
+    }
+
     public string GetPlayerID()
     {
-        return playerID;
+        // Return the current active ID (pedestrian or cyclist)
+        if (!string.IsNullOrEmpty(currentPedestrianID))
+            return currentPedestrianID;
+        if (!string.IsNullOrEmpty(currentCyclistID))
+            return currentCyclistID;
+        return "UNKNOWN";
     }
 
     public void SetPlayerName(string name)
     {
-        playerID = name;
-        PlayerPrefs.SetString("PlayerID", playerID);
-        PlayerPrefs.Save();
+        // This method can be used to override IDs with real names if needed
+        if (!string.IsNullOrEmpty(currentPedestrianID))
+            currentPedestrianID = name;
+        if (!string.IsNullOrEmpty(currentCyclistID))
+            currentCyclistID = name;
     }
 
     public void SavePedestrianScore(int totalScore, int livesLeft, int secondsCorrect, int secondsWrong, int phoneOpened, bool isFirstSim)
@@ -93,59 +115,50 @@ public class ScoreDataManager : MonoBehaviour
 
         if (isFirstSim)
         {
+            // Generate new pedestrian ID ONLY when first simulation starts
+            currentPedestrianID = GeneratePedestrianID();
+
             // First simulation - create new row with first data filled, last data empty
-            string row = $"{playerID},{totalScore},{livesLeft},{secondsCorrect},{secondsWrong},{phoneOpened},{timestamp},,,,,,,\n";
+            string row = $"{currentPedestrianID},{totalScore},{livesLeft},{secondsCorrect},{secondsWrong},{phoneOpened},{timestamp},,,,,,,\n";
             File.AppendAllText(pedestrianCSVPath, row);
-            UnityEngine.Debug.Log("[ScoreDataManager] Pedestrian FIRST score saved for ID: " + playerID);
+            UnityEngine.Debug.Log("[ScoreDataManager] Pedestrian FIRST score saved for ID: " + currentPedestrianID);
         }
         else
         {
             // Last simulation - update existing row with last data
             UpdatePedestrianCSVRow(timestamp, totalScore, livesLeft, secondsCorrect, secondsWrong, phoneOpened);
-            UnityEngine.Debug.Log("[ScoreDataManager] Pedestrian LAST score updated for ID: " + playerID);
+            UnityEngine.Debug.Log("[ScoreDataManager] Pedestrian LAST score updated for ID: " + currentPedestrianID);
         }
 
         // Update scoreboard
         string simRun = isFirstSim ? "first" : "last";
-        UpdateScoreboard("pedestrian", playerID, totalScore, timestamp, simRun);
+        UpdateScoreboard("pedestrian", currentPedestrianID, totalScore, timestamp, simRun);
     }
 
     public void SaveCyclistScore(int totalScore, int livesLeft, int secondsCorrect, int secondsWrong, float timeToSlow, float timeToStop, int speedPenalty, bool isFirstSim)
     {
         string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        string cyclistID;
 
         if (isFirstSim)
         {
-            // Generate new cyclist ID for first simulation
-            int nextCycID = PlayerPrefs.GetInt("NextCyclistID", 1);
-            cyclistID = "C_" + nextCycID.ToString("D4");
-
-            // Save this ID temporarily for the last simulation
-            PlayerPrefs.SetString("CurrentCyclistID", cyclistID);
-
-            // Increment for next cyclist
-            PlayerPrefs.SetInt("NextCyclistID", nextCycID + 1);
-            PlayerPrefs.Save();
+            // Generate new cyclist ID ONLY when first simulation starts
+            currentCyclistID = GenerateCyclistID();
 
             // First simulation - create new row with first data filled, last data empty
-            string row = $"{cyclistID},{totalScore},{livesLeft},{secondsCorrect},{secondsWrong},{timeToSlow:F2},{timeToStop:F2},{speedPenalty},{timestamp},,,,,,,,\n";
+            string row = $"{currentCyclistID},{totalScore},{livesLeft},{secondsCorrect},{secondsWrong},{timeToSlow:F2},{timeToStop:F2},{speedPenalty},{timestamp},,,,,,,,\n";
             File.AppendAllText(cyclistCSVPath, row);
-            UnityEngine.Debug.Log("[ScoreDataManager] Cyclist FIRST score saved for ID: " + cyclistID);
+            UnityEngine.Debug.Log("[ScoreDataManager] Cyclist FIRST score saved for ID: " + currentCyclistID);
         }
         else
         {
-            // Use the same ID from first simulation
-            cyclistID = PlayerPrefs.GetString("CurrentCyclistID", "C_0001");
-
             // Last simulation - update existing row with last data
-            UpdateCyclistCSVRow(cyclistID, timestamp, totalScore, livesLeft, secondsCorrect, secondsWrong, timeToSlow, timeToStop, speedPenalty);
-            UnityEngine.Debug.Log("[ScoreDataManager] Cyclist LAST score updated for ID: " + cyclistID);
+            UpdateCyclistCSVRow(currentCyclistID, timestamp, totalScore, livesLeft, secondsCorrect, secondsWrong, timeToSlow, timeToStop, speedPenalty);
+            UnityEngine.Debug.Log("[ScoreDataManager] Cyclist LAST score updated for ID: " + currentCyclistID);
         }
 
         // Update scoreboard
         string simRun = isFirstSim ? "first" : "last";
-        UpdateScoreboard("cyclist", cyclistID, totalScore, timestamp, simRun);
+        UpdateScoreboard("cyclist", currentCyclistID, totalScore, timestamp, simRun);
     }
 
     private void UpdatePedestrianCSVRow(string timestamp, int totalScore, int livesLeft, int secondsCorrect, int secondsWrong, int phoneOpened)
@@ -157,7 +170,7 @@ public class ScoreDataManager : MonoBehaviour
         for (int i = 1; i < lines.Length; i++)
         {
             string[] fields = lines[i].Split(',');
-            if (fields[0] == playerID)
+            if (fields[0] == currentPedestrianID)
             {
                 // Update the "Last" columns (indices 7-12)
                 fields[7] = totalScore.ToString();

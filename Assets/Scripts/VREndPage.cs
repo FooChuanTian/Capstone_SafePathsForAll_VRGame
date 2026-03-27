@@ -13,7 +13,7 @@ public class VREndPage : MonoBehaviour
         StartPedestrianLesson startPedestrian = new StartPedestrianLesson();
         if (OVRInput.GetDown(OVRInput.Button.Three) && acceptInput)
         {
-            startPedestrian.StartLesson();
+            startPedestrian.MoveOn();
         }
         else if (OVRInput.GetDown(OVRInput.Button.Four) && acceptInput)
         {

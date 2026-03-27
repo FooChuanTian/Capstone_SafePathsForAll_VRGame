@@ -107,20 +107,43 @@ public class ScoreBoardManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        // Add null checks at the start
+        if (livesManager == null || scoreManager == null)
+        {
+            UnityEngine.Debug.LogError("[ScoreBoardManager] livesManager or scoreManager is null in DisplayScore!");
+            return;
+        }
+
         int livesLeft = livesManager.NumLives;
         int secondsCorrect = scoreManager.SecondsOnCorrectLane;
         int secondsWrong = scoreManager.SecondsOnWrongLane;
 
-        WrongLaneScoreText.text = "" + secondsWrong;
-        CorrectLaneScoreText.text = "" + secondsCorrect;
-        LivesLeftText.text = "" + livesLeft;
+        // Add null checks for each text field
+        if (WrongLaneScoreText != null)
+            WrongLaneScoreText.text = "" + secondsWrong;
+        else
+            UnityEngine.Debug.LogError("[ScoreBoardManager] WrongLaneScoreText is NULL!");
+
+        if (CorrectLaneScoreText != null)
+            CorrectLaneScoreText.text = "" + secondsCorrect;
+        else
+            UnityEngine.Debug.LogError("[ScoreBoardManager] CorrectLaneScoreText is NULL!");
+
+        if (LivesLeftText != null)
+            LivesLeftText.text = "" + livesLeft;
+        else
+            UnityEngine.Debug.LogError("[ScoreBoardManager] LivesLeftText is NULL!");
 
         if (PhoneOpenedText)
         {
             int phoneOpened = scoreManager.PhoneOpened;
             PhoneOpenedText.text = "" + phoneOpened;
             int totalScore = (livesLeft * 10) + secondsCorrect - (secondsWrong * 5);
-            TotalScoreText.text = "" + totalScore;
+
+            if (TotalScoreText != null)
+                TotalScoreText.text = "" + totalScore;
+            else
+                UnityEngine.Debug.LogError("[ScoreBoardManager] TotalScoreText is NULL!");
         }
         else if (TimeSlowText && TimeStopText && SpeedPenaltyText)
         {
@@ -131,21 +154,49 @@ public class ScoreBoardManager : MonoBehaviour
             TimeStopText.text = "" + timeToStop;
             SpeedPenaltyText.text = "" + speedPenalty;
             int totalScore = (livesLeft * 10) + secondsCorrect - (secondsWrong * 10) - (int)(timeToSlow / 0.25f * 2) - (int)(timeToStop / 0.25f * 2) - speedPenalty;
-            TotalScoreText.text = "" + totalScore;
+
+            if (TotalScoreText != null)
+                TotalScoreText.text = "" + totalScore;
+            else
+                UnityEngine.Debug.LogError("[ScoreBoardManager] TotalScoreText is NULL!");
         }
     }
 
     public void DisplayScoreboard(string type)
     {
-        if (scoreboardEntries == null || scoreboardEntries.Length == 0 || ScoreDataManager.Instance == null) return;
+        UnityEngine.Debug.Log($"[ScoreBoardManager] DisplayScoreboard called with type: {type}");
+
+        if (scoreboardEntries == null)
+        {
+            UnityEngine.Debug.LogError("[ScoreBoardManager] scoreboardEntries is NULL!");
+            return;
+        }
+
+        if (scoreboardEntries.Length == 0)
+        {
+            UnityEngine.Debug.LogError("[ScoreBoardManager] scoreboardEntries.Length is 0!");
+            return;
+        }
+
+        if (ScoreDataManager.Instance == null)
+        {
+            UnityEngine.Debug.LogError("[ScoreBoardManager] ScoreDataManager.Instance is NULL!");
+            return;
+        }
 
         List<ScoreDataManager.ScoreEntry> entries = type == "pedestrian"
             ? ScoreDataManager.Instance.GetPedestrianScoreboard()
             : ScoreDataManager.Instance.GetCyclistScoreboard();
 
+        UnityEngine.Debug.Log($"[ScoreBoardManager] Found {entries.Count} entries to display");
+
         for (int i = 0; i < scoreboardEntries.Length; i++)
         {
-            if (scoreboardEntries[i] == null) continue;
+            if (scoreboardEntries[i] == null)
+            {
+                UnityEngine.Debug.LogWarning($"[ScoreBoardManager] scoreboardEntries[{i}] is NULL!");
+                continue;
+            }
 
             if (i < entries.Count)
             {
@@ -154,11 +205,14 @@ public class ScoreBoardManager : MonoBehaviour
                     ? entries[i].playerID.Substring(entries[i].playerID.Length - 8)
                     : entries[i].playerID;
                 scoreboardEntries[i].text = $"{i + 1}. {shortID} - {entries[i].score}";
+                UnityEngine.Debug.Log($"[ScoreBoardManager] Set entry {i}: {scoreboardEntries[i].text}");
             }
             else
             {
                 scoreboardEntries[i].text = $"{i + 1}. ---";
             }
         }
+
+        UnityEngine.Debug.Log("[ScoreBoardManager] DisplayScoreboard completed!");
     }
 }

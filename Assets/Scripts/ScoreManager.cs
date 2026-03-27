@@ -68,17 +68,20 @@ public class ScoreManager : MonoBehaviour
             if (CorrectLanes.Contains(CurrentLane))
             {
                 SecondsOnCorrectLane++;
-                CorrectLaneDebug.text = "Correct Lane: " + SecondsOnCorrectLane;
+                if (CorrectLaneDebug != null)
+                    CorrectLaneDebug.text = "Correct Lane: " + SecondsOnCorrectLane;
             }
             else if (AllLanes.Contains(CurrentLane))
             {
                 SecondsOnWrongLane++;
-                WrongLaneDebug.text = "Wrong Lane: " + SecondsOnWrongLane;
+                if (WrongLaneDebug != null)
+                    WrongLaneDebug.text = "Wrong Lane: " + SecondsOnWrongLane;
             }
             CurrentLane = null;
         }
 
-        currentSpeed = speedIndicator.SmoothSpeed;
+        if (speedIndicator != null)
+            currentSpeed = speedIndicator.SmoothSpeed;
         if (currentSpeed > OverallSpeedLimit)
         {
             MaximumSpeedPenalty += (int)(currentSpeed - OverallSpeedLimit) * 5;

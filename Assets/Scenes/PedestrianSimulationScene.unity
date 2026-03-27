@@ -1708,7 +1708,7 @@ PrefabInstance:
       objectReference: {fileID: 467094299}
     - target: {fileID: 3162065387456349882, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
       propertyPath: _groundDamping
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3162065387456349882, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
       propertyPath: _runningSpeedFactor

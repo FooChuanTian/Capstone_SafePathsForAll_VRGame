@@ -5782,7 +5782,7 @@ MonoBehaviour:
   CyclistObject: {fileID: 220668343}
   rb: {fileID: 220668346}
   pedestrianNPCObject: {fileID: 214576705}
-  GoalText: {fileID: 0}
+  GoalText: {fileID: 317436988}
 --- !u!1 &1134365663
 GameObject:
   m_ObjectHideFlags: 0
@@ -7657,7 +7657,7 @@ MonoBehaviour:
   PedestrianObject: {fileID: 214576705}
   rb: {fileID: 214576706}
   pedestrianNPCObject: {fileID: 214576705}
-  GoalText: {fileID: 0}
+  GoalText: {fileID: 317436988}
 --- !u!65 &1636692969
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8960,6 +8960,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905056914}
   m_CullTransparentMesh: 1
+--- !u!54 &1985489935 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 5568758620505594007, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
+  m_PrefabInstance: {fileID: 3879243334378267350}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2085884320
 GameObject:
   m_ObjectHideFlags: 0
@@ -10379,7 +10384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedIndicator
   SpeedText: {fileID: 2088047093}
-  rb: {fileID: 0}
+  rb: {fileID: 1985489935}
   tf: {fileID: 0}
   SmoothSpeed: 0
 --- !u!114 &3879243334378267357

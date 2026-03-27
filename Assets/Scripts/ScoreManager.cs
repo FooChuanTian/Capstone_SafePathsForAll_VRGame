@@ -85,7 +85,7 @@ public class ScoreManager : MonoBehaviour
             currentSpeed = speedIndicator.SmoothSpeed;
         if (currentSpeed > OverallSpeedLimit)
         {
-            MaximumSpeedPenalty += (int)(currentSpeed - OverallSpeedLimit) * 5;
+            MaximumSpeedPenalty += (int)(currentSpeed - OverallSpeedLimit);
         }
     }
 

@@ -2704,7 +2704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FinishLine_Pedestrian
   tutorial: {fileID: 1104494622}
-  tutorial_vr: {fileID: 0}
+  tutorial_vr: {fileID: 1612188662}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

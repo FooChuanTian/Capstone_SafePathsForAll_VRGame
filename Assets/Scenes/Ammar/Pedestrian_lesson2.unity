@@ -5918,8 +5918,8 @@ MonoBehaviour:
   gameOverSound: {fileID: 1379568623}
   backgroundMusic: {fileID: 900228637}
   warningSound: {fileID: 1144542637}
-  popup: {fileID: 921860915}
-  deathPopup: {fileID: 213086531}
+  popup: {fileID: 1442499644}
+  deathPopup: {fileID: 1479854760}
   deathSprite_HardPenalty: {fileID: 21300000, guid: f1985b43df1f84a9197fc5198debfbcf, type: 3}
   deathSprite_SoftPenalty: {fileID: 21300000, guid: a33cfb163442c4bd2aedc49a0ef0f044, type: 3}
   deathPopupImage: {fileID: 1627991993}

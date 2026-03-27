@@ -59,6 +59,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
+
     }
 
     void OnCollisionEnter(Collision collision)

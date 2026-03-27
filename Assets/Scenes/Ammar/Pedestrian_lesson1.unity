@@ -8183,6 +8183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LessonIntro_Pedestrian
   tutorial: {fileID: 0}
+  tutorial_vr: {fileID: 0}
   introMessage: Welcome! The white path is for pedestrians, and the red lane is for
     cyclists. Always stay on the pedestrian path!!
   phoneDistraction: {fileID: 0}

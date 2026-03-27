@@ -34,8 +34,8 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
     public AudioSource gameOverSoundEffectSource;
     public AudioSource backgroundMusicSource;
     private string currentsceneName;
-    private int slowDownAreaSpeedLimit = 80;
-    private int stopAreaSpeedLimit = 50;
+    private int slowDownAreaSpeedLimit = 10;
+    private int stopAreaSpeedLimit = 6;
     public Transform deathPopup;  // default sprite is type 0: Wrong lane
     public Image deathPopupImage;
     public Sprite deathSprite_HardPenalty;  //type 0 (Wrong lane/ Collision)

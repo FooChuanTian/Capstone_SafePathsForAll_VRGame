@@ -5896,8 +5896,8 @@ MonoBehaviour:
   tutorial: {fileID: 1104494622}
   tutorial_vr: {fileID: 444907708}
   checkPointlocation_2: {fileID: 1472511115}
-  CyclistObject: {fileID: 1481928014}
-  rb: {fileID: 1481928017}
+  CyclistObject: {fileID: 7400918100829728250, guid: ea0b3cf11014a504da092c4e9b4b65db, type: 3}
+  rb: {fileID: 6385345511424022473, guid: ea0b3cf11014a504da092c4e9b4b65db, type: 3}
   pedestrianNPCObject: {fileID: 214576705}
   GoalText: {fileID: 697516673}
 --- !u!1 &1144542636

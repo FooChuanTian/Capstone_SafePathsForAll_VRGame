@@ -3034,6 +3034,7 @@ MonoBehaviour:
   tutorial: {fileID: 1551268913}
   tutorial_vr: {fileID: 986945851}
   respawnPoint: {fileID: 572482376}
+  trackingSpaceObj: {fileID: 1114492910}
 --- !u!1001 &579077828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5424,6 +5425,7 @@ MonoBehaviour:
   bikeSpawnPoint: {fileID: 1393876196}
   npcSpeed: 20
   bikeSpeed: 30
+  trackingSpaceObj: {fileID: 1114492910}
 --- !u!1001 &1114492902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7790,6 +7792,7 @@ MonoBehaviour:
   bikePrefab: {fileID: 7400918100829728250, guid: 58eae5bc23cd85a48934ae57c5ad168b, type: 3}
   bikeSpawnPoint: {fileID: 590967719}
   bikeSpeed: 50
+  trackingSpaceObj: {fileID: 1114492910}
 --- !u!1 &1649650853
 GameObject:
   m_ObjectHideFlags: 0

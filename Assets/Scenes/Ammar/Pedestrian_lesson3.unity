@@ -3146,6 +3146,7 @@ MonoBehaviour:
   tutorial_vr: {fileID: 1612188662}
   respawnPoint: {fileID: 572482376}
   phoneDistraction: {fileID: 998401920}
+  trackingSpaceObj: {fileID: 1223431719}
 --- !u!1 &578798345
 GameObject:
   m_ObjectHideFlags: 0
@@ -5070,6 +5071,7 @@ MonoBehaviour:
   tutorial_vr: {fileID: 1612188662}
   respawnPoint: {fileID: 1109100656}
   phoneDistraction: {fileID: 998401920}
+  trackingSpaceObj: {fileID: 1223431719}
 --- !u!1 &1144542636
 GameObject:
   m_ObjectHideFlags: 0
@@ -7327,6 +7329,7 @@ MonoBehaviour:
   tutorial_vr: {fileID: 1612188662}
   respawnPoint: {fileID: 1636692972}
   phoneDistraction: {fileID: 998401920}
+  trackingSpaceObj: {fileID: 1223431719}
 --- !u!1 &1652043539
 GameObject:
   m_ObjectHideFlags: 0

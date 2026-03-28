@@ -2935,6 +2935,7 @@ MonoBehaviour:
   tutorial: {fileID: 1104494622}
   tutorial_vr: {fileID: 765203076}
   respawnPoint: {fileID: 572482376}
+  trackingSpaceObj: {fileID: 1764319985}
 --- !u!1001 &580105629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5124,6 +5125,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1599057551}
   npcSpeed: 70
+  trackingSpaceObj: {fileID: 1764319985}
 --- !u!1 &1144542636
 GameObject:
   m_ObjectHideFlags: 0
@@ -8158,6 +8160,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1870632324}
   - {fileID: 62685979}
+  trackingSpaceObj: {fileID: 1764319985}
   npcSpeed: 15
 --- !u!1 &1652762949
 GameObject:

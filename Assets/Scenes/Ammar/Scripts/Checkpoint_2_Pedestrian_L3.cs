@@ -9,6 +9,12 @@ public class Checkpoint_2_Pedestrian_L3 : MonoBehaviour
     public PhoneDistraction_Pedestrian phoneDistraction;
 
     private bool hasTriggered = false;
+    public Transform trackingSpaceObj;
+    void Start()
+    {
+        trackingSpaceObj.localPosition = new Vector3(0, 10f, 0);
+        trackingSpaceObj.localRotation = Quaternion.Euler(0, -90, 0);
+    }
 
     void OnTriggerEnter(Collider other)
     {

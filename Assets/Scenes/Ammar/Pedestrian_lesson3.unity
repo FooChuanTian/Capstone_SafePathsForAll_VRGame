@@ -4284,7 +4284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e78b20a7fa61e499bab136f4084e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhoneDistraction_Pedestrian
-  phoneToggle: {fileID: 1240974506}
+  phoneToggle: {fileID: 143719429}
   npcPrefab: {fileID: 4624936801818396943, guid: 5a1031a111eaa994d96a90508120eb90, type: 3}
   npcSpawnPoint_CP2: {fileID: 1914137892}
   npcSpawnPoint_CP3: {fileID: 1153901752}

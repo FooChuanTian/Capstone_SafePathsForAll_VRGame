@@ -1696,11 +1696,11 @@ GameObject:
   - component: {fileID: 234451314}
   - component: {fileID: 234451313}
   - component: {fileID: 234451312}
-  - component: {fileID: 234451311}
   - component: {fileID: 234451310}
   - component: {fileID: 234451309}
   - component: {fileID: 234451308}
   - component: {fileID: 234451307}
+  - component: {fileID: 234451316}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Player
@@ -1716,14 +1716,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234451304}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.61215514, z: 0, w: 0.7907377}
   m_LocalPosition: {x: 0, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1143545368}
   m_Father: {fileID: 383982534}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -75.491, z: 0}
 --- !u!114 &234451307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1798,26 +1798,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPositionManager
   PreviousCheckpoint: {fileID: 1008161880}
   Player: {fileID: 234451305}
---- !u!114 &234451311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234451304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0529e53ffd0b8e4eaa76ae14e4c129d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerGroundCollision
-  WhichLaneText: {fileID: 423900280}
-  InstructionText: {fileID: 0}
-  GameOverText: {fileID: 882530921}
-  Checkpoint0: {fileID: 1008161880}
-  Player: {fileID: 234451305}
-  warningCount: 0
-  maxWarnings: 200
-  isGameOver: 0
 --- !u!54 &234451312
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1828,7 +1808,7 @@ Rigidbody:
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1840,10 +1820,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!136 &234451313
 CapsuleCollider:
@@ -1924,6 +1904,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234451304}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &234451316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234451304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8119297844c86f74d904a2e3f2c6d22b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrackingSpaceOrientationStart
+  trackingSpaceObj: {fileID: 2087322502}
 --- !u!1 &235424124
 GameObject:
   m_ObjectHideFlags: 0
@@ -18965,6 +18958,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1980111260}
   m_CullTransparentMesh: 1
+--- !u!1 &1986594817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5568758620505594004, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
+  m_PrefabInstance: {fileID: 659754882567554930}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1986594821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986594817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0529e53ffd0b8e4eaa76ae14e4c129d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerGroundCollision
+  WhichLaneText: {fileID: 423900280}
+  InstructionText: {fileID: 0}
+  GameOverText: {fileID: 882530921}
+  Checkpoint0: {fileID: 1008161880}
+  Player: {fileID: 234451305}
+  warningCount: 0
+  maxWarnings: 200
+  isGameOver: 0
 --- !u!1 &1993791054
 GameObject:
   m_ObjectHideFlags: 0
@@ -21573,6 +21591,10 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5568758620505594007, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6561596850968630206, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
       propertyPath: _leftEyeAnchor
       value: 
@@ -21603,7 +21625,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5568758619435239319, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
       insertIndex: 0
       addedObject: {fileID: 234451305}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5568758620505594004, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1986594821}
   m_SourcePrefab: {fileID: 100100000, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
 --- !u!1001 &1010302906473886256
 PrefabInstance:

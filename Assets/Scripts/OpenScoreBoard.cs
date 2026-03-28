@@ -24,9 +24,9 @@ public class OpenScoreBoard : MonoBehaviour
         }
 
         // Show or hide scoreboard list based on whether it's the final sim
-        Transform scoreboardList = ScoreBoardObject.Find("ScoreboardList");
-        if (scoreboardList != null)
-            scoreboardList.gameObject.SetActive(isFinalSim);
+        //Transform scoreboardList = ScoreBoardObject.Find("ScoreboardList");
+        //if (scoreboardList != null)
+            //scoreboardList.gameObject.SetActive(isFinalSim);
 
         // Refresh scoreboard entries now that it's visible
         ScoreBoardManager manager = ScoreBoardObject.GetComponent<ScoreBoardManager>();

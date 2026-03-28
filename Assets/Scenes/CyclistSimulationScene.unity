@@ -1377,7 +1377,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &132277043
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1628,6 +1628,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Otter (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
+      propertyPath: m_TagString
+      value: pedestrian
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1697,7 +1701,6 @@ GameObject:
   - component: {fileID: 234451309}
   - component: {fileID: 234451308}
   - component: {fileID: 234451307}
-  - component: {fileID: 234451306}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Player
@@ -1721,28 +1724,6 @@ Transform:
   - {fileID: 1143545368}
   m_Father: {fileID: 383982534}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &234451306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234451304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e527928ee1ec03645803450218484ac9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScoreBoardManager
-  player: {fileID: 234451304}
-  TotalScoreText: {fileID: 0}
-  WrongLaneScoreText: {fileID: 0}
-  CorrectLaneScoreText: {fileID: 0}
-  PhoneOpenedText: {fileID: 0}
-  TimeSlowText: {fileID: 0}
-  TimeStopText: {fileID: 0}
-  SpeedPenaltyText: {fileID: 0}
-  LivesLeftText: {fileID: 0}
-  scoreboardEntries: []
 --- !u!114 &234451307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1786,7 +1767,7 @@ MonoBehaviour:
   EmptyHeart1: {fileID: 109593323}
   EmptyHeart2: {fileID: 497231756}
   EmptyHeart3: {fileID: 2113457504}
-  NumLives: 0
+  NumLives: 3
 --- !u!114 &234451309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11128,6 +11109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Otter (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
+      propertyPath: m_TagString
+      value: pedestrian
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -11318,7 +11303,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1096211548}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e527928ee1ec03645803450218484ac9, type: 3}
   m_Name: 
@@ -17303,6 +17288,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Otter (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
+      propertyPath: m_TagString
+      value: pedestrian
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -17489,6 +17478,10 @@ PrefabInstance:
     - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
       propertyPath: m_Name
       value: Otter (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
+      propertyPath: m_TagString
+      value: pedestrian
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18789,6 +18782,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Otter (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
+      propertyPath: m_TagString
+      value: pedestrian
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19623,6 +19620,10 @@ PrefabInstance:
     - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
       propertyPath: m_Name
       value: Otter (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
+      propertyPath: m_TagString
+      value: pedestrian
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21216,6 +21217,10 @@ PrefabInstance:
     - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
       propertyPath: m_Name
       value: Otter (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
+      propertyPath: m_TagString
+      value: pedestrian
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

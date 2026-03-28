@@ -483,6 +483,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Otter (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
+      propertyPath: m_TagString
+      value: pedestrian
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1552,6 +1556,10 @@ PrefabInstance:
     - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
       propertyPath: m_Name
       value: Otter (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
+      propertyPath: m_TagString
+      value: pedestrian
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4443,6 +4451,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Otter (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
+      propertyPath: m_TagString
+      value: pedestrian
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4839,6 +4851,10 @@ PrefabInstance:
     - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
       propertyPath: m_Name
       value: Otter (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
+      propertyPath: m_TagString
+      value: pedestrian
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7910,6 +7926,10 @@ PrefabInstance:
     - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
       propertyPath: m_Name
       value: Otter (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
+      propertyPath: m_TagString
+      value: pedestrian
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13167,6 +13187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Otter (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
+      propertyPath: m_TagString
+      value: pedestrian
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16558,6 +16582,7 @@ GameObject:
   - component: {fileID: 1665045893}
   - component: {fileID: 1665045892}
   - component: {fileID: 1665045899}
+  - component: {fileID: 1665045900}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Player
@@ -16764,6 +16789,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PhoneToggle
   PhoneImage: {fileID: 332778559}
   targetImage: {fileID: 0}
+--- !u!114 &1665045900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665045890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8119297844c86f74d904a2e3f2c6d22b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrackingSpaceOrientationStart
+  trackingSpaceObj: {fileID: 467094304}
 --- !u!1 &1687918987
 GameObject:
   m_ObjectHideFlags: 0
@@ -19742,6 +19780,10 @@ PrefabInstance:
     - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
       propertyPath: m_Name
       value: Otter (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2617262771767146377, guid: 6fd25a8d3adc1364398e9e47a20c8ec4, type: 3}
+      propertyPath: m_TagString
+      value: pedestrian
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

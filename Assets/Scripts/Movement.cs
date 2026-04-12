@@ -43,21 +43,31 @@ public class Movement : MonoBehaviour
         // Press Right arrow key to pan the camera to the right.
         if (Keyboard.current.rightArrowKey.isPressed) Camera.main.transform.Translate(2, 0, 0);
     }
+
+    /* void OnCollisionEnter(Collision collision)
+     {
+         Debug.Log("Entered");
+         if (collision.gameObject.CompareTag("Terrain"))
+         {
+             isGrounded = true;
+         }
+     }
+
+     void OnCollisionExit(Collision collision)
+     {
+         Debug.Log("Exited");
+         if (collision.gameObject.CompareTag("Terrain"))
+         {
+             isGrounded = false;
+         }
+     }*/
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Entered");
-        if (collision.gameObject.CompareTag("Terrain"))
-        {
-            isGrounded = true;
-        }
+        isGrounded = true;
     }
 
     void OnCollisionExit(Collision collision)
     {
-        Debug.Log("Exited");
-        if (collision.gameObject.CompareTag("Terrain"))
-        {
-            isGrounded = false;
-        }
+        isGrounded = false;
     }
 }

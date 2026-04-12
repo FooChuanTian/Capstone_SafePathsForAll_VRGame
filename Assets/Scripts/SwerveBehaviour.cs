@@ -33,13 +33,15 @@ public class SwerveBehaviour : MonoBehaviour
             if (delay_remaining <= 0) {
                 Debug.Log("Swerving...");
                 float target_z = collision.gameObject.GetComponent<Transform>().position.z - pos_start.z;
+                gb.transform.Rotate(0.0f, target_z, 0.0f, Space.Self);
                 Vector3 pos_diff = new Vector3(0, 0, -target_z).normalized;
-                rb.AddForce(pos_diff*30, ForceMode.Acceleration);
+                rb.AddForce(pos_diff*100, ForceMode.Acceleration);
                 delay_remaining = 5f;
                 delayBool = false;
             }
         }
     }
+
 
     // Update is called once per frame
     void Update()

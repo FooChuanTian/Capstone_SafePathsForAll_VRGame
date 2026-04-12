@@ -12,7 +12,13 @@ TagManager:
   - pedestrian_lane_left
   - pedestrian_lane_right
   - checkpoint
+  - finish
   - pedestrian
+  - checkpoint2
+  - obstacle
+  - speedtrackerStop
+  - speedtrackerSlow
+  - npc
   layers:
   - Default
   - TransparentFX
@@ -20,9 +26,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - BlockPlayerWall
+  - NPC
   - 
   - 
   - 

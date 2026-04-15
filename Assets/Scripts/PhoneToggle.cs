@@ -24,7 +24,7 @@ public class PhoneToggle : MonoBehaviour
         if (Keyboard.current.xKey.wasPressedThisFrame || OVRInput.GetDown(OVRInput.Button.Four))
         {
             //DisplayRandomImage();
-            phoneActive = !phoneActive;
+            phoneActive = !(PhoneImage.gameObject.activeSelf);
             PhoneImage.gameObject.SetActive(phoneActive);
         }
     }

@@ -1,6 +1,5 @@
 ﻿using TMPro;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using Debug = UnityEngine.Debug;
 
@@ -21,50 +20,63 @@ public class ScoreBoardManager : MonoBehaviour
     private LivesManager livesManager;
     private bool scoreSaved = false;
     private string currentScoreboardType;
+    private bool componentsInitialized = false;
 
     void Awake()
     {
-        InitializeComponents();
+        Debug.Log("[ScoreBoardManager] Awake called");
     }
 
-private void InitializeComponents()
+    private void InitializeComponents()
     {
+        // Prevent multiple initializations
+        if (componentsInitialized && scoreManager != null && livesManager != null)
+        {
+            Debug.Log("[ScoreBoardManager] Already initialized, skipping");
+            return;
+        }
+
         Debug.Log("[ScoreBoardManager] InitializeComponents called");
-        
+
         if (player == null)
         {
             Debug.LogError("[ScoreBoardManager] Player GameObject is NULL! You must assign it in the Inspector!");
-            Debug.LogError("[ScoreBoardManager] Go to ScoreBoard GameObject -> ScoreBoardManager component -> Assign Player field");
             return;
         }
-        
-        Debug.Log($"[ScoreBoardManager] Player assigned: {player.name}");
-        
-        if (scoreManager == null || livesManager == null)
-        {
-            scoreManager = player.GetComponent<ScoreManager>();
-            livesManager = player.GetComponent<LivesManager>();
 
-            if (scoreManager == null)
-            {
-                Debug.LogError($"[ScoreBoardManager] ScoreManager NOT FOUND on {player.name}!");
-                Debug.LogError("[ScoreBoardManager] Make sure the Player GameObject has a ScoreManager component attached");
-            }
-            else
-            {
-                Debug.Log($"[ScoreBoardManager] ScoreManager found! Instance ID: {scoreManager.GetInstanceID()}");
-                Debug.Log($"[ScoreBoardManager] Initial values - Lives: {livesManager?.NumLives}, Correct: {scoreManager.SecondsOnCorrectLane}, Wrong: {scoreManager.SecondsOnWrongLane}");
-            }
-            
-            if (livesManager == null)
-            {
-                Debug.LogError($"[ScoreBoardManager] LivesManager NOT FOUND on {player.name}!");
-                Debug.LogError("[ScoreBoardManager] Make sure the Player GameObject has a LivesManager component attached");
-            }
-            else
-            {
-                Debug.Log($"[ScoreBoardManager] LivesManager found! Instance ID: {livesManager.GetInstanceID()}");
-            }
+        // Check if player is active
+        if (!player.activeInHierarchy)
+        {
+            Debug.LogWarning($"[ScoreBoardManager] Player '{player.name}' is INACTIVE in hierarchy!");
+        }
+
+        Debug.Log($"[ScoreBoardManager] Assigned player: {player.name}, Active: {player.activeInHierarchy}");
+
+        scoreManager = player.GetComponent<ScoreManager>();
+        livesManager = player.GetComponent<LivesManager>();
+
+        if (scoreManager == null)
+        {
+            Debug.LogError($"[ScoreBoardManager] ScoreManager NOT FOUND on {player.name}!");
+        }
+        else
+        {
+            Debug.Log($"[ScoreBoardManager] ✓ ScoreManager found on {player.name}");
+        }
+
+        if (livesManager == null)
+        {
+            Debug.LogError($"[ScoreBoardManager] LivesManager NOT FOUND on {player.name}!");
+        }
+        else
+        {
+            Debug.Log($"[ScoreBoardManager] ✓ LivesManager found on {player.name}");
+        }
+
+        if (scoreManager != null && livesManager != null)
+        {
+            componentsInitialized = true;
+            Debug.Log("[ScoreBoardManager] Components successfully initialized");
         }
     }
 
@@ -78,48 +90,50 @@ private void InitializeComponents()
     // Called by OpenScoreBoard when scoreboard becomes visible
     public void RefreshScoreboard(string type, bool isFinalSim)
     {
-        // CRITICAL FIX: Reset save flag so we can save this simulation
+        Debug.Log($"[ScoreBoardManager] ========== RefreshScoreboard called: type={type}, isFinalSim={isFinalSim} ==========");
+
+        // Reset save flag so we can save this simulation
         scoreSaved = false;
 
-        // Make sure components are initialized FIRST
-        if (livesManager == null || scoreManager == null)
-        {
-            Debug.Log("[ScoreBoardManager] Components not initialized, calling InitializeComponents");
-            InitializeComponents();
-        }
+        // Make sure components are initialized
+        InitializeComponents();
 
         // Check if initialization succeeded
         if (livesManager == null || scoreManager == null)
         {
-            Debug.LogError("[ScoreBoardManager] CRITICAL: Components still null after initialization!");
+            Debug.LogError("[ScoreBoardManager] CRITICAL: Components are NULL after initialization!");
+            if (player != null)
+                Debug.LogError($"[ScoreBoardManager] Player is assigned to: {player.name}, but components not found!");
             return;
         }
 
-        // IMPORTANT: Display score (will show zeros initially, Update() will fix it)
+        Debug.Log($"[ScoreBoardManager] Components ready - Lives: {livesManager.NumLives}, Correct: {scoreManager.SecondsOnCorrectLane}, Wrong: {scoreManager.SecondsOnWrongLane}");
+
+        // Display score immediately (Update() will keep refreshing it)
         DisplayScore();
 
-        // CRITICAL FIX: Delay save by 0.1 seconds to let managers populate
+        // Delay save by 0.1 seconds to let managers populate their values
         Invoke(nameof(SaveScore), 0.1f);
 
         // Only show leaderboard on final simulation
         if (isFinalSim)
         {
-            Debug.Log("[ScoreBoardManager] Final sim - displaying leaderboard");
-            // Also delay leaderboard slightly to ensure save completes first
-            Invoke(nameof(DelayedDisplayScoreboard), 0.2f);
+            Debug.Log("[ScoreBoardManager] Final sim - will display leaderboard after save");
             currentScoreboardType = type;
+            // Delay leaderboard display to ensure save completes first
+            Invoke(nameof(DelayedDisplayScoreboard), 0.2f);
         }
     }
 
-
     private void DelayedDisplayScoreboard()
     {
+        Debug.Log("[ScoreBoardManager] DelayedDisplayScoreboard executing");
         DisplayScoreboard(currentScoreboardType);
     }
 
     void SaveScore()
     {
-        Debug.Log("[ScoreBoardManager] SaveScore called");
+        Debug.Log("[ScoreBoardManager] ========== SaveScore called ==========");
 
         if (scoreSaved)
         {
@@ -133,24 +147,40 @@ private void InitializeComponents()
             return;
         }
 
-        // CRITICAL FIX: Read directly from ScoreManager and LivesManager, NOT from UI text
-        // The UI might not be updated yet when this is called!
-        if (livesManager == null || scoreManager == null)
-        {
-            Debug.LogError("[ScoreBoardManager] livesManager or scoreManager is NULL!");
-            return;
-        }
+        // NEW APPROACH: Read from the UI text that Update() has been populating!
+        // If the display shows correct values, we save those correct values!
 
-        int livesLeft = livesManager.NumLives;
-        int secondsCorrect = scoreManager.SecondsOnCorrectLane;
-        int secondsWrong = scoreManager.SecondsOnWrongLane;
+        int livesLeft = 0;
+        int secondsCorrect = 0;
+        int secondsWrong = 0;
 
-        Debug.Log($"[ScoreBoardManager] VALUES FROM MANAGERS - Lives: {livesLeft}, Correct: {secondsCorrect}, Wrong: {secondsWrong}");
+        // Parse from UI text fields
+        if (LivesLeftText != null && int.TryParse(LivesLeftText.text, out int lives))
+            livesLeft = lives;
+        else
+            Debug.LogWarning("[ScoreBoardManager] Could not parse Lives from UI");
 
-        // Pedestrian mode - check if PhoneOpened field exists in ScoreManager
+        if (CorrectLaneScoreText != null && int.TryParse(CorrectLaneScoreText.text, out int correct))
+            secondsCorrect = correct;
+        else
+            Debug.LogWarning("[ScoreBoardManager] Could not parse Correct from UI");
+
+        if (WrongLaneScoreText != null && int.TryParse(WrongLaneScoreText.text, out int wrong))
+            secondsWrong = wrong;
+        else
+            Debug.LogWarning("[ScoreBoardManager] Could not parse Wrong from UI");
+
+        Debug.Log($"[ScoreBoardManager] VALUES READ FROM UI - Lives: {livesLeft}, Correct: {secondsCorrect}, Wrong: {secondsWrong}");
+
+        // Pedestrian mode - check if PhoneOpened field exists
         if (PhoneOpenedText != null)
         {
-            int phoneOpened = scoreManager.PhoneOpened;
+            int phoneOpened = 0;
+            if (int.TryParse(PhoneOpenedText.text, out int phone))
+                phoneOpened = phone;
+            else
+                Debug.LogWarning("[ScoreBoardManager] Could not parse Phone from UI");
+
             int totalScore = (livesLeft * 10) + secondsCorrect - (secondsWrong * 5);
 
             Debug.Log($"[ScoreBoardManager] PEDESTRIAN - Phone: {phoneOpened}, Total: {totalScore}");
@@ -161,31 +191,45 @@ private void InitializeComponents()
 
             ScoreDataManager.Instance.SavePedestrianScore(totalScore, livesLeft, secondsCorrect, secondsWrong, phoneOpened, isFirstSim);
         }
-        // Cyclist mode - check if cyclist-specific fields exist
+        // Cyclist mode
         else if (TimeSlowText != null && TimeStopText != null && SpeedPenaltyText != null)
         {
-            float timeToSlow = scoreManager.TimetoSlow;
-            float timeToStop = scoreManager.TimetoStop;
-            int speedPenalty = scoreManager.MaximumSpeedPenalty;
+            float timeToSlow = 0;
+            float timeToStop = 0;
+            int speedPenalty = 0;
+
+            if (float.TryParse(TimeSlowText.text, out float slow))
+                timeToSlow = slow;
+            else
+                Debug.LogWarning("[ScoreBoardManager] Could not parse TimeSlow from UI");
+
+            if (float.TryParse(TimeStopText.text, out float stop))
+                timeToStop = stop;
+            else
+                Debug.LogWarning("[ScoreBoardManager] Could not parse TimeStop from UI");
+
+            if (int.TryParse(SpeedPenaltyText.text, out int speed))
+                speedPenalty = speed;
+            else
+                Debug.LogWarning("[ScoreBoardManager] Could not parse SpeedPenalty from UI");
 
             int totalScore = (livesLeft * 10) + secondsCorrect - (secondsWrong * 10) - (int)(timeToSlow / 0.25f * 2) - (int)(timeToStop / 0.25f * 2) - speedPenalty;
 
-            Debug.Log($"[ScoreBoardManager] CYCLIST - Total: {totalScore}, Lives: {livesLeft}, Correct: {secondsCorrect}, Wrong: {secondsWrong}, TimeSlow: {timeToSlow}, TimeStop: {timeToStop}, Speed: {speedPenalty}");
+            Debug.Log($"[ScoreBoardManager] CYCLIST - Total: {totalScore}");
 
             bool isFirstSim = GameNavigationManager.Instance == null;
 
-            Debug.Log($"[ScoreBoardManager] About to save cyclist - isFirstSim={isFirstSim}");
+            Debug.Log($"[ScoreBoardManager] Saving to CSV: isFirstSim={isFirstSim}");
 
             ScoreDataManager.Instance.SaveCyclistScore(totalScore, livesLeft, secondsCorrect, secondsWrong, timeToSlow, timeToStop, speedPenalty, isFirstSim);
         }
         else
         {
-            Debug.LogError("[ScoreBoardManager] Could not determine player type! Text fields are null.");
-            Debug.LogError($"[ScoreBoardManager] PhoneOpenedText={PhoneOpenedText}, TimeSlowText={TimeSlowText}, TimeStopText={TimeStopText}, SpeedPenaltyText={SpeedPenaltyText}");
+            Debug.LogError("[ScoreBoardManager] Could not determine player type!");
         }
 
         scoreSaved = true;
-        Debug.Log("[ScoreBoardManager] Save complete, scoreSaved flag set to true");
+        Debug.Log("[ScoreBoardManager] ========== Save complete - saved values from UI display ==========");
     }
 
     void DisplayScore()
@@ -195,7 +239,7 @@ private void InitializeComponents()
 
         if (livesManager == null || scoreManager == null)
         {
-            Debug.LogError("[ScoreBoardManager] livesManager or scoreManager is null in DisplayScore!");
+            // Don't spam errors, just return silently
             return;
         }
 
@@ -203,7 +247,7 @@ private void InitializeComponents()
         int secondsCorrect = scoreManager.SecondsOnCorrectLane;
         int secondsWrong = scoreManager.SecondsOnWrongLane;
 
-        // Display ONLY the numbers (labels are separate UI elements)
+        // Display ONLY the numbers
         if (LivesLeftText != null)
             LivesLeftText.text = livesLeft.ToString();
 
@@ -244,7 +288,7 @@ private void InitializeComponents()
 
     public void DisplayScoreboard(string type)
     {
-        Debug.Log($"[ScoreBoardManager] DisplayScoreboard called with type: {type}");
+        Debug.Log($"[ScoreBoardManager] ========== DisplayScoreboard called with type: {type} ==========");
 
         if (scoreboardEntries == null)
         {
@@ -268,7 +312,7 @@ private void InitializeComponents()
             ? ScoreDataManager.Instance.GetPedestrianScoreboard()
             : ScoreDataManager.Instance.GetCyclistScoreboard();
 
-        Debug.Log($"[ScoreBoardManager] Found {entries.Count} entries to display");
+        Debug.Log($"[ScoreBoardManager] Retrieved {entries.Count} scoreboard entries");
 
         for (int i = 0; i < scoreboardEntries.Length; i++)
         {
@@ -281,8 +325,9 @@ private void InitializeComponents()
             if (i < entries.Count)
             {
                 string displayID = entries[i].playerID;
-                scoreboardEntries[i].text = $"{i + 1}. {displayID} - {entries[i].score}";
-                Debug.Log($"[ScoreBoardManager] Set entry {i}: {scoreboardEntries[i].text}");
+                int score = entries[i].score;
+                scoreboardEntries[i].text = $"{i + 1}. {displayID} - {score}";
+                Debug.Log($"[ScoreBoardManager] Entry {i}: {scoreboardEntries[i].text}");
             }
             else
             {
@@ -290,6 +335,6 @@ private void InitializeComponents()
             }
         }
 
-        Debug.Log("[ScoreBoardManager] DisplayScoreboard completed!");
+        Debug.Log("[ScoreBoardManager] ========== DisplayScoreboard completed ==========");
     }
 }

@@ -17,7 +17,7 @@ public class OpenScoreBoard : MonoBehaviour
             : GameNavigationManager.Instance != null;
 
         Time.timeScale = 0;
-        ScoreBoardObject.gameObject.SetActive(true);
+        //ScoreBoardObject.gameObject.SetActive(true);
         if (XRSettings.enabled)
         {
             ScoreBoardVR.gameObject.SetActive(true);
@@ -29,7 +29,7 @@ public class OpenScoreBoard : MonoBehaviour
             //scoreboardList.gameObject.SetActive(isFinalSim);
 
         // Refresh scoreboard entries now that it's visible
-        ScoreBoardManager manager = ScoreBoardObject.GetComponent<ScoreBoardManager>();
+        ScoreBoardManager manager = ScoreBoardVR.GetComponent<ScoreBoardManager>();
         if (manager != null)
         {
             string type = isPedestrianSimulation ? "pedestrian" : "cyclist";

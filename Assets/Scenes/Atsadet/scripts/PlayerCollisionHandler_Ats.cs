@@ -99,7 +99,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
         } else if (other.CompareTag("speedtrackerStop") && !isGameOver && myBody.bounds.Contains(closestPoint))
         {
             Debug.Log("Speed tracker Stop reached!");
-            if (Player.GetComponent<Rigidbody>().linearVelocity.magnitude > stopAreaSpeedLimit)
+            if (Player.GetComponent<SpeedIndicator>().SmoothSpeed > stopAreaSpeedLimit)
             {
                 PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
                 isGameOver = true;
@@ -111,7 +111,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
         } else if (other.CompareTag("speedtrackerSlow") && !isGameOver && myBody.bounds.Contains(closestPoint))
         {
             Debug.Log("Speed tracker Slow Down reached!");
-            if (Player.GetComponent<Rigidbody>().linearVelocity.magnitude > slowDownAreaSpeedLimit)
+            if (Player.GetComponent<SpeedIndicator>().SmoothSpeed > slowDownAreaSpeedLimit)
             {
                 PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
                 isGameOver = true;

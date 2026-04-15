@@ -1877,10 +1877,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5568758619435239319, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
       insertIndex: 0
       addedObject: {fileID: 1665045891}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5568758620505594004, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1150370189}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
 --- !u!4 &118514485 stripped
 Transform:
@@ -10759,31 +10756,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143998803}
   m_CullTransparentMesh: 1
---- !u!1 &1150370183 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5568758620505594004, guid: 46fdef3df9a5a354caf7692f85e5eff2, type: 3}
-  m_PrefabInstance: {fileID: 118514484}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1150370189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150370183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0529e53ffd0b8e4eaa76ae14e4c129d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerGroundCollision
-  WhichLaneText: {fileID: 1376265020}
-  InstructionText: {fileID: 0}
-  GameOverText: {fileID: 1771055807}
-  Checkpoint0: {fileID: 1008161880}
-  Player: {fileID: 1665045891}
-  warningCount: 0
-  maxWarnings: 200
-  isGameOver: 0
 --- !u!1 &1166370717
 GameObject:
   m_ObjectHideFlags: 0
@@ -16611,6 +16583,7 @@ GameObject:
   - component: {fileID: 1665045892}
   - component: {fileID: 1665045899}
   - component: {fileID: 1665045900}
+  - component: {fileID: 1665045901}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Player
@@ -16702,7 +16675,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 32
   m_CollisionDetection: 0
 --- !u!136 &1665045896
 CapsuleCollider:
@@ -16810,6 +16783,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrackingSpaceOrientationStart
   trackingSpaceObj: {fileID: 467094304}
+--- !u!114 &1665045901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665045890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0529e53ffd0b8e4eaa76ae14e4c129d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerGroundCollision
+  WhichLaneText: {fileID: 1376265020}
+  InstructionText: {fileID: 0}
+  GameOverText: {fileID: 1771055807}
+  Checkpoint0: {fileID: 1008161880}
+  Player: {fileID: 1665045891}
+  warningCount: 0
+  maxWarnings: 200
+  isGameOver: 0
 --- !u!1 &1687918987
 GameObject:
   m_ObjectHideFlags: 0

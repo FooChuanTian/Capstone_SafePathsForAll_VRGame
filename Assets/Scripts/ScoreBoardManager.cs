@@ -21,6 +21,7 @@ public class ScoreBoardManager : MonoBehaviour
     private LivesManager livesManager;
     private bool scoreSaved = false;
     private string currentScoreboardType;
+    private bool componentsInitialized = false;  // NEW: Prevent double initialization
 
     void Awake()
     {
@@ -29,23 +30,65 @@ public class ScoreBoardManager : MonoBehaviour
 
     private void InitializeComponents()
     {
+        // CRITICAL: If already initialized, DO NOT re-initialize!
+        if (componentsInitialized)
+        {
+            Debug.Log("[ScoreBoardManager] Already initialized, SKIPPING to prevent overwrite!");
+            return;
+        }
+
+        Debug.Log("[ScoreBoardManager] ===== InitializeComponents called =====");
+
         if (scoreManager == null || livesManager == null)
         {
             if (player != null)
             {
+                Debug.Log($"[ScoreBoardManager] Player is assigned: {player.name}");
+                Debug.Log($"[ScoreBoardManager] Player active in hierarchy: {player.activeInHierarchy}");
+
                 scoreManager = player.GetComponent<ScoreManager>();
                 livesManager = player.GetComponent<LivesManager>();
 
                 if (scoreManager == null)
-                    Debug.LogError("[ScoreBoardManager] ScoreManager not found on Player!");
+                {
+                    Debug.LogError($"[ScoreBoardManager] ScoreManager NOT FOUND on {player.name}!");
+                    Debug.LogError("[ScoreBoardManager] Make sure the Player GameObject has a ScoreManager component!");
+                }
+                else
+                {
+                    Debug.Log($"[ScoreBoardManager] ✓ ScoreManager found on {player.name}");
+                }
+
                 if (livesManager == null)
-                    Debug.LogError("[ScoreBoardManager] LivesManager not found on Player!");
+                {
+                    Debug.LogError($"[ScoreBoardManager] LivesManager NOT FOUND on {player.name}!");
+                    Debug.LogError("[ScoreBoardManager] Make sure the Player GameObject has a LivesManager component!");
+                }
+                else
+                {
+                    Debug.Log($"[ScoreBoardManager] ✓ LivesManager found on {player.name}");
+                }
+
+                // Mark as initialized if both components found
+                if (scoreManager != null && livesManager != null)
+                {
+                    componentsInitialized = true;
+                    Debug.Log("[ScoreBoardManager] ✓✓ Components successfully initialized and locked!");
+                }
             }
             else
             {
-                Debug.LogError("[ScoreBoardManager] Player GameObject is not assigned!");
+                Debug.LogError("[ScoreBoardManager] Player GameObject is NOT ASSIGNED in Inspector!");
+                Debug.LogError("[ScoreBoardManager] Please assign the Player field in ScoreBoardManager component");
             }
         }
+        else
+        {
+            Debug.Log("[ScoreBoardManager] Components already exist, skipping initialization");
+            componentsInitialized = true;
+        }
+
+        Debug.Log("[ScoreBoardManager] ===== InitializeComponents complete =====");
     }
 
     void Update()
@@ -58,6 +101,8 @@ public class ScoreBoardManager : MonoBehaviour
     // Called by OpenScoreBoard when scoreboard becomes visible
     public void RefreshScoreboard(string type, bool isFinalSim)
     {
+        Debug.Log($"[ScoreBoardManager] ========== RefreshScoreboard called: type={type}, isFinalSim={isFinalSim} ==========");
+
         // CRITICAL FIX: Reset save flag so we can save this simulation
         scoreSaved = false;
 
@@ -66,29 +111,50 @@ public class ScoreBoardManager : MonoBehaviour
         {
             Debug.Log("[ScoreBoardManager] Components not initialized, calling InitializeComponents");
             InitializeComponents();
+
+            // Check again after initialization
+            if (livesManager == null)
+                Debug.LogError("[ScoreBoardManager] livesManager STILL NULL after InitializeComponents!");
+            else
+                Debug.Log("[ScoreBoardManager] livesManager successfully initialized");
+
+            if (scoreManager == null)
+                Debug.LogError("[ScoreBoardManager] scoreManager STILL NULL after InitializeComponents!");
+            else
+                Debug.Log("[ScoreBoardManager] scoreManager successfully initialized");
+        }
+        else
+        {
+            Debug.Log("[ScoreBoardManager] Components already initialized, skipping InitializeComponents");
         }
 
         // Check if initialization succeeded
         if (livesManager == null || scoreManager == null)
         {
             Debug.LogError("[ScoreBoardManager] CRITICAL: Components still null after initialization!");
+            Debug.LogError("[ScoreBoardManager] Cannot save score - exiting RefreshScoreboard");
             return;
         }
+
+        Debug.Log("[ScoreBoardManager] Components are valid, proceeding with display and save");
 
         // IMPORTANT: Display score (will show zeros initially, Update() will fix it)
         DisplayScore();
 
         // CRITICAL FIX: Delay save by 0.1 seconds to let UI populate via Update()
+        Debug.Log("[ScoreBoardManager] Scheduling SaveScore to run in 0.1 seconds");
         Invoke(nameof(SaveScore), 0.1f);
 
         // Only show leaderboard on final simulation
         if (isFinalSim)
         {
-            Debug.Log("[ScoreBoardManager] Final sim - displaying leaderboard");
+            Debug.Log("[ScoreBoardManager] Final sim - scheduling leaderboard display");
             // Also delay leaderboard slightly to ensure save completes first
             Invoke(nameof(DelayedDisplayScoreboard), 0.2f);
             currentScoreboardType = type;
         }
+
+        Debug.Log("[ScoreBoardManager] ========== RefreshScoreboard complete ==========");
     }
 
     private void DelayedDisplayScoreboard()

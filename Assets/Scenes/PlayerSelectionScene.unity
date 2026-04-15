@@ -2020,7 +2020,7 @@ GameObject:
   - component: {fileID: 1228351881}
   m_Layer: 0
   m_Name: ScoreDataManager
-  m_TagString: Untagged
+  m_TagString: PersistentObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

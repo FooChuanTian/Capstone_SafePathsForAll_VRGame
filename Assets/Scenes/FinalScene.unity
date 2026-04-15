@@ -193,7 +193,7 @@ MonoBehaviour:
   m_text: "And most importantly...\n\nThe Players!\n\nLEGAL & LICENSING\n\xA9 2026
     SUTD-Project-46. All rights reserved.\nDeveloped with Unity.\nAll characters
     and events depicted in this game are entirely fictitious.\n\n\n\n\n\n\n\n\nThank
-    you for playing once again!"
+    you for playing once again!\nPress X to restart~"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

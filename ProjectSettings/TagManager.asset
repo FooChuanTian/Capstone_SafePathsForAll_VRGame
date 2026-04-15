@@ -19,6 +19,7 @@ TagManager:
   - speedtrackerStop
   - speedtrackerSlow
   - npc
+  - PersistentObj
   layers:
   - Default
   - TransparentFX

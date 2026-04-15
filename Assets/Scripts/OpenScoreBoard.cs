@@ -7,10 +7,13 @@ public class OpenScoreBoard : MonoBehaviour
     public Transform ScoreBoardObject;
     public Transform ScoreBoardVR;
     public bool isPedestrianSimulation = true;
+    private bool hasOpened = false;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag != "Player") return;
+        if (hasOpened) return;
+        hasOpened = true;
 
         bool isFinalSim = isPedestrianSimulation
             ? PedestrianGameNavigationManager.Instance != null

@@ -145,14 +145,11 @@ public class ScoreBoardManager : MonoBehaviour
         DisplayScore();
 
         // CRITICAL FIX: Delay save by 0.1 seconds to let UI populate via Update()
-        Debug.Log("[ScoreBoardManager] Scheduling SaveScore to run in 0.1 seconds");
+        CancelInvoke(nameof(SaveScore));
+        CancelInvoke(nameof(DelayedDisplayScoreboard));
         Invoke(nameof(SaveScore), 0.1f);
-
-        // Only show leaderboard on final simulation
         if (isFinalSim)
         {
-            Debug.Log("[ScoreBoardManager] Final sim - scheduling leaderboard display");
-            // Also delay leaderboard slightly to ensure save completes first
             Invoke(nameof(DelayedDisplayScoreboard), 0.2f);
             currentScoreboardType = type;
         }

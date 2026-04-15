@@ -29,6 +29,12 @@ public class ScoreBoardManager : MonoBehaviour
         InitializeComponents();
     }
 
+    private IEnumerator SaveScoreDelayed()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);  // unscaled - ignores timeScale=0
+        SaveScore();
+    }
+
     private void InitializeComponents()
     {
         // CRITICAL: If already initialized, DO NOT re-initialize!
@@ -145,9 +151,9 @@ public class ScoreBoardManager : MonoBehaviour
         DisplayScore();
 
         // CRITICAL FIX: Delay save by 0.1 seconds to let UI populate via Update()
-        CancelInvoke(nameof(SaveScore));
-        CancelInvoke(nameof(DelayedDisplayScoreboard));
-        Invoke(nameof(SaveScore), 0.1f);
+        StopAllCoroutines();
+        StartCoroutine(SaveScoreDelayed());
+
         if (isFinalSim)
         {
             Invoke(nameof(DelayedDisplayScoreboard), 0.2f);

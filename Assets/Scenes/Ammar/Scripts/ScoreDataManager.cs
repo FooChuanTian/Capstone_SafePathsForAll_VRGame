@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using Application = UnityEngine.Application;
+using Debug = UnityEngine.Debug;
 
 public class ScoreDataManager : MonoBehaviour
 {
@@ -29,28 +31,30 @@ public class ScoreDataManager : MonoBehaviour
 
     void InitialiseCSVFiles()
     {
-        // Use Unity's dataPath which points to the Assets folder
-        // Then append /Results subfolder
-        string customPath = Path.Combine(UnityEngine.Application.dataPath, "Results");
+        // CRITICAL FIX: Use persistentDataPath instead of dataPath
+        // persistentDataPath is ALWAYS writable on all platforms (Editor, Build, VR)
+        string customPath = Path.Combine(Application.persistentDataPath, "Results");
 
         // Create the Results folder if it doesn't exist
         if (!Directory.Exists(customPath))
         {
             Directory.CreateDirectory(customPath);
-            UnityEngine.Debug.Log("[ScoreDataManager] Created Results folder at: " + customPath);
+            Debug.Log("[ScoreDataManager] Created Results folder at: " + customPath);
         }
 
         pedestrianCSVPath = Path.Combine(customPath, "pedestrian_scores.csv");
         cyclistCSVPath = Path.Combine(customPath, "cyclist_scores.csv");
 
-        UnityEngine.Debug.Log("[ScoreDataManager] CSV files location: " + customPath);
+        Debug.Log("[ScoreDataManager] CSV files will be saved to: " + customPath);
+        Debug.Log("[ScoreDataManager] Pedestrian CSV: " + pedestrianCSVPath);
+        Debug.Log("[ScoreDataManager] Cyclist CSV: " + cyclistCSVPath);
 
         // Create pedestrian CSV with headers if it doesn't exist
         if (!File.Exists(pedestrianCSVPath))
         {
             File.WriteAllText(pedestrianCSVPath,
                 "PlayerID,FirstTotalScore,FirstLivesLeft,FirstSecondsCorrect,FirstSecondsWrong,FirstPhoneOpened,FirstTimestamp,LastTotalScore,LastLivesLeft,LastSecondsCorrect,LastSecondsWrong,LastPhoneOpened,LastTimestamp\n");
-            UnityEngine.Debug.Log("[ScoreDataManager] Created pedestrian_scores.csv");
+            Debug.Log("[ScoreDataManager] Created pedestrian_scores.csv");
         }
 
         // Create cyclist CSV with headers if it doesn't exist
@@ -58,41 +62,32 @@ public class ScoreDataManager : MonoBehaviour
         {
             File.WriteAllText(cyclistCSVPath,
                 "PlayerID,FirstTotalScore,FirstLivesLeft,FirstSecondsCorrect,FirstSecondsWrong,FirstTimeToSlow,FirstTimeToStop,FirstSpeedPenalty,FirstTimestamp,LastTotalScore,LastLivesLeft,LastSecondsCorrect,LastSecondsWrong,LastTimeToSlow,LastTimeToStop,LastSpeedPenalty,LastTimestamp\n");
-            UnityEngine.Debug.Log("[ScoreDataManager] Created cyclist_scores.csv");
+            Debug.Log("[ScoreDataManager] Created cyclist_scores.csv");
         }
     }
 
     private string GeneratePedestrianID()
     {
-        // Generate a new pedestrian ID only when needed
         int nextPedID = PlayerPrefs.GetInt("NextPedestrianID", 1);
         string newID = "P_" + nextPedID.ToString("D4");
-
-        // Increment for next pedestrian session
         PlayerPrefs.SetInt("NextPedestrianID", nextPedID + 1);
         PlayerPrefs.Save();
-
-        UnityEngine.Debug.Log("[ScoreDataManager] Generated Pedestrian ID: " + newID);
+        Debug.Log("[ScoreDataManager] Generated Pedestrian ID: " + newID);
         return newID;
     }
 
     private string GenerateCyclistID()
     {
-        // Generate a new cyclist ID only when needed
         int nextCycID = PlayerPrefs.GetInt("NextCyclistID", 1);
         string newID = "C_" + nextCycID.ToString("D4");
-
-        // Increment for next cyclist session
         PlayerPrefs.SetInt("NextCyclistID", nextCycID + 1);
         PlayerPrefs.Save();
-
-        UnityEngine.Debug.Log("[ScoreDataManager] Generated Cyclist ID: " + newID);
+        Debug.Log("[ScoreDataManager] Generated Cyclist ID: " + newID);
         return newID;
     }
 
     public string GetPlayerID()
     {
-        // Return the current active ID (pedestrian or cyclist)
         if (!string.IsNullOrEmpty(currentPedestrianID))
             return currentPedestrianID;
         if (!string.IsNullOrEmpty(currentCyclistID))
@@ -102,7 +97,6 @@ public class ScoreDataManager : MonoBehaviour
 
     public void SetPlayerName(string name)
     {
-        // This method can be used to override IDs with real names if needed
         if (!string.IsNullOrEmpty(currentPedestrianID))
             currentPedestrianID = name;
         if (!string.IsNullOrEmpty(currentCyclistID))
@@ -113,6 +107,8 @@ public class ScoreDataManager : MonoBehaviour
     {
         string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
+        Debug.Log($"[ScoreDataManager] SavePedestrianScore called - isFirstSim={isFirstSim}, totalScore={totalScore}");
+
         if (isFirstSim)
         {
             // Generate new pedestrian ID ONLY when first simulation starts
@@ -120,14 +116,23 @@ public class ScoreDataManager : MonoBehaviour
 
             // First simulation - create new row with first data filled, last data empty
             string row = $"{currentPedestrianID},{totalScore},{livesLeft},{secondsCorrect},{secondsWrong},{phoneOpened},{timestamp},,,,,,,\n";
-            File.AppendAllText(pedestrianCSVPath, row);
-            UnityEngine.Debug.Log("[ScoreDataManager] Pedestrian FIRST score saved for ID: " + currentPedestrianID);
+
+            try
+            {
+                File.AppendAllText(pedestrianCSVPath, row);
+                Debug.Log("[ScoreDataManager] Pedestrian FIRST score saved for ID: " + currentPedestrianID);
+                Debug.Log("[ScoreDataManager] Row written: " + row);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("[ScoreDataManager] ERROR writing first pedestrian score: " + e.Message);
+            }
         }
         else
         {
             // Last simulation - update existing row with last data
+            Debug.Log("[ScoreDataManager] Updating existing row for ID: " + currentPedestrianID);
             UpdatePedestrianCSVRow(timestamp, totalScore, livesLeft, secondsCorrect, secondsWrong, phoneOpened);
-            UnityEngine.Debug.Log("[ScoreDataManager] Pedestrian LAST score updated for ID: " + currentPedestrianID);
         }
 
         // Update scoreboard
@@ -139,6 +144,8 @@ public class ScoreDataManager : MonoBehaviour
     {
         string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
+        Debug.Log($"[ScoreDataManager] SaveCyclistScore called - isFirstSim={isFirstSim}, totalScore={totalScore}");
+
         if (isFirstSim)
         {
             // Generate new cyclist ID ONLY when first simulation starts
@@ -146,14 +153,23 @@ public class ScoreDataManager : MonoBehaviour
 
             // First simulation - create new row with first data filled, last data empty
             string row = $"{currentCyclistID},{totalScore},{livesLeft},{secondsCorrect},{secondsWrong},{timeToSlow:F2},{timeToStop:F2},{speedPenalty},{timestamp},,,,,,,,\n";
-            File.AppendAllText(cyclistCSVPath, row);
-            UnityEngine.Debug.Log("[ScoreDataManager] Cyclist FIRST score saved for ID: " + currentCyclistID);
+
+            try
+            {
+                File.AppendAllText(cyclistCSVPath, row);
+                Debug.Log("[ScoreDataManager] Cyclist FIRST score saved for ID: " + currentCyclistID);
+                Debug.Log("[ScoreDataManager] Row written: " + row);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("[ScoreDataManager] ERROR writing first cyclist score: " + e.Message);
+            }
         }
         else
         {
             // Last simulation - update existing row with last data
+            Debug.Log("[ScoreDataManager] Updating existing row for ID: " + currentCyclistID);
             UpdateCyclistCSVRow(currentCyclistID, timestamp, totalScore, livesLeft, secondsCorrect, secondsWrong, timeToSlow, timeToStop, speedPenalty);
-            UnityEngine.Debug.Log("[ScoreDataManager] Cyclist LAST score updated for ID: " + currentCyclistID);
         }
 
         // Update scoreboard
@@ -163,60 +179,104 @@ public class ScoreDataManager : MonoBehaviour
 
     private void UpdatePedestrianCSVRow(string timestamp, int totalScore, int livesLeft, int secondsCorrect, int secondsWrong, int phoneOpened)
     {
-        // Read all lines
-        string[] lines = File.ReadAllLines(pedestrianCSVPath);
-
-        // Find the row with matching playerID
-        for (int i = 1; i < lines.Length; i++)
+        try
         {
-            string[] fields = lines[i].Split(',');
-            if (fields[0] == currentPedestrianID)
-            {
-                // Update the "Last" columns (indices 7-12)
-                fields[7] = totalScore.ToString();
-                fields[8] = livesLeft.ToString();
-                fields[9] = secondsCorrect.ToString();
-                fields[10] = secondsWrong.ToString();
-                fields[11] = phoneOpened.ToString();
-                fields[12] = timestamp;
+            // Read all lines
+            string[] lines = File.ReadAllLines(pedestrianCSVPath);
+            Debug.Log($"[ScoreDataManager] Read {lines.Length} lines from pedestrian CSV");
 
-                lines[i] = string.Join(",", fields);
-                break;
+            bool rowFound = false;
+
+            // Find the row with matching playerID
+            for (int i = 1; i < lines.Length; i++)
+            {
+                string[] fields = lines[i].Split(',');
+                if (fields[0] == currentPedestrianID)
+                {
+                    Debug.Log($"[ScoreDataManager] Found row for {currentPedestrianID} at line {i}");
+
+                    // Update the "Last" columns (indices 7-12)
+                    fields[7] = totalScore.ToString();
+                    fields[8] = livesLeft.ToString();
+                    fields[9] = secondsCorrect.ToString();
+                    fields[10] = secondsWrong.ToString();
+                    fields[11] = phoneOpened.ToString();
+                    fields[12] = timestamp;
+
+                    lines[i] = string.Join(",", fields);
+                    Debug.Log("[ScoreDataManager] Updated row: " + lines[i]);
+                    rowFound = true;
+                    break;
+                }
+            }
+
+            if (!rowFound)
+            {
+                Debug.LogError($"[ScoreDataManager] Could not find row for {currentPedestrianID}!");
+            }
+            else
+            {
+                // Write back to file
+                File.WriteAllLines(pedestrianCSVPath, lines);
+                Debug.Log("[ScoreDataManager] Pedestrian LAST score updated successfully");
             }
         }
-
-        // Write back to file
-        File.WriteAllLines(pedestrianCSVPath, lines);
+        catch (Exception e)
+        {
+            Debug.LogError("[ScoreDataManager] ERROR updating pedestrian CSV: " + e.Message);
+        }
     }
 
     private void UpdateCyclistCSVRow(string cyclistID, string timestamp, int totalScore, int livesLeft, int secondsCorrect, int secondsWrong, float timeToSlow, float timeToStop, int speedPenalty)
     {
-        // Read all lines
-        string[] lines = File.ReadAllLines(cyclistCSVPath);
-
-        // Find the row with matching cyclistID
-        for (int i = 1; i < lines.Length; i++)
+        try
         {
-            string[] fields = lines[i].Split(',');
-            if (fields[0] == cyclistID)
-            {
-                // Update the "Last" columns (indices 9-16)
-                fields[9] = totalScore.ToString();
-                fields[10] = livesLeft.ToString();
-                fields[11] = secondsCorrect.ToString();
-                fields[12] = secondsWrong.ToString();
-                fields[13] = timeToSlow.ToString("F2");
-                fields[14] = timeToStop.ToString("F2");
-                fields[15] = speedPenalty.ToString();
-                fields[16] = timestamp;
+            // Read all lines
+            string[] lines = File.ReadAllLines(cyclistCSVPath);
+            Debug.Log($"[ScoreDataManager] Read {lines.Length} lines from cyclist CSV");
 
-                lines[i] = string.Join(",", fields);
-                break;
+            bool rowFound = false;
+
+            // Find the row with matching cyclistID
+            for (int i = 1; i < lines.Length; i++)
+            {
+                string[] fields = lines[i].Split(',');
+                if (fields[0] == cyclistID)
+                {
+                    Debug.Log($"[ScoreDataManager] Found row for {cyclistID} at line {i}");
+
+                    // Update the "Last" columns (indices 9-16)
+                    fields[9] = totalScore.ToString();
+                    fields[10] = livesLeft.ToString();
+                    fields[11] = secondsCorrect.ToString();
+                    fields[12] = secondsWrong.ToString();
+                    fields[13] = timeToSlow.ToString("F2");
+                    fields[14] = timeToStop.ToString("F2");
+                    fields[15] = speedPenalty.ToString();
+                    fields[16] = timestamp;
+
+                    lines[i] = string.Join(",", fields);
+                    Debug.Log("[ScoreDataManager] Updated row: " + lines[i]);
+                    rowFound = true;
+                    break;
+                }
+            }
+
+            if (!rowFound)
+            {
+                Debug.LogError($"[ScoreDataManager] Could not find row for {cyclistID}!");
+            }
+            else
+            {
+                // Write back to file
+                File.WriteAllLines(cyclistCSVPath, lines);
+                Debug.Log("[ScoreDataManager] Cyclist LAST score updated successfully");
             }
         }
-
-        // Write back to file
-        File.WriteAllLines(cyclistCSVPath, lines);
+        catch (Exception e)
+        {
+            Debug.LogError("[ScoreDataManager] ERROR updating cyclist CSV: " + e.Message);
+        }
     }
 
     [System.Serializable]
@@ -243,7 +303,7 @@ public class ScoreDataManager : MonoBehaviour
         PlayerPrefs.SetString(key, json);
         PlayerPrefs.Save();
 
-        UnityEngine.Debug.Log("[ScoreDataManager] Scoreboard updated for " + type);
+        Debug.Log($"[ScoreDataManager] Scoreboard updated for {type} - {id}: {score}");
     }
 
     public List<ScoreEntry> LoadScoreboard(string key)

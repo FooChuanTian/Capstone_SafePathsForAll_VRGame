@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
-using Application = UnityEngine.Application;
 using Debug = UnityEngine.Debug;
-
+using Application = UnityEngine.Application;
 public class ScoreDataManager : MonoBehaviour
 {
     public static ScoreDataManager Instance;
@@ -31,9 +30,8 @@ public class ScoreDataManager : MonoBehaviour
 
     void InitialiseCSVFiles()
     {
-        // CRITICAL FIX: Use persistentDataPath instead of dataPath
-        // persistentDataPath is ALWAYS writable on all platforms (Editor, Build, VR)
-        string customPath = Path.Combine(Application.persistentDataPath, "Results");
+        // Use Assets/Results folder for easy access during development
+        string customPath = Path.Combine(Application.dataPath, "Results");
 
         // Create the Results folder if it doesn't exist
         if (!Directory.Exists(customPath))

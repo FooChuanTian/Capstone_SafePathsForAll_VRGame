@@ -20,6 +20,7 @@ public class ScoreBoardManager : MonoBehaviour
     private ScoreManager scoreManager;
     private LivesManager livesManager;
     private bool scoreSaved = false;
+    private string currentScoreboardType;
 
     void Awake()
     {
@@ -77,24 +78,24 @@ public class ScoreBoardManager : MonoBehaviour
         // IMPORTANT: Display score (will show zeros initially, Update() will fix it)
         DisplayScore();
 
-        // CRITICAL FIX: Wait one frame before saving so managers have time to populate
-        StartCoroutine(SaveScoreDelayed());
+        // CRITICAL FIX: Delay save by 0.1 seconds to let managers populate
+        Invoke(nameof(SaveScore), 0.1f);
 
         // Only show leaderboard on final simulation
         if (isFinalSim)
         {
             Debug.Log("[ScoreBoardManager] Final sim - displaying leaderboard");
-            DisplayScoreboard(type);
+            // Also delay leaderboard slightly to ensure save completes first
+            Invoke(nameof(DelayedDisplayScoreboard), 0.2f);
+            currentScoreboardType = type;
         }
     }
 
-    private IEnumerator SaveScoreDelayed()
-    {
-        // Wait one frame for managers to populate their values
-        yield return null;
+    private string currentScoreboardType;
 
-        Debug.Log("[ScoreBoardManager] Delayed save - reading values after one frame");
-        SaveScore();
+    private void DelayedDisplayScoreboard()
+    {
+        DisplayScoreboard(currentScoreboardType);
     }
 
     void SaveScore()

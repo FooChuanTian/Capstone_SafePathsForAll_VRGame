@@ -16,7 +16,7 @@ public class AutoScroll : MonoBehaviour
         rectTransform.anchoredPosition += new Vector2(0, scrollSpeed * Time.deltaTime);
         
         // Optional: Loop back to bottom if it goes too high
-        if (rectTransform.anchoredPosition.y > 3200f) 
+        if (rectTransform.anchoredPosition.y > 4200f) 
         {
             rectTransform.anchoredPosition = new Vector2(0, -3593f);
         }

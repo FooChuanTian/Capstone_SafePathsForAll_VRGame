@@ -154,8 +154,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1600}
-  m_SizeDelta: {x: 2000, y: 500}
+  m_AnchoredPosition: {x: 0, y: -2600}
+  m_SizeDelta: {x: 2000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &325989887
 MonoBehaviour:
@@ -192,7 +192,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "And most importantly...\n\nThe Players!\n\nLEGAL & LICENSING\n\xA9 2026
     SUTD-Project-46. All rights reserved.\nDeveloped with Unity.\nAll characters
-    and events depicted in this game are entirely fictitious.\n\n[FINAL LOGO ANIMATION]\nThank
+    and events depicted in this game are entirely fictitious.\n\n\n\n\n\n\n\n\nThank
     you for playing once again!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -351,6 +351,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &468572795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 468572796}
+  - component: {fileID: 468572798}
+  - component: {fileID: 468572797}
+  m_Layer: 5
+  m_Name: logo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &468572796
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468572795}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1965742470}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -2800}
+  m_SizeDelta: {x: 711.1, y: 400}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &468572797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468572795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 02f1eded7a1104ff1bc8e35b74453fff, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &468572798
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468572795}
+  m_CullTransparentMesh: 1
 --- !u!1 &702004536
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,8 +963,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -520, y: 0}
-  m_SizeDelta: {x: 1000, y: 5000}
+  m_AnchoredPosition: {x: -630, y: 0}
+  m_SizeDelta: {x: 1200, y: 5000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1578817634
 MonoBehaviour:
@@ -917,7 +992,12 @@ MonoBehaviour:
 
 
 
-    LEADERSHIP
+    Team Members
+
+
+
+
+
 
 
 
@@ -1099,8 +1179,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 520, y: 0}
-  m_SizeDelta: {x: 1000, y: 5000}
+  m_AnchoredPosition: {x: 630, y: 0}
+  m_SizeDelta: {x: 1200, y: 5000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1742116994
 MonoBehaviour:
@@ -1135,19 +1215,157 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Otterly Lost\nSUTD-Project-46\n\n\nBlauta Isaiah Rafael Tugano\nFoo Chuan
-    Tian\n\n\nBlauta Isaiah Rafael Tugano\nFoo Chuan Tian\nJanessa Kwan Su Hui\nRae-Anne
-    Leong\nThen Kunda (Justin)\n\n\nJanessa Kwan Su Hui\nRae-Anne Leong\nThen Kunda
-    (Justin)\n\n\nJanessa Kwan Su Hui\nRae-Anne Leong\nThen Kunda (Justin)\n\n\nFoo
-    Chuan Tian\nHo Atsadet\nMuhammad Ammar Bin Mohamad Sofian\n\n\nFoo Chuan Tian\nHo
-    Atsadet\nMuhammad Ammar Bin Mohammad Sofian\n\n\nBlauta Isaiah Rafael Tugano\nFoo
-    Chuan Tian\nHo Atsadet\nJanessa Kwan Su Hui\nMuhammad Ammar Bin Mohammad Sofian\n\n\nMuhammad
-    Ammar Bin Mohammad Sofian\n\n\nLTA & MSO Partners\nNLB@Queenstown Collaboration
-    \n\nKelvin Quan (LTA)\nVania Lim (LTA)\nWilken Puah (LTA)\nWulan Herdiningrum
-    (LTA)\n\nEsther PF Lim (MND)\nHaziah Azhari (MND)\nSiti Farhana Mahandi (MND)\n\nAqilah
-    Abdul Aziz (NLB)\nChristabel Sim (NLB)\nLuojia Chen (NLB)\n\nEdwin Koh (SUTD
-    Mentor)\nWang Bo (SUTD Mentor)\nBernard Tan Chee Seng (SUTD Writing & Communication
-    Specialist)"
+  m_text: 'Otterly Lost
+
+    SUTD-Project-46
+
+
+
+    Blauta Isaiah Rafael Tugano
+
+    Foo
+    Chuan Tian
+
+    Ho Atsadet
+
+    Janessa Kwan Su Hui
+
+    Muhammad Ammar Bin Mohamad
+    Sofian
+
+    Rae-Anne Leong
+
+    Then Kunda (Justin)
+
+
+
+    Blauta Isaiah Rafael
+    Tugano
+
+    Foo Chuan Tian
+
+    Janessa Kwan Su Hui
+
+    Rae-Anne Leong
+
+    Then
+    Kunda (Justin)
+
+
+
+    Janessa Kwan Su Hui
+
+    Rae-Anne Leong
+
+    Then Kunda
+    (Justin)
+
+
+
+    Janessa Kwan Su Hui
+
+    Rae-Anne Leong
+
+    Then Kunda (Justin)
+
+
+
+    Foo
+    Chuan Tian
+
+    Ho Atsadet
+
+    Muhammad Ammar Bin Mohamad Sofian
+
+
+
+    Foo
+    Chuan Tian
+
+    Ho Atsadet
+
+    Muhammad Ammar Bin Mohammad Sofian
+
+
+
+    Blauta
+    Isaiah Rafael Tugano
+
+    Foo Chuan Tian
+
+    Ho Atsadet
+
+    Janessa Kwan Su
+    Hui
+
+    Muhammad Ammar Bin Mohammad Sofian
+
+
+
+    Muhammad Ammar Bin Mohammad
+    Sofian
+
+
+
+    Singapore University of Technology and Design
+
+    Capstone Programme
+    and Office
+
+    Municipal Services Office (MSO Industry Partner)
+
+    Land Transport
+    Authority (LTA Industry Partner)
+
+    Queenstown Public Library (NLB)
+
+
+    Kelvin
+    Quan (LTA)
+
+    Vania Lim (LTA)
+
+    Wilken Puah (LTA)
+
+    Wulan Herdiningrum
+    (LTA)
+
+
+    Esther PF Lim (MSO)
+
+    Haziah Azhari (MSO)
+
+    Siti Farhana Mahandi
+    (MSO)
+
+
+    Aqilah Abdul Aziz (NLB)
+
+    Christabel Sim (NLB)
+
+    Luojia Chen
+    (NLB)
+
+
+    Professor Edwin Koh (SUTD Capstone Mentor)
+
+    Dr. Wang Bo (SUTD
+    Faculty Advisor)
+
+    Dr. Bernard Tan Chee Seng (SUTD Faculty Advisor)
+
+
+    Pisti
+    Prints (Supplier)
+
+    Simple Digital (Supplier)
+
+    Botak Banner Poster Design
+    (Supplier)
+
+    Unitech Supplies (Supplier)
+
+    Unra Jaya (Supplier)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1407,6 +1625,7 @@ RectTransform:
   - {fileID: 1742116993}
   - {fileID: 325989886}
   - {fileID: 1394573608}
+  - {fileID: 468572796}
   m_Father: {fileID: 1794970649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

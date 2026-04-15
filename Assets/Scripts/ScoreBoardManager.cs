@@ -20,6 +20,24 @@ public class ScoreBoardManager : MonoBehaviour
     private LivesManager livesManager;
     private bool scoreSaved = false;
 
+    // --- Cached values set during DisplayScore, used by SaveScore ---
+    private bool cachedIsPedestrian;
+    private bool displayScoreRan = false;
+
+    private int cached_livesLeft;
+    private int cached_secondsCorrect;
+    private int cached_secondsWrong;
+    private int cached_totalScore;
+
+    // Pedestrian only
+    private int cached_phoneOpened;
+
+    // Cyclist only
+    private float cached_timeToSlow;
+    private float cached_timeToStop;
+    private int cached_speedPenalty;
+    // ----------------------------------------------------------------
+
     void Awake()
     {
         InitializeComponents();
@@ -34,10 +52,21 @@ public class ScoreBoardManager : MonoBehaviour
                 scoreManager = player.GetComponent<ScoreManager>();
                 livesManager = player.GetComponent<LivesManager>();
 
+                // Also try children in case components are on a child object
                 if (scoreManager == null)
-                    Debug.LogError("[ScoreBoardManager] ScoreManager not found on Player!");
+                    scoreManager = player.GetComponentInChildren<ScoreManager>();
                 if (livesManager == null)
-                    Debug.LogError("[ScoreBoardManager] LivesManager not found on Player!");
+                    livesManager = player.GetComponentInChildren<LivesManager>();
+
+                if (scoreManager == null)
+                    Debug.LogError("[ScoreBoardManager] ScoreManager not found on Player or its children!");
+                else
+                    Debug.Log($"[ScoreBoardManager] ScoreManager found - Instance ID: {scoreManager.GetInstanceID()}");
+
+                if (livesManager == null)
+                    Debug.LogError("[ScoreBoardManager] LivesManager not found on Player or its children!");
+                else
+                    Debug.Log($"[ScoreBoardManager] LivesManager found - Instance ID: {livesManager.GetInstanceID()}");
             }
             else
             {
@@ -48,7 +77,6 @@ public class ScoreBoardManager : MonoBehaviour
 
     void Update()
     {
-        // Only update display when scoreboard is active and components are valid
         if (gameObject.activeSelf && livesManager != null && scoreManager != null)
             DisplayScore();
     }
@@ -56,99 +84,26 @@ public class ScoreBoardManager : MonoBehaviour
     // Called by OpenScoreBoard when scoreboard becomes visible
     public void RefreshScoreboard(string type, bool isFinalSim)
     {
-        // CRITICAL FIX: Reset save flag so we can save this simulation
         scoreSaved = false;
+        displayScoreRan = false;
 
-        // Make sure components are initialized
         if (livesManager == null || scoreManager == null)
         {
             Debug.Log("[ScoreBoardManager] Components not initialized, calling InitializeComponents");
             InitializeComponents();
         }
 
-        // IMPORTANT: Display score FIRST (this reads fresh values)
+        // DisplayScore reads from managers AND caches the values
         DisplayScore();
 
-        // THEN save (after values have been read and displayed)
+        // SaveScore uses cached values — guaranteed same data as what's displayed
         SaveScore();
 
-        // Only show leaderboard on final simulation
         if (isFinalSim)
         {
             Debug.Log("[ScoreBoardManager] Final sim - displaying leaderboard");
             DisplayScoreboard(type);
         }
-    }
-
-    void SaveScore()
-    {
-        Debug.Log("[ScoreBoardManager] SaveScore called");
-
-        if (scoreSaved)
-        {
-            Debug.Log("[ScoreBoardManager] Score already saved, skipping");
-            return;
-        }
-
-        if (ScoreDataManager.Instance == null)
-        {
-            Debug.LogError("[ScoreBoardManager] ScoreDataManager.Instance is NULL!");
-            return;
-        }
-
-        // CRITICAL FIX: Read directly from ScoreManager and LivesManager, NOT from UI text
-        // The UI might not be updated yet when this is called!
-        if (livesManager == null || scoreManager == null)
-        {
-            Debug.LogError("[ScoreBoardManager] livesManager or scoreManager is NULL!");
-            return;
-        }
-
-        int livesLeft = livesManager.NumLives;
-        int secondsCorrect = scoreManager.SecondsOnCorrectLane;
-        int secondsWrong = scoreManager.SecondsOnWrongLane;
-
-        Debug.Log($"[ScoreBoardManager] VALUES FROM MANAGERS - Lives: {livesLeft}, Correct: {secondsCorrect}, Wrong: {secondsWrong}");
-
-        // Pedestrian mode - check if PhoneOpened field exists in ScoreManager
-        if (PhoneOpenedText != null)
-        {
-            int phoneOpened = scoreManager.PhoneOpened;
-            int totalScore = (livesLeft * 10) + secondsCorrect - (secondsWrong * 5);
-
-            Debug.Log($"[ScoreBoardManager] PEDESTRIAN - Phone: {phoneOpened}, Total: {totalScore}");
-
-            bool isFirstSim = PedestrianGameNavigationManager.Instance == null;
-
-            Debug.Log($"[ScoreBoardManager] Saving to CSV: totalScore={totalScore}, lives={livesLeft}, correct={secondsCorrect}, wrong={secondsWrong}, phone={phoneOpened}, isFirst={isFirstSim}");
-
-            ScoreDataManager.Instance.SavePedestrianScore(totalScore, livesLeft, secondsCorrect, secondsWrong, phoneOpened, isFirstSim);
-        }
-        // Cyclist mode - check if cyclist-specific fields exist
-        else if (TimeSlowText != null && TimeStopText != null && SpeedPenaltyText != null)
-        {
-            float timeToSlow = scoreManager.TimetoSlow;
-            float timeToStop = scoreManager.TimetoStop;
-            int speedPenalty = scoreManager.MaximumSpeedPenalty;
-
-            int totalScore = (livesLeft * 10) + secondsCorrect - (secondsWrong * 10) - (int)(timeToSlow / 0.25f * 2) - (int)(timeToStop / 0.25f * 2) - speedPenalty;
-
-            Debug.Log($"[ScoreBoardManager] CYCLIST - Total: {totalScore}, Lives: {livesLeft}, Correct: {secondsCorrect}, Wrong: {secondsWrong}, TimeSlow: {timeToSlow}, TimeStop: {timeToStop}, Speed: {speedPenalty}");
-
-            bool isFirstSim = GameNavigationManager.Instance == null;
-
-            Debug.Log($"[ScoreBoardManager] About to save cyclist - isFirstSim={isFirstSim}");
-
-            ScoreDataManager.Instance.SaveCyclistScore(totalScore, livesLeft, secondsCorrect, secondsWrong, timeToSlow, timeToStop, speedPenalty, isFirstSim);
-        }
-        else
-        {
-            Debug.LogError("[ScoreBoardManager] Could not determine player type! Text fields are null.");
-            Debug.LogError($"[ScoreBoardManager] PhoneOpenedText={PhoneOpenedText}, TimeSlowText={TimeSlowText}, TimeStopText={TimeStopText}, SpeedPenaltyText={SpeedPenaltyText}");
-        }
-
-        scoreSaved = true;
-        Debug.Log("[ScoreBoardManager] Save complete, scoreSaved flag set to true");
     }
 
     void DisplayScore()
@@ -166,58 +121,118 @@ public class ScoreBoardManager : MonoBehaviour
         int secondsCorrect = scoreManager.SecondsOnCorrectLane;
         int secondsWrong = scoreManager.SecondsOnWrongLane;
 
-        // Display ONLY the numbers (labels are separate UI elements)
+        // Cache shared values
+        cached_livesLeft = livesLeft;
+        cached_secondsCorrect = secondsCorrect;
+        cached_secondsWrong = secondsWrong;
+
         if (LivesLeftText != null)
             LivesLeftText.text = livesLeft.ToString();
-
         if (CorrectLaneScoreText != null)
             CorrectLaneScoreText.text = secondsCorrect.ToString();
-
         if (WrongLaneScoreText != null)
             WrongLaneScoreText.text = secondsWrong.ToString();
 
-        // Pedestrian-specific fields
+        // Pedestrian mode
         if (PhoneOpenedText != null)
         {
-            int phoneOpened = scoreManager.PhoneOpened;
-            PhoneOpenedText.text = phoneOpened.ToString();
+            cachedIsPedestrian = true;
 
+            int phoneOpened = scoreManager.PhoneOpened;
             int totalScore = (livesLeft * 10) + secondsCorrect - (secondsWrong * 5);
 
+            cached_phoneOpened = phoneOpened;
+            cached_totalScore = totalScore;
+
+            PhoneOpenedText.text = phoneOpened.ToString();
             if (TotalScoreText != null)
                 TotalScoreText.text = totalScore.ToString();
+
+            Debug.Log($"[ScoreBoardManager] DisplayScore (PEDESTRIAN) - Lives: {livesLeft}, Correct: {secondsCorrect}, Wrong: {secondsWrong}, Phone: {phoneOpened}, Total: {totalScore}");
         }
-        // Cyclist-specific fields
+        // Cyclist mode
         else if (TimeSlowText != null && TimeStopText != null && SpeedPenaltyText != null)
         {
+            cachedIsPedestrian = false;
+
             float timeToSlow = scoreManager.TimetoSlow;
             float timeToStop = scoreManager.TimetoStop;
             int speedPenalty = scoreManager.MaximumSpeedPenalty;
+            int totalScore = (livesLeft * 10) + secondsCorrect - (secondsWrong * 10)
+                             - (int)(timeToSlow / 0.25f * 2)
+                             - (int)(timeToStop / 0.25f * 2)
+                             - speedPenalty;
+
+            cached_timeToSlow = timeToSlow;
+            cached_timeToStop = timeToStop;
+            cached_speedPenalty = speedPenalty;
+            cached_totalScore = totalScore;
 
             TimeSlowText.text = timeToSlow.ToString("F2");
             TimeStopText.text = timeToStop.ToString("F2");
             SpeedPenaltyText.text = speedPenalty.ToString();
-
-            int totalScore = (livesLeft * 10) + secondsCorrect - (secondsWrong * 10) - (int)(timeToSlow / 0.25f * 2) - (int)(timeToStop / 0.25f * 2) - speedPenalty;
-
             if (TotalScoreText != null)
                 TotalScoreText.text = totalScore.ToString();
+
+            Debug.Log($"[ScoreBoardManager] DisplayScore (CYCLIST) - Lives: {livesLeft}, Correct: {secondsCorrect}, Wrong: {secondsWrong}, TimeSlow: {timeToSlow}, TimeStop: {timeToStop}, Speed: {speedPenalty}, Total: {totalScore}");
         }
+        else
+        {
+            Debug.LogError("[ScoreBoardManager] DisplayScore: Could not determine player type!");
+            Debug.LogError($"  PhoneOpenedText={PhoneOpenedText}, TimeSlowText={TimeSlowText}, TimeStopText={TimeStopText}, SpeedPenaltyText={SpeedPenaltyText}");
+            return;
+        }
+
+        displayScoreRan = true;
+    }
+
+    void SaveScore()
+    {
+        Debug.Log("[ScoreBoardManager] SaveScore called");
+
+        if (scoreSaved)
+        {
+            Debug.Log("[ScoreBoardManager] Score already saved, skipping");
+            return;
+        }
+
+        if (!displayScoreRan)
+        {
+            Debug.LogError("[ScoreBoardManager] SaveScore called before DisplayScore ran successfully — aborting!");
+            return;
+        }
+
+        if (ScoreDataManager.Instance == null)
+        {
+            Debug.LogError("[ScoreBoardManager] ScoreDataManager.Instance is NULL!");
+            return;
+        }
+
+        // Use cached values — identical to what was displayed on screen
+        if (cachedIsPedestrian)
+        {
+            bool isFirstSim = PedestrianGameNavigationManager.Instance == null;
+            Debug.Log($"[ScoreBoardManager] Saving PEDESTRIAN - Total: {cached_totalScore}, Lives: {cached_livesLeft}, Correct: {cached_secondsCorrect}, Wrong: {cached_secondsWrong}, Phone: {cached_phoneOpened}, isFirst: {isFirstSim}");
+            ScoreDataManager.Instance.SavePedestrianScore(cached_totalScore, cached_livesLeft, cached_secondsCorrect, cached_secondsWrong, cached_phoneOpened, isFirstSim);
+        }
+        else
+        {
+            bool isFirstSim = GameNavigationManager.Instance == null;
+            Debug.Log($"[ScoreBoardManager] Saving CYCLIST - Total: {cached_totalScore}, Lives: {cached_livesLeft}, Correct: {cached_secondsCorrect}, Wrong: {cached_secondsWrong}, TimeSlow: {cached_timeToSlow}, TimeStop: {cached_timeToStop}, Speed: {cached_speedPenalty}, isFirst: {isFirstSim}");
+            ScoreDataManager.Instance.SaveCyclistScore(cached_totalScore, cached_livesLeft, cached_secondsCorrect, cached_secondsWrong, cached_timeToSlow, cached_timeToStop, cached_speedPenalty, isFirstSim);
+        }
+
+        scoreSaved = true;
+        Debug.Log("[ScoreBoardManager] Save complete!");
     }
 
     public void DisplayScoreboard(string type)
     {
         Debug.Log($"[ScoreBoardManager] DisplayScoreboard called with type: {type}");
 
-        if (scoreboardEntries == null)
+        if (scoreboardEntries == null || scoreboardEntries.Length == 0)
         {
-            Debug.LogError("[ScoreBoardManager] scoreboardEntries is NULL!");
-            return;
-        }
-
-        if (scoreboardEntries.Length == 0)
-        {
-            Debug.LogError("[ScoreBoardManager] scoreboardEntries.Length is 0!");
+            Debug.LogError("[ScoreBoardManager] scoreboardEntries is null or empty!");
             return;
         }
 
@@ -243,8 +258,7 @@ public class ScoreBoardManager : MonoBehaviour
 
             if (i < entries.Count)
             {
-                string displayID = entries[i].playerID;
-                scoreboardEntries[i].text = $"{i + 1}. {displayID} - {entries[i].score}";
+                scoreboardEntries[i].text = $"{i + 1}. {entries[i].playerID} - {entries[i].score}";
                 Debug.Log($"[ScoreBoardManager] Set entry {i}: {scoreboardEntries[i].text}");
             }
             else

@@ -29,21 +29,41 @@ public class ScoreBoardManager : MonoBehaviour
 
     private void InitializeComponents()
     {
+        Debug.Log("[ScoreBoardManager] InitializeComponents called");
+
+        if (player == null)
+        {
+            Debug.LogError("[ScoreBoardManager] Player GameObject is NULL! You must assign it in the Inspector!");
+            Debug.LogError("[ScoreBoardManager] Go to ScoreBoard GameObject -> ScoreBoardManager component -> Assign Player field");
+            return;
+        }
+
+        Debug.Log($"[ScoreBoardManager] Player assigned: {player.name}");
+
         if (scoreManager == null || livesManager == null)
         {
-            if (player != null)
-            {
-                scoreManager = player.GetComponent<ScoreManager>();
-                livesManager = player.GetComponent<LivesManager>();
+            scoreManager = player.GetComponent<ScoreManager>();
+            livesManager = player.GetComponent<LivesManager>();
 
-                if (scoreManager == null)
-                    Debug.LogError("[ScoreBoardManager] ScoreManager not found on Player!");
-                if (livesManager == null)
-                    Debug.LogError("[ScoreBoardManager] LivesManager not found on Player!");
+            if (scoreManager == null)
+            {
+                Debug.LogError($"[ScoreBoardManager] ScoreManager NOT FOUND on {player.name}!");
+                Debug.LogError("[ScoreBoardManager] Make sure the Player GameObject has a ScoreManager component attached");
             }
             else
             {
-                Debug.LogError("[ScoreBoardManager] Player GameObject is not assigned!");
+                Debug.Log($"[ScoreBoardManager] ScoreManager found! Instance ID: {scoreManager.GetInstanceID()}");
+                Debug.Log($"[ScoreBoardManager] Initial values - Lives: {livesManager?.NumLives}, Correct: {scoreManager.SecondsOnCorrectLane}, Wrong: {scoreManager.SecondsOnWrongLane}");
+            }
+
+            if (livesManager == null)
+            {
+                Debug.LogError($"[ScoreBoardManager] LivesManager NOT FOUND on {player.name}!");
+                Debug.LogError("[ScoreBoardManager] Make sure the Player GameObject has a LivesManager component attached");
+            }
+            else
+            {
+                Debug.Log($"[ScoreBoardManager] LivesManager found! Instance ID: {livesManager.GetInstanceID()}");
             }
         }
     }
@@ -91,7 +111,6 @@ public class ScoreBoardManager : MonoBehaviour
         }
     }
 
-    private string currentScoreboardType;
 
     private void DelayedDisplayScoreboard()
     {

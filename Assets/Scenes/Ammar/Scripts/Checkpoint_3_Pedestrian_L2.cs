@@ -1,16 +1,24 @@
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Checkpoint_3_Pedestrian_L2 : MonoBehaviour
 {
     public TutorialPanel_Pedestrian tutorial;
+    public TutorialPanel_Pedestrian tutorial_vr;
     public Transform respawnPoint;
 
     public GameObject npcPrefab;
     public Transform[] spawnPoints;
-
     public float npcSpeed = 10f;
+    public Transform trackingSpaceObj;
 
     private bool hasTriggered = false;
+    
+    void Start()
+    {
+        trackingSpaceObj.localPosition = new Vector3(0, 10f, 0);
+        trackingSpaceObj.localRotation = Quaternion.Euler(0, -90, 0);
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -27,6 +35,11 @@ public class Checkpoint_3_Pedestrian_L2 : MonoBehaviour
         {
             tutorial.ShowTutorial("Someone is overtaking from behind! Stay left and let them through.", 3);
             tutorial.onTutorialClosed = RunCheckpointLogic;
+        }
+        if (tutorial_vr != null && XRSettings.enabled)
+        {
+            tutorial_vr.ShowTutorial("Someone is overtaking from behind! Stay left and let them through.", 2);
+            tutorial_vr.onTutorialClosed = RunCheckpointLogic;
         }
     }
 

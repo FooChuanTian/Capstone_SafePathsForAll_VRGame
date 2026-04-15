@@ -3,11 +3,14 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.XR;
 
 public class Checkpoint_3 : MonoBehaviour
 {   
+    public Transform trackingSpaceObj;
     // public TextMeshProUGUI GoalText;
     public TutorialPanel tutorial;
+    public TutorialPanel tutorial_vr;
     private bool hasShownLaneTutorial = false;
     public Transform checkPointlocation_2;
     private string currentsceneName;
@@ -40,6 +43,8 @@ public class Checkpoint_3 : MonoBehaviour
     {
         currentsceneName = SceneManager.GetActiveScene().name; // Get the current scene name from the GameNavigationManager
         Debug.Log("TEST:Current scene: " + currentsceneName); // Debug log to check the current scene name
+        trackingSpaceObj.localPosition = new Vector3(0, 10f, 0);   //THIS LINE
+        trackingSpaceObj.localRotation = Quaternion.Euler(0, -90, 0);
     }
 
     void OnTriggerEnter(Collider collision)
@@ -66,6 +71,8 @@ public class Checkpoint_3 : MonoBehaviour
             //     displayMessage = "Follow the tactile strips!";
             // }
             tutorial.ShowTutorial(displayMessage, 3);
+            if (XRSettings.enabled) 
+                tutorial_vr.ShowTutorial(displayMessage, 3);
             hasShownLaneTutorial = true; // Ensures it only freezes the game once
 
             // SceneManager.LoadScene("Cyclist_lesson1_endpage");

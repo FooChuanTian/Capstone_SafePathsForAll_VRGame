@@ -21,7 +21,7 @@ public class PhoneToggle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.xKey.wasPressedThisFrame)
+        if (Keyboard.current.xKey.wasPressedThisFrame || OVRInput.GetDown(OVRInput.Button.Four))
         {
             //DisplayRandomImage();
             phoneActive = !phoneActive;

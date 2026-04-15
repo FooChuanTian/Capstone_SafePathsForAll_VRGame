@@ -3,11 +3,14 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.XR;
 
 public class Checkpoint_2 : MonoBehaviour
 {   
+    public Transform trackingSpaceObj;
     // public TextMeshProUGUI GoalText;
     public TutorialPanel tutorial;
+    public TutorialPanel tutorial_vr;
     private bool hasShownLaneTutorial = false;
     public Transform checkPointlocation_2;
     private string currentsceneName;
@@ -31,10 +34,12 @@ public class Checkpoint_2 : MonoBehaviour
     {
         currentsceneName = SceneManager.GetActiveScene().name; // Get the current scene name from the GameNavigationManager
         Debug.Log("TEST:Current scene: " + currentsceneName); // Debug log to check the current scene name
+        trackingSpaceObj.localPosition = new Vector3(0, 10f, 0);   //THIS LINE
+        trackingSpaceObj.localRotation = Quaternion.Euler(0, -90, 0);
     }
 
     void OnTriggerEnter(Collider collision)
-    {
+    {   Debug.Log("TESTVR20");
         if (collision.tag == "Player" && hasShownLaneTutorial == false)
         {   
             // cleanup();  //Disable for testing
@@ -55,12 +60,14 @@ public class Checkpoint_2 : MonoBehaviour
             }
             else if (currentsceneName == "Cyclist_lesson3") // Follow the tactile strips
             {
-                displayMessage = "Obstacles may be hard to tell from afar\nTactile strips help to alert you earlier so you have ample time to react";
+                displayMessage = "Tactile strips tell you to slow down so you have ample time to react.\n Regardless, ensure that you never travel above 25km/h on cycling paths!";
                 GoalText.text = "Follow the tactile strips to navigate crowded areas safely";
                 runLesson3Stage2();
                 StartCoroutine(spawnRandomNPCsRoutine_checkpoint2());
             }
             tutorial.ShowTutorial(displayMessage, 2);
+            if (XRSettings.enabled) 
+                tutorial_vr.ShowTutorial(displayMessage, 2);
             hasShownLaneTutorial = true; // Ensures it only freezes the game once
 
             // Update the manager on the player

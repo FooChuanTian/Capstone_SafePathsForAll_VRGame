@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
+using UnityEngine.XR;
 
 public class TutorialPanel : MonoBehaviour
 {
@@ -58,5 +59,13 @@ public class TutorialPanel : MonoBehaviour
         Time.timeScale = 1f; // ALWAYS unfreeze before switching
         // SceneManager.LoadScene("Cyclist_lesson_endpage");
         GameNavigationManager.Instance.LoadNextDynamicScene();
+    }
+
+    public void Update()
+    {
+        if (XRSettings.enabled && OVRInput.GetDown(OVRInput.Button.Three))
+        {
+            ClickToNextScene();
+        }
     }
 }

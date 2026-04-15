@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.XR;
 
 public class Checkpoint_2_Pedestrian : MonoBehaviour
 {
     public TutorialPanel_Pedestrian tutorial;
+    public TutorialPanel_Pedestrian tutorial_vr;
     public Transform respawnPoint;
 
     public GameObject npcPrefab;        // Otter
@@ -11,8 +13,15 @@ public class Checkpoint_2_Pedestrian : MonoBehaviour
     public GameObject bikePrefab;       // Bike
     public Transform bikeSpawnPoint;    // NPC_Spawn_CP2_Bike (further up cycling lane)
     public float bikeSpeed = 100f;
+    public Transform trackingSpaceObj;
 
     private bool hasTriggered = false;
+
+    void Start()
+    {
+        trackingSpaceObj.localPosition = new Vector3(0, 10f, 0);
+        trackingSpaceObj.localRotation = Quaternion.Euler(0, -90, 0);
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -29,6 +38,11 @@ public class Checkpoint_2_Pedestrian : MonoBehaviour
         {
             tutorial.ShowTutorial("The cycling lane may look empty, but bikes can zoom in at any time. Never walk on the red lane!", 2);
             tutorial.onTutorialClosed = RunCheckpointLogic;
+        }
+        if (tutorial_vr != null && XRSettings.enabled)
+        {
+            tutorial_vr.ShowTutorial("The cycling lane may look empty, but bikes can zoom in at any time. Never walk on the red lane!", 2);
+            tutorial_vr.onTutorialClosed = RunCheckpointLogic;
         }
     }
 

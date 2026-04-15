@@ -58,7 +58,7 @@ public class PlayerCollisionHandler : MonoBehaviour
                     PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
                     isGameOver = true;
                     timeToRespawn = 3f;
-                    StartCoroutine(GameOver2("Hit by cyclist"));
+                    StartCoroutine(GameOver2("Lost all your lives"));
                     //positionManager.Teleport();
                 }
             }

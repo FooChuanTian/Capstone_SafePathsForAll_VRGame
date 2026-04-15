@@ -14,7 +14,7 @@ public class GameNavigationManager : MonoBehaviour
     [SerializeField] private string[] sceneSequence = { 
         "Cyclist_lesson1", "Cyclist_lesson_endpage", 
         "Cyclist_lesson2", "Cyclist_lesson_endpage",
-        "Cyclist_lesson3", "Cyclist_lesson_endpage", "CyclistSimulationScene"};
+        "Cyclist_lesson3", "Cyclist_lesson_endpage", "CyclistSimulationScene", "FinalScene"};
 
     public List<GameObject> activeClones = new List<GameObject>();
 

@@ -3,11 +3,14 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.XR;
 
 public class Checkpoint_1 : MonoBehaviour
 {   
+    public Transform trackingSpaceObj;
     // public TextMeshProUGUI GoalText;
     public TutorialPanel tutorial;
+    public TutorialPanel tutorial_vr;
     private bool hasShownLaneTutorial = false;
     private string currentsceneName;
     private string displayMessage;
@@ -24,39 +27,56 @@ public class Checkpoint_1 : MonoBehaviour
     };
     float rnd_velo;
     public TextMeshProUGUI GoalText;
+    public TextMeshProUGUI GoalText_vr;
     public GameObject pedestrianNPCObject;
 
     void Start()
     {
         currentsceneName = SceneManager.GetActiveScene().name; // Get the current scene name from the GameNavigationManager
         Debug.Log("TEST:Current scene: " + currentsceneName); // Debug log to check the current scene name
+        trackingSpaceObj.localPosition = new Vector3(0, 10f, 0);   //THIS LINE
+        trackingSpaceObj.localRotation = Quaternion.Euler(0, -90, 0);
     }
 
     void OnTriggerEnter(Collider collision)
-    {
+    {   Debug.Log("TESTVR0");
         if (collision.tag == "Player" && hasShownLaneTutorial == false)
-        {   
+        {   Debug.Log("TESTVR1");
             if (currentsceneName == "Cyclist_lesson1")  // Keep to cyclist lane
             {
                 displayMessage = "Pedestrian lane may be empty but as a cyclist you should stick to the cyclist lane";
                 GoalText.text = "Keep to the cyclist lane";
+                if (XRSettings.enabled)
+                {
+                    GoalText_vr.text = "Keep to the cyclist lane";
+                }
             }
             else if (currentsceneName == "Cyclist_lesson2") // Keep to left of cyclist lane
             {
                 displayMessage = "The right side of the cyclist lane may be empty but always keep left to practice good cycling habits";
                 GoalText.text = "Keep to the left side of the cyclist lane";
+                if (XRSettings.enabled)
+                {
+                    GoalText_vr.text = "Keep to the left side of the cyclist lane";
+                }
                 runLesson2Stage1();
                 StartCoroutine(spawnRandomNPCsRoutine_checkpoint1());
             }
             else if (currentsceneName == "Cyclist_lesson3") // Follow the tactile strips
             {
-                displayMessage = "Look out for our speed-guide tactile strips ahead!\nFollow them to practice navigating crowded areas safely\nYellow means slow down and red means stop";
+                displayMessage = "Look out for our speed-guide tactile strips ahead!\nFollow them to practice navigating crowded areas safely\nYellow means slow down (<10km/h) and red means slow down more (<6km/h)!";
                 GoalText.text = "Follow the tactile strips to navigate crowded areas safely";
+                if (XRSettings.enabled)
+                {
+                    GoalText_vr.text = "Follow the tactile strips to navigate crowded areas safely";
+                }
                 runLesson3Stage1();
                 StartCoroutine(spawnRandomNPCsRoutine_checkpoint1());
             }
 
             tutorial.ShowTutorial(displayMessage, 1);
+            if (XRSettings.enabled) 
+                tutorial_vr.ShowTutorial(displayMessage, 1);
             hasShownLaneTutorial = true; // Ensures it only freezes the game once
 
             // SceneManager.LoadScene("Cyclist_lesson1_endpage");

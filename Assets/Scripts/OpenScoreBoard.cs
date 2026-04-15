@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.ARSubsystems;
 
 public class OpenScoreBoard : MonoBehaviour
 {
     public Transform ScoreBoardObject;
+    public Transform ScoreBoardVR;
     public bool isPedestrianSimulation = true;
 
     void OnTriggerEnter(Collider other)
@@ -15,11 +18,15 @@ public class OpenScoreBoard : MonoBehaviour
 
         Time.timeScale = 0;
         ScoreBoardObject.gameObject.SetActive(true);
+        if (XRSettings.enabled)
+        {
+            ScoreBoardVR.gameObject.SetActive(true);
+        }
 
         // Show or hide scoreboard list based on whether it's the final sim
-        Transform scoreboardList = ScoreBoardObject.Find("ScoreboardList");
-        if (scoreboardList != null)
-            scoreboardList.gameObject.SetActive(isFinalSim);
+        //Transform scoreboardList = ScoreBoardObject.Find("ScoreboardList");
+        //if (scoreboardList != null)
+            //scoreboardList.gameObject.SetActive(isFinalSim);
 
         // Refresh scoreboard entries now that it's visible
         ScoreBoardManager manager = ScoreBoardObject.GetComponent<ScoreBoardManager>();

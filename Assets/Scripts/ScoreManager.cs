@@ -3,6 +3,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -84,7 +85,7 @@ public class ScoreManager : MonoBehaviour
             currentSpeed = speedIndicator.SmoothSpeed;
         if (currentSpeed > OverallSpeedLimit)
         {
-            MaximumSpeedPenalty += (int)(currentSpeed - OverallSpeedLimit) * 5;
+            MaximumSpeedPenalty += (int)(currentSpeed - OverallSpeedLimit);
         }
     }
 
@@ -92,10 +93,21 @@ public class ScoreManager : MonoBehaviour
     {
         if (PhoneObject != null)
         {
-            if (Keyboard.current.xKey.wasPressedThisFrame && PhoneObject.activeSelf)
+            if (XRSettings.enabled)
             {
-                PhoneOpened++;   
+                if (OVRInput.GetDown(OVRInput.Button.Four))
+                {
+                    PhoneOpened++;
+                }
             }
+            else
+            {
+                if (Keyboard.current.xKey.wasPressedThisFrame && PhoneObject.activeSelf)
+                {
+                    PhoneOpened++;   
+                }
+            }
+            
         }
     }
 

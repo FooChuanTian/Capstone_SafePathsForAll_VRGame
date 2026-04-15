@@ -1,16 +1,25 @@
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Checkpoint_2_Pedestrian_L2 : MonoBehaviour
 {
     public TutorialPanel_Pedestrian tutorial;
+    public TutorialPanel_Pedestrian tutorial_vr;
     public Transform respawnPoint;
 
     public GameObject npcPrefab;
     public Transform[] spawnPoints;
+    public Transform trackingSpaceObj;
 
     public float npcSpeed = 1.5f;
 
     private bool hasTriggered = false;
+
+    void Start()
+    {
+        trackingSpaceObj.localPosition = new Vector3(0, 10f, 0);
+        trackingSpaceObj.localRotation = Quaternion.Euler(0, -90, 0);
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -27,6 +36,11 @@ public class Checkpoint_2_Pedestrian_L2 : MonoBehaviour
         {
             tutorial.ShowTutorial("Pedestrians coming the other way! Keep left so they can pass safely.", 2);
             tutorial.onTutorialClosed = RunCheckpointLogic;
+        }
+        if (tutorial_vr != null && XRSettings.enabled)
+        {
+            tutorial_vr.ShowTutorial("Pedestrians coming the other way! Keep left so they can pass safely.", 2);
+            tutorial_vr.onTutorialClosed = RunCheckpointLogic;
         }
     }
 

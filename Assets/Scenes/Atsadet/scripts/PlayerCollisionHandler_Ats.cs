@@ -34,8 +34,8 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
     public AudioSource gameOverSoundEffectSource;
     public AudioSource backgroundMusicSource;
     private string currentsceneName;
-    private int slowDownAreaSpeedLimit = 80;
-    private int stopAreaSpeedLimit = 50;
+    private int slowDownAreaSpeedLimit = 10;
+    private int stopAreaSpeedLimit = 6;
     public Transform deathPopup;  // default sprite is type 0: Wrong lane
     public Image deathPopupImage;
     public Sprite deathSprite_HardPenalty;  //type 0 (Wrong lane/ Collision)
@@ -59,6 +59,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
+
     }
 
     void OnCollisionEnter(Collision collision)
@@ -98,7 +99,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
         } else if (other.CompareTag("speedtrackerStop") && !isGameOver && myBody.bounds.Contains(closestPoint))
         {
             Debug.Log("Speed tracker Stop reached!");
-            if (Player.GetComponent<Rigidbody>().linearVelocity.magnitude > stopAreaSpeedLimit)
+            if (Player.GetComponent<SpeedIndicator>().SmoothSpeed > stopAreaSpeedLimit)
             {
                 PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
                 isGameOver = true;
@@ -110,7 +111,7 @@ public class PlayerCollisionHandler_Ats : MonoBehaviour
         } else if (other.CompareTag("speedtrackerSlow") && !isGameOver && myBody.bounds.Contains(closestPoint))
         {
             Debug.Log("Speed tracker Slow Down reached!");
-            if (Player.GetComponent<Rigidbody>().linearVelocity.magnitude > slowDownAreaSpeedLimit)
+            if (Player.GetComponent<SpeedIndicator>().SmoothSpeed > slowDownAreaSpeedLimit)
             {
                 PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
                 isGameOver = true;

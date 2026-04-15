@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 public class NextLevel : MonoBehaviour
 {
@@ -15,6 +16,16 @@ public class NextLevel : MonoBehaviour
         else 
         {
             SceneManager.LoadScene(NextLevelString);
+        }
+    }
+    public void Update()
+    {
+        if (XRSettings.enabled)
+        {
+            if (OVRInput.GetDown(OVRInput.Button.Three))
+            {
+                StartNextLevel();
+            }
         }
     }
 }

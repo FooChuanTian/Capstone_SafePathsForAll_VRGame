@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class FinishLine_Pedestrian : MonoBehaviour
 {
     public TutorialPanel_Pedestrian tutorial;
+    public TutorialPanel_Pedestrian tutorial_vr;
 
     private bool hasFinished = false;
 
@@ -31,5 +32,8 @@ public class FinishLine_Pedestrian : MonoBehaviour
 
         if (tutorial != null)
             tutorial.ShowTutorial(message, 4);
+
+        if (tutorial_vr != null)
+            tutorial_vr.ShowTutorial(message, 4);
     }
 }

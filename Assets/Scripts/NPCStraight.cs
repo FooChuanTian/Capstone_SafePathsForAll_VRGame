@@ -9,6 +9,7 @@ public class NPCStraight : MonoBehaviour
     void Start()
     {
         rb = gb.GetComponent<Rigidbody>();
+        rb.AddForce(new Vector3(velocity, 0, 0), ForceMode.VelocityChange);
     }
     // Update is called once per frame
     void FixedUpdate()

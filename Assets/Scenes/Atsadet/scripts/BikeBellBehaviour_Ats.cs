@@ -46,7 +46,7 @@ public class BikeBellBehaviour_Ats : MonoBehaviour
     }
     void Update()
     {
-        if (Keyboard.current.zKey.wasPressedThisFrame)
+        if (Keyboard.current.zKey.wasPressedThisFrame || OVRInput.GetDown(OVRInput.Button.Four))
         {
             Debug.Log("Bike bell");
             BellSound.Play();

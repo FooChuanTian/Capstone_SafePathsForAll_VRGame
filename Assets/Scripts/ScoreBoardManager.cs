@@ -22,6 +22,7 @@ public class ScoreBoardManager : MonoBehaviour
     private bool scoreSaved = false;
     private string currentScoreboardType;
     private bool componentsInitialized = false;  // NEW: Prevent double initialization
+    private int refreshCallCount = 0;  // DEBUG: Track how many times RefreshScoreboard is called
 
     void Awake()
     {
@@ -101,7 +102,9 @@ public class ScoreBoardManager : MonoBehaviour
     // Called by OpenScoreBoard when scoreboard becomes visible
     public void RefreshScoreboard(string type, bool isFinalSim)
     {
-        Debug.Log($"[ScoreBoardManager] ========== RefreshScoreboard called: type={type}, isFinalSim={isFinalSim} ==========");
+        refreshCallCount++;
+        Debug.Log($"[ScoreBoardManager] ========== RefreshScoreboard called #{refreshCallCount}: type={type}, isFinalSim={isFinalSim} ==========");
+        Debug.Log($"[ScoreBoardManager] Called from GameObject: {gameObject.name}, Parent: {(transform.parent != null ? transform.parent.name : "None")}");
 
         // CRITICAL FIX: Reset save flag so we can save this simulation
         scoreSaved = false;

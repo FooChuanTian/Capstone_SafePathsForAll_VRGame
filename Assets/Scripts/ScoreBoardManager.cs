@@ -35,6 +35,12 @@ public class ScoreBoardManager : MonoBehaviour
         SaveScore();
     }
 
+    private IEnumerator DisplayScoreboardDelayed()
+    {
+        yield return new WaitForSecondsRealtime(0.2f);  // ← must be Realtime
+        DisplayScoreboard(currentScoreboardType);
+    }
+
     private void InitializeComponents()
     {
         // CRITICAL: If already initialized, DO NOT re-initialize!
@@ -156,8 +162,8 @@ public class ScoreBoardManager : MonoBehaviour
 
         if (isFinalSim)
         {
-            Invoke(nameof(DelayedDisplayScoreboard), 0.2f);
-            currentScoreboardType = type;
+            currentScoreboardType = type;  // set BEFORE starting coroutine
+            StartCoroutine(DisplayScoreboardDelayed());
         }
 
         Debug.Log("[ScoreBoardManager] ========== RefreshScoreboard complete ==========");

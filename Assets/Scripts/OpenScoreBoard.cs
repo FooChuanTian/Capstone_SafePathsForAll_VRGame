@@ -1,3 +1,4 @@
+using Debug = UnityEngine.Debug;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.ARSubsystems;
@@ -26,10 +27,12 @@ public class OpenScoreBoard : MonoBehaviour
             ScoreBoardVR.gameObject.SetActive(true);
         }
 
-        // Show or hide scoreboard list based on whether it's the final sim
-        //Transform scoreboardList = ScoreBoardObject.Find("ScoreboardList");
-        //if (scoreboardList != null)
-            //scoreboardList.gameObject.SetActive(isFinalSim);
+        // Uncomment and fix to use ScoreBoardVR:
+        Transform scoreboardList = ScoreBoardVR.Find("ScoreboardList");
+        if (scoreboardList != null)
+            scoreboardList.gameObject.SetActive(isFinalSim);
+        else
+            Debug.LogError("[OpenScoreBoard] ScoreboardList not found under ScoreBoardVR!");
 
         // Refresh scoreboard entries now that it's visible
         ScoreBoardManager manager = ScoreBoardVR.GetComponent<ScoreBoardManager>();

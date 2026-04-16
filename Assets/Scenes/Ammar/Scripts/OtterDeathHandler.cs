@@ -27,8 +27,7 @@ public class OtterDeathHandler : MonoBehaviour
         if (isDead || !collisionEnabled) return;
 
         // Only trigger death on collision with cyclist or obstacle tags
-        if (collision.gameObject.CompareTag("cyclist") ||
-            collision.gameObject.CompareTag("obstacle") ||
+        if (collision.gameObject.CompareTag("obstacle") ||
             collision.gameObject.CompareTag("Player"))
         {
             TriggerDeath();

@@ -20,9 +20,13 @@ public class BikeBellBehaviour : MonoBehaviour
             Rigidbody rb_other = other.gameObject.GetComponent<Rigidbody>();
             //Vector3 pos_difference = other.gameObject.transform.position - transform.position;
             Vector3 pos_difference = new Vector3(0, 0, other.gameObject.transform.position.z - transform.position.z);
-            if (pos_difference.z == 0)
+            // if (pos_difference.z == 0)
+            // {
+            //     pos_difference.z = 4;
+            // }
+            if (Mathf.Abs(pos_difference.z) < 10f)
             {
-                pos_difference.z = 4;
+                pos_difference.z = 10f * Mathf.Sign(pos_difference.z);
             }
             //rb_other.AddForce(pos_difference*30, ForceMode.Acceleration);
             StartCoroutine(MoveNPC(rb_other, pos_difference));

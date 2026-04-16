@@ -32,6 +32,7 @@ public class ScoreManager : MonoBehaviour
     public int MaximumSpeedPenalty = 0;
     public float currentSpeed;
     public Oculus.Interaction.Locomotion.CharacterController myController;
+    private string[] WrongLanes;
 
     void Start()
     {
@@ -43,11 +44,13 @@ public class ScoreManager : MonoBehaviour
         if (PlayerType == "pedestrian")
         {
             CorrectLanes = new string[] {"pedestrian_lane_left", "pedestrian_lane_right"};
+            WrongLanes = new string[] {"cycling_lane_left", "cycling_lane_right"};
 
         }
         else if (PlayerType == "cyclist")
         {
             CorrectLanes = new string[] {"cycling_lane_left", "cycling_lane_right"};
+            WrongLanes = new string[] {"pedestrian_lane_left", "pedestrian_lane_right"};
         }
         InvokeRepeating(nameof(SecondUpdate), 0f, 1.0f);
     }
@@ -55,16 +58,16 @@ public class ScoreManager : MonoBehaviour
     void SecondUpdate()
     {   
         if (myController.IsGrounded)
-        {   Debug.Log("FTEST1");
+        {
             RaycastHit hitInfo = myController.GroundHit;
 
             if (hitInfo.collider.CompareTag(CorrectLanes[0]) || hitInfo.collider.CompareTag(CorrectLanes[1]))
-            {   Debug.Log("FTEST2");
+            {   
                 SecondsOnCorrectLane++;
                 if (CorrectLaneDebug != null)
                     CorrectLaneDebug.text = "Correct Lane: " + SecondsOnCorrectLane;
-            } else
-            {   Debug.Log("FTEST3");
+            } else if (hitInfo.collider.CompareTag(WrongLanes[0]) || hitInfo.collider.CompareTag(WrongLanes[1]))
+            {   
                 SecondsOnWrongLane++;
                 if (WrongLaneDebug != null)
                     WrongLaneDebug.text = "Wrong Lane: " + SecondsOnWrongLane;

@@ -81,7 +81,13 @@ public class PlayerCollisionHandler : MonoBehaviour
             Debug.Log("Collided");
             if (livesManager != null) {
                 if (collision.gameObject.CompareTag("cyclist")) {
-                    livesManager.NumLives -= 2;
+                    if (livesManager.NumLives == 1)
+                    {
+                        livesManager.NumLives -= 1;
+                    } else
+                    {
+                        livesManager.NumLives -= 2;
+                    }
                 }
                 else if (collision.gameObject.CompareTag("pedestrian"))
                 {

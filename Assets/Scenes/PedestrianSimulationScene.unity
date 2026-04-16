@@ -3832,7 +3832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e527928ee1ec03645803450218484ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreBoardManager
-  player: {fileID: 0}
+  player: {fileID: 118514487}
   TotalScoreText: {fileID: 2140515575}
   WrongLaneScoreText: {fileID: 1243538932}
   CorrectLaneScoreText: {fileID: 45744211}
@@ -7041,7 +7041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2d46393a9c8d342a04ce004621422f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialPanelSimulation
-  player: {fileID: 0}
+  player: {fileID: 118514487}
   tutorialText: {fileID: 2145866844}
   TutorialPanel: {fileID: 713202751}
 --- !u!114 &713202754
@@ -18392,7 +18392,7 @@ Transform:
   m_GameObject: {fileID: 1868787799}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -109.5, y: 3.7, z: 30.4}
+  m_LocalPosition: {x: -500, y: 3.7, z: 30.4}
   m_LocalScale: {x: 1.3677, y: 127.34969, z: 92.626945}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20395,7 +20395,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -161.7, y: 11.98}
+  m_AnchoredPosition: {x: -550, y: 11.98}
   m_SizeDelta: {x: 958, y: 399}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2145866843

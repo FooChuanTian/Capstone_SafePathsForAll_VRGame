@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
+using Oculus.Interaction.Locomotion;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class ScoreManager : MonoBehaviour
     private bool HitRed = false;
     public int MaximumSpeedPenalty = 0;
     public float currentSpeed;
+    public Oculus.Interaction.Locomotion.CharacterController myController;
+
     void Start()
     {
         speedIndicator = player.GetComponent<SpeedIndicator>();
@@ -50,36 +53,52 @@ public class ScoreManager : MonoBehaviour
     }
 
     void SecondUpdate()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 2f))
-        {
-            foreach (var lane in AllLanes)
-            {
-                if (hit.collider.CompareTag(lane))
-                {
-                    CurrentLane = hit.collider.tag;
-                    break;
-                }
-            }
-        }
+    {   
+        if (myController.IsGrounded)
+        {   Debug.Log("FTEST1");
+            RaycastHit hitInfo = myController.GroundHit;
 
-        if (CurrentLane != null)
-        {
-            if (CorrectLanes.Contains(CurrentLane))
-            {
+            if (hitInfo.collider.CompareTag(CorrectLanes[0]) || hitInfo.collider.CompareTag(CorrectLanes[1]))
+            {   Debug.Log("FTEST2");
                 SecondsOnCorrectLane++;
                 if (CorrectLaneDebug != null)
                     CorrectLaneDebug.text = "Correct Lane: " + SecondsOnCorrectLane;
-            }
-            else if (AllLanes.Contains(CurrentLane))
-            {
+            } else
+            {   Debug.Log("FTEST3");
                 SecondsOnWrongLane++;
                 if (WrongLaneDebug != null)
                     WrongLaneDebug.text = "Wrong Lane: " + SecondsOnWrongLane;
             }
-            CurrentLane = null;
         }
+        // RaycastHit hit;
+        // if (Physics.Raycast(transform.position, Vector3.down, out hit, 2f))
+        // {
+        //     foreach (var lane in AllLanes)
+        //     {
+        //         if (hit.collider.CompareTag(lane))
+        //         {
+        //             CurrentLane = hit.collider.tag;
+        //             break;
+        //         }
+        //     }
+        // }
+
+        // if (CurrentLane != null)
+        // {   Debug.Log("FTEST1" + CurrentLane);
+        //     if (CorrectLanes.Contains(CurrentLane))
+        //     {
+        //         SecondsOnCorrectLane++;
+        //         if (CorrectLaneDebug != null)
+        //             CorrectLaneDebug.text = "Correct Lane: " + SecondsOnCorrectLane;
+        //     }
+        //     else if (AllLanes.Contains(CurrentLane))
+        //     {
+        //         SecondsOnWrongLane++;
+        //         if (WrongLaneDebug != null)
+        //             WrongLaneDebug.text = "Wrong Lane: " + SecondsOnWrongLane;
+        //     }
+        //     CurrentLane = null;
+        // }
 
         if (speedIndicator != null)
             currentSpeed = speedIndicator.SmoothSpeed;
@@ -90,7 +109,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     void Update()
-    {
+    {   
         if (PhoneObject != null)
         {
             if (XRSettings.enabled)

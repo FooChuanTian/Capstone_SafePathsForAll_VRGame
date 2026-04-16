@@ -6,6 +6,7 @@ using System.ComponentModel.Design;
 using System.Collections;
 using Unity.VisualScripting;
 using System.Data;
+using Oculus.Interaction.Locomotion;
 
 public class PlayerCollisionHandler : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerCollisionHandler : MonoBehaviour
     private bool isCyclingPath = false;
     private float timeToRespawn;
     private List<Transform> CheckpointList = new List<Transform>();
+    public Oculus.Interaction.Locomotion.CharacterController myController;
     void Start()
     {
 
@@ -33,6 +35,40 @@ public class PlayerCollisionHandler : MonoBehaviour
             {
                 isGameOver = false;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
+
+        if (myController.IsGrounded)
+        {
+            RaycastHit hitInfo = myController.GroundHit;
+
+            if (hitInfo.collider.CompareTag("cycling_lane_left"))
+            {
+                isCyclingPath = true;
+                WhichLaneText.text = "Cycling Lane Left";
+                Debug.Log("On cycling path!");
+            }
+            else if (hitInfo.collider.CompareTag("cycling_lane_right"))
+            {
+                isCyclingPath = true;
+                WhichLaneText.text = "Cycling Lane Right";
+                Debug.Log("On right cycling path!");
+            }
+            else if (hitInfo.collider.CompareTag("pedestrian_lane_left"))
+            {
+                isCyclingPath = false;
+                WhichLaneText.text = "Pedestrian Lane Left";
+                Debug.Log("On left pedestrian path!");
+            }
+            else if (hitInfo.collider.CompareTag("pedestrian_lane_right"))
+            {
+                isCyclingPath = false;
+                WhichLaneText.text = "Pedestrian Lane Right";
+                Debug.Log("On right pedestrian path!");
+                //PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
+                //isGameOver = true;
+                //timeToRespawn = 3f;
+                //StartCoroutine(GameOver2("You went onto the pedestrian lane!"));
             }
         }
     }
@@ -84,37 +120,37 @@ public class PlayerCollisionHandler : MonoBehaviour
     }
 
 
-    void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("cycling_lane_left"))
-        {
-            isCyclingPath = true;
-            WhichLaneText.text = "Cycling Lane Left";
-            Debug.Log("On cycling path!");
-        }
-        else if (collision.gameObject.CompareTag("cycling_lane_right"))
-        {
-            isCyclingPath = true;
-            WhichLaneText.text = "Cycling Lane Right";
-            Debug.Log("On right cycling path!");
-        }
-        else if (collision.gameObject.CompareTag("pedestrian_lane_left"))
-        {
-            isCyclingPath = false;
-            WhichLaneText.text = "Pedestrian Lane Left";
-            Debug.Log("On left pedestrian path!");
-        }
-        else if (collision.gameObject.CompareTag("pedestrian_lane_right"))
-        {
-            isCyclingPath = false;
-            WhichLaneText.text = "Pedestrian Lane Right";
-            Debug.Log("On right pedestrian path!");
-            //PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
-            //isGameOver = true;
-            //timeToRespawn = 3f;
-            //StartCoroutine(GameOver2("You went onto the pedestrian lane!"));
-        }
-    }
+    // void OnCollisionStay(Collision collision)
+    // {
+    //     if (collision.gameObject.CompareTag("cycling_lane_left"))
+    //     {
+    //         isCyclingPath = true;
+    //         WhichLaneText.text = "Cycling Lane Left";
+    //         Debug.Log("On cycling path!");
+    //     }
+    //     else if (collision.gameObject.CompareTag("cycling_lane_right"))
+    //     {
+    //         isCyclingPath = true;
+    //         WhichLaneText.text = "Cycling Lane Right";
+    //         Debug.Log("On right cycling path!");
+    //     }
+    //     else if (collision.gameObject.CompareTag("pedestrian_lane_left"))
+    //     {
+    //         isCyclingPath = false;
+    //         WhichLaneText.text = "Pedestrian Lane Left";
+    //         Debug.Log("On left pedestrian path!");
+    //     }
+    //     else if (collision.gameObject.CompareTag("pedestrian_lane_right"))
+    //     {
+    //         isCyclingPath = false;
+    //         WhichLaneText.text = "Pedestrian Lane Right";
+    //         Debug.Log("On right pedestrian path!");
+    //         //PlayerPositionManager positionManager = Player.gameObject.GetComponent<PlayerPositionManager>();
+    //         //isGameOver = true;
+    //         //timeToRespawn = 3f;
+    //         //StartCoroutine(GameOver2("You went onto the pedestrian lane!"));
+    //     }
+    // }
 
     IEnumerator GameOver2(string reason)
     {
